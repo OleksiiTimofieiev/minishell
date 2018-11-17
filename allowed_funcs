@@ -1,0 +1,57 @@
+◦ malloc -> allocate necessary memory;
+◦ free -> deallocate necessary memory;
+
+◦ access -> int access(const char *path, int mode);
+
+The access() system call checks the accessibility of the file named by the path argument for the access permissions indicated by the mode
+argument. 
+
+The value of mode is either the bitwise-inclusive OR of the access permissions to be checked (R_OK for read permission, W_OK for
+write permission, and X_OK for execute/search permission), or the existence test (F_OK).
+Upon successful completion, the value 0 is returned; otherwise the value -1 is returned and the global variable errno is set to indicate the
+error.
+
+◦ open -> opens files and directories;
+◦ close -> delete the descriptor;
+◦ read -> read from the descriptor;
+◦ write -> write to the descriptor
+◦ opendir -> get the inode;
+◦ readdir -> move through the inode;
+◦ closedir -> delete the descriptor to the inode;
+
+◦ getcwd -> char *getcwd(char *buf, size_t size);
+
+get working directory pathname;
+
+The getcwd() function copies the absolute pathname of the current working directory into the memory referenced by buf and returns a pointer to
+buf.  The size argument is the size, in bytes, of the array referenced by buf.
+If buf is NULL, space is allocated as necessary to store the pathname and size is ignored.  This space may later be free(3)'d.
+Upon successful completion, a pointer to the pathname is returned.  Otherwise a NULL pointer is returned and the global variable errno is set
+ to indicate the error.  In addition, getwd() copies the error message associated with errno into the memory referenced by buf.
+
+◦ chdir ->  int chdir(const char *path);
+change current working directory;
+
+The path argument points to the pathname of a directory.  The chdir() function causes the named directory to become the current working direc-
+tory, that is, the starting point for path searches of pathnames not beginning with a slash, `/'.
+
+In order for a directory to become the current directory, a process must have execute (search) access to the directory.
+
+Upon successful completion, a value of 0 is returned.  Otherwise, a value of -1 is returned and errno is set to indicate the error.
+
+◦ stat -> get the inode related data;
+◦ lstat -> get the inode related data;
+◦ fstat -> get the inode related data;
+
+◦ fork
+◦ execve
+◦ wait
+◦ waitpid
+◦ wait3
+◦ wait4
+◦ signal
+◦ kill
+◦ exit
+
+bonus:
+◦ tcgetattr

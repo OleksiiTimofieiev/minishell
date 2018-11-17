@@ -1,0 +1,37 @@
+Subject ideas:
+
+- Analyses lexicale et syntaxique basiques ("lexing" et "parsing") 
+- Exécution d'une commande dans un nouveau processus 
+- Gestion de l'environnement 
+- Gestion du PATH 
+- system’s API: process creation and synchronisation.
+- Executing a command inside a shell implies creating a new process, which execution and final state will be monitored by its parent’s process.
+
+testing:
+
+https://forum.intra.42.fr/topics/16713/messages/last
+
+Project ideas:
+- bin_name: minishell;
+- search binary file if it is missing ?
+- environ ? 
+- echo, cd, setenv, unsetenv, env, exit ?
+- You must manage expansions $ and  ̃
+
+Bonus:
+- Management of signals and in particular Ctrl-C. The use of global variables is allowed as part of this bonus.
+- Management of execution rights in the PATH.
+- Auto completion.
+- The separation of commands with ";".
+- Other bonuses that you will think to be useful.
+
+Mandatory:
+• This interpreter must display a prompt (a simple "$> " for example) and wait till
+you type a command line, validated by pressing enter.
+• The prompt is shown again only once the command has been completely executed.
+• The executable are those you can find in the paths indicated in the PATH variable.
+• In cases where the executable cannot be found, it has to show an error message and display the prompt again.
+• You must manage the errors without using errno, by displaying a message adapted to the error output.
+• You must deal correctly with the PATH and the environment (copy of system char **environ).
+• You must implement a series of builtins: echo, cd, setenv, unsetenv, env, exit.
+• You must manage expansions $ and  ̃
