@@ -43,15 +43,170 @@ Upon successful completion, a value of 0 is returned.  Otherwise, a value of -1 
 ◦ lstat -> get the inode related data;
 ◦ fstat -> get the inode related data;
 
-◦ fork
-◦ execve
-◦ wait
-◦ waitpid
-◦ wait3
-◦ wait4
-◦ signal
-◦ kill
-◦ exit
+◦ fork -> pid_t fork(void);
+fork() causes creation of a new process.  The new process (child process) is an exact copy of the calling process (parent process) except for
+the following:
+
+   o   The child process has a unique process ID.
+
+   o   The child process has a different parent process ID (i.e., the process ID of the parent process).
+
+   o   The child process has its own copy of the parent's descriptors.  These descriptors reference the same underlying objects, so that,
+       for instance, file pointers in file objects are shared between the child and the parent, so that an lseek(2) on a descriptor in the
+       child process can affect a subsequent read or write by the parent.  This descriptor copying is also used by the shell to establish
+       standard input and output for newly created processes as well as to set up pipes.
+
+   o   The child processes resource utilizations are set to 0; see setrlimit(2).
+
+Upon successful completion, fork() returns a value of 0 to the child process and returns the process ID of the child process to the parent
+process.  Otherwise, a value of -1 is returned to the parent process, no child process is created, and the global variable errno is set to
+indicate the error.
+
+◦ execve -> int execve(const char *path, char *const argv[], char *const envp[]);
+  execve() transforms the calling process into a new process.  The new process is constructed from an ordinary file, whose name is pointed to by
+     path, called the new process file.  This file is either an executable object file, or a file of data for an interpreter.  An executable object
+     file consists of an identifying header, followed by pages of data representing the initial program (text) and initialized data pages.  Addi-
+     tional pages may be specified by the header to be initialized with zero data;  see a.out(5).
+
+     An interpreter file begins with a line of the form:
+
+           #! interpreter [arg ...]
+
+     When an interpreter file is execve()'d, the system runs the specified interpreter.  If any optional args are specified, they become the first
+     (second, ...) argument to the interpreter. The name of the originally execve()'d file becomes the subsequent argument; otherwise, the name of
+     the originally execve()'d file is the first argument.  The original arguments to the invocation of the interpreter are shifted over to become
+     the final arguments.  The zeroth argument, normally the name of the execve()'d file, is left unchanged.
+
+     The argument argv is a pointer to a null-terminated array of character pointers to null-terminated character strings.  These strings construct
+     the argument list to be made available to the new process.  At least one argument must be present in the array; by custom, the first element
+     should be the name of the executed program (for example, the last component of path).
+
+     The argument envp is also a pointer to a null-terminated array of character pointers to null-terminated strings.  A pointer to this array is
+     normally stored in the global variable environ. These strings pass information to the new process that is not directly an argument to the com-
+     mand (see environ(7)).
+
+     File descriptors open in the calling process image remain open in the new process image, except for those for which the close-on-exec flag is
+     set (see close(2) and fcntl(2)).  Descriptors that remain open are unaffected by execve().
+
+     Signals set to be ignored in the calling process are set to be ignored in the new process. Signals which are set to be caught in the calling
+     process image are set to default action in the new process image.  Blocked signals remain blocked regardless of changes to the signal action.
+     The signal stack is reset to be undefined (see sigaction(2) for more information).
+
+     If the set-user-ID mode bit of the new process image file is set (see chmod(2)), the effective user ID of the new process image is set to the
+     owner ID of the new process image file.  If the set-group-ID mode bit of the new process image file is set, the effective group ID of the new
+     process image is set to the group ID of the new process image file.  (The effective group ID is the first element of the group list.)  The
+     real user ID, real group ID and other group IDs of the new process image remain the same as the calling process image.  After any set-user-ID
+     and set-group-ID processing, the effective user ID is recorded as the saved set-user-ID, and the effective group ID is recorded as the saved
+     set-group-ID.  These values may be used in changing the effective IDs later (see setuid(2)).
+
+     The new process also inherits the following attributes from the calling process:
+
+           process ID           see getpid(2)
+           parent process ID    see getppid(2)
+           process group ID     see getpgrp(2)
+           access groups        see getgroups(2)
+           working directory    see chdir(2)
+           root directory       see chroot(2)
+           control terminal     see termios(4)
+           resource usages      see getrusage(2)
+           interval timers      see getitimer(2)
+           resource limits      see getrlimit(2)
+           file mode mask       see umask(2)
+           signal mask          see sigaction(2), sigsetmask(2)
+
+     tional pages may be specified by the header to be initialized with zero data;  see a.out(5).
+
+     An interpreter file begins with a line of the form:
+
+           #! interpreter [arg ...]
+
+     When an interpreter file is execve()'d, the system runs the specified interpreter.  If any optional args are specified, they become the first
+     (second, ...) argument to the interpreter. The name of the originally execve()'d file becomes the subsequent argument; otherwise, the name of
+     the originally execve()'d file is the first argument.  The original arguments to the invocation of the interpreter are shifted over to become
+     the final arguments.  The zeroth argument, normally the name of the execve()'d file, is left unchanged.
+
+     The argument argv is a pointer to a null-terminated array of character pointers to null-terminated character strings.  These strings construct
+     the argument list to be made available to the new process.  At least one argument must be present in the array; by custom, the first element
+     should be the name of the executed program (for example, the last component of path).
+
+     The argument envp is also a pointer to a null-terminated array of character pointers to null-terminated strings.  A pointer to this array is
+     normally stored in the global variable environ. These strings pass information to the new process that is not directly an argument to the com-
+     mand (see environ(7)).
+
+     File descriptors open in the calling process image remain open in the new process image, except for those for which the close-on-exec flag is
+     set (see close(2) and fcntl(2)).  Descriptors that remain open are unaffected by execve().
+
+     Signals set to be ignored in the calling process are set to be ignored in the new process. Signals which are set to be caught in the calling
+     process image are set to default action in the new process image.  Blocked signals remain blocked regardless of changes to the signal action.
+     The signal stack is reset to be undefined (see sigaction(2) for more information).
+
+     If the set-user-ID mode bit of the new process image file is set (see chmod(2)), the effective user ID of the new process image is set to the
+     owner ID of the new process image file.  If the set-group-ID mode bit of the new process image file is set, the effective group ID of the new
+     process image is set to the group ID of the new process image file.  (The effective group ID is the first element of the group list.)  The
+     real user ID, real group ID and other group IDs of the new process image remain the same as the calling process image.  After any set-user-ID
+     and set-group-ID processing, the effective user ID is recorded as the saved set-user-ID, and the effective group ID is recorded as the saved
+     set-group-ID.  These values may be used in changing the effective IDs later (see setuid(2)).
+
+     The new process also inherits the following attributes from the calling process:
+
+           process ID           see getpid(2)
+           parent process ID    see getppid(2)
+           process group ID     see getpgrp(2)
+           access groups        see getgroups(2)
+           working directory    see chdir(2)
+           root directory       see chroot(2)
+           control terminal     see termios(4)
+           resource usages      see getrusage(2)
+           interval timers      see getitimer(2)
+           resource limits      see getrlimit(2)
+           file mode mask       see umask(2)
+           signal mask          see sigaction(2), sigsetmask(2)
+
+     When a program is executed as a result of an execve() call, it is entered as follows:
+
+           main(argc, argv, envp)
+           int argc;
+           char **argv, **envp;
+
+     where argc is the number of elements in argv (the ``arg count'') and argv points to the array of character pointers to the arguments them-
+     selves.
+
+RETURN VALUES
+     As the execve() function overlays the current process image  with a new process image, the successful call has no process to return to.  If
+     execve() does return to the calling process, an error has occurred; the return value will be -1 and the global variable errno is set to indi-
+     cate the error.
+           parent process ID    see getppid(2)
+           process group ID     see getpgrp(2)
+           access groups        see getgroups(2)
+           working directory    see chdir(2)
+           root directory       see chroot(2)
+           control terminal     see termios(4)
+           resource usages      see getrusage(2)
+           interval timers      see getitimer(2)
+           resource limits      see getrlimit(2)
+           file mode mask       see umask(2)
+           signal mask          see sigaction(2), sigsetmask(2)
+
+     When a program is executed as a result of an execve() call, it is entered as follows:
+
+           main(argc, argv, envp)
+           int argc;
+           char **argv, **envp;
+
+     where argc is the number of elements in argv (the ``arg count'') and argv points to the array of character pointers to the arguments them-
+     selves.
+
+RETURN VALUES
+     As the execve() function overlays the current process image  with a new process image, the successful call has no process to return to.  If
+     execve() does return to the calling process, an error has occurred; the return value will be -1 and the global variable errno is set to indi-
+     cate the error.
+◦ wait -> wait for the process execution;
+◦ waitpid -> wait for the process execution;
+◦ wait3 -> wait for the process execution;
+◦ wait4 -> wait for the process execution;
+◦ signal -> handle system signals;
+◦ kill -> kill the process
+◦ exit -> exit the process ?
 
 bonus:
 ◦ tcgetattr
