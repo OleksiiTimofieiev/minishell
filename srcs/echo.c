@@ -12,13 +12,6 @@
 
 #include "../includes/minishell.h"
 
-int		check_n_flag(char **command_line)
-{
-	if (ft_strequ("-n", command_line[1]))
-		return (1);
-	return (0);
-}
-
 int		check_till_equal(char *haystack, char *needle)
 {
 	while (*needle && *haystack)
@@ -62,7 +55,7 @@ void	display_arguments(char **arguments, char **envp, int n_flag)
 	int		spaces;
 	int		spaces_iterator;
 
-	start_index = (n_flag) ? 1 : 0;
+	start_index = (n_flag) ? 2 : 1;
 	spaces = spaces_quantity(arguments, start_index);
 	spaces_iterator = 0;
 	while (arguments[start_index])
@@ -86,8 +79,10 @@ void	echo(char *str, char **envp)
 	char	**command_line;
 	int		n_flag;
 
+	n_flag = 0;
 	command_line = ft_strsplit(str, 32);
-	n_flag = check_n_flag(command_line);
+	if (ft_strequ("-n", command_line[1]))
+		n_flag = 1;
 	display_arguments(command_line, envp, n_flag);
 	if (!n_flag)
 		ft_printf("\n");
