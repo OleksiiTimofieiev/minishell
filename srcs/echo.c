@@ -48,7 +48,7 @@ void	display_arguments(char **arguments, char **envp, int n_flag)
 	int		spaces;
 	int		spaces_iterator;
 
-	start_index = (n_flag) ? 2 : 1;
+	start_index = (n_flag) ? 1 : 0;
 	spaces = spaces_quantity(arguments, start_index);
 	spaces_iterator = 0;
 	while (arguments[start_index])
