@@ -10,7 +10,7 @@ int		main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 
-	echo("n sdf sd $", envp);
+	echo("-n sdf sd $f", envp);
 
 	// while get_next_line
 

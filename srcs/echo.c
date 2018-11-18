@@ -19,12 +19,14 @@ int		check_n_flag(char **command_line)
 	return (0);
 }
 
+// int		check_till_equal
+
 void	display_global_variable(char *str, char **envp)
 {
 	while (*envp)
 	{
 		if (ft_strstr(*envp, &str[1]) && !ft_strstr(*envp, "$"))
-			ft_printf("%s", *envp);
+			ft_printf("%s\n", *envp);
 		envp++;
 	}
 }
