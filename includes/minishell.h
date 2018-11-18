@@ -1,7 +1,9 @@
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
-# include <unistd.h> // access, getcwd
-# include <sys/wait.h> // wait func;
+# include "../libft/libft.h"
+# include <sys/wait.h>
+
+void	echo(char *str, char **envp);
 
 #endif
