@@ -62,21 +62,19 @@ void	display_arguments(char **arguments, char **envp, int n_flag)
 	{
 		if (arguments[start_index][0] == '$'
 			&& ft_strlen(arguments[start_index]) != 1)
-			display_global_variable(arguments[start_index], envp);
+			display_global_variable(arguments[start_index++], envp);
 		else
 		{
 			if (arguments[start_index][0] == '~')
 			{
 				ft_printf("/Users/otimofie");
-				ft_putstr(&arguments[start_index][1]);
+				ft_putstr(&arguments[start_index++][1]);
 			}
-			else 
-				ft_putstr(arguments[start_index]);
+			else
+				ft_putstr(arguments[start_index++]);
 		}
-		if (spaces_iterator + 1 < spaces)
+		if (spaces_iterator++ + 1 < spaces)
 			ft_printf(" ");
-		start_index++;
-		spaces_iterator++;
 	}
 }
 
