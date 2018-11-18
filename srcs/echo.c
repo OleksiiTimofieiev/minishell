@@ -49,13 +49,12 @@ void	display_arguments(char **arguments, char **envp, int n_flag)
 	int		spaces_iterator;
 
 	start_index = (n_flag) ? 2 : 1;
-
 	spaces = spaces_quantity(arguments, start_index);
-
 	spaces_iterator = 0;
 	while (arguments[start_index])
 	{
-		if (arguments[start_index][0] == '$' && ft_strlen(arguments[start_index]) != 1)
+		if (arguments[start_index][0] == '$'
+			&& ft_strlen(arguments[start_index]) != 1)
 			display_global_variable(arguments[start_index], envp);
 		else
 			ft_printf("%s", arguments[start_index]);
