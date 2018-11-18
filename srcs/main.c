@@ -1,6 +1,7 @@
 #include "../includes/minishell.h"
 
 // use array of functions for echo, ...
+// work with ./ and maybe without it
 
 int		main(int argc, char **argv, char **envp)
 {
