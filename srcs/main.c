@@ -6,7 +6,7 @@ int		main(int argc, char **argv, char **envp)
 	(void)argv;
 
 
-	echo("echo -n test1 test2 test3 test4 $PATH", envp);
+	echo("echo test1 test2 test3 test4 $", envp);
 
 	system("leaks -q minishell");
 	return 0;

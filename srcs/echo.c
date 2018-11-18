@@ -55,10 +55,10 @@ void	display_arguments(char **arguments, char **envp, int n_flag)
 	spaces_iterator = 0;
 	while (arguments[start_index])
 	{
-		if (arguments[start_index][0] != '$')
-			ft_printf("%s", arguments[start_index]);
-		else
+		if (arguments[start_index][0] == '$' && ft_strlen(arguments[start_index]) != 1)
 			display_global_variable(arguments[start_index], envp);
+		else
+			ft_printf("%s", arguments[start_index]);
 		if (spaces_iterator + 1 < spaces)
 		{
 			ft_printf(" ");
@@ -76,7 +76,7 @@ void	echo(char *str, char **envp)
 	command_line = ft_strsplit(str, 32);
 	n_flag = check_n_flag(command_line);
 	display_arguments(command_line, envp, n_flag);
-	if (n_flag)
+	if (!n_flag)
 		ft_printf("\n");
 	ft_clean_2d_char(command_line);
 }
