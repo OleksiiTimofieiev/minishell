@@ -21,7 +21,7 @@ int		check_till_equal(char *haystack, char *needle)
 		needle++;
 		haystack++;
 	}
-	if (*(haystack + 1) == '=')
+	if (*(haystack) == '=')
 		return (1);
 	return (0);
 }
@@ -30,7 +30,7 @@ void	display_global_variable(char *str, char **envp)
 {
 	while (*envp)
 	{
-		if (!ft_strequ(*envp, "$") && check_till_equal(*envp, str))
+		if (!ft_strequ(*envp, "$") && check_till_equal(*envp, &str[1]))
 			ft_printf("%s", *envp);
 		envp++;
 	}
