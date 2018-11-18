@@ -25,8 +25,8 @@ void	display_global_variable(char *str, char **envp)
 {
 	while (*envp)
 	{
-		if (ft_strstr(*envp, &str[1]) && !ft_strstr(*envp, "$"))
-			ft_printf("%s\n", *envp);
+		if (ft_strstr(*envp, &str[1]) && !ft_strequ(*envp, "$"))
+			ft_printf("%s", *envp);
 		envp++;
 	}
 }
