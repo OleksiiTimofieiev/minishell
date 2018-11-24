@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/24 17:49:14 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/24 17:58:41 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,23 @@ void	tilda(char **command_line, char *pwd_new)
 		ft_strcat(pwd_new, command_line[1]);
 }
 
-// strnequ
+void	get_global_var(char *str, char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		if (ft_strnequ(envp[i], str, ft_strlen(str)))
+			ft_printf("%s\n", envp[i]);
+		i++;
+	}
+}
+
 short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 {
+	char *path;
+
 	if (len_2d_array(command_line) == 1)
 	{
 		chdir("/Users/otimofie"); // make a var with homw variable !
@@ -71,6 +85,11 @@ short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 		ft_clean_2d_char(command_line);
 		return (0);
 	}
+	else if (command_line[1][0] == '$')
+	{
+		print_global_var(char *str, char **envp)
+	}
+
 	return (1);
 }
 
