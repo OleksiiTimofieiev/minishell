@@ -6,11 +6,14 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/24 16:07:20 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/24 16:11:22 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+// manage cd $ENVVAR
+// manage ~/.../
 
 void	cd(char *str, char **envp)
 {
@@ -35,13 +38,16 @@ void	cd(char *str, char **envp)
 	{
 		envp[6] = pwd_new;
 		envp[22] = pwd_old;
+		ft_printf("%s\n", "dir has been changed");
 	}
 	
-	else
-	{
-		some error management...
-		add some validation
-	}
+	// else
+	// {
+	// 	some error management...
+	// 	add some validation:command_line
+	// 	1. more then one parameter
+	// 	2. parameter can not be accessed;
+	// }
 	
 	ft_printf("old->%s%s%s\n", CYAN, envp[22], RESET);
 	ft_printf("new->%s%s%s\n", CYAN, envp[6], RESET);
