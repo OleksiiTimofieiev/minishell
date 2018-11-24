@@ -6,14 +6,14 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/24 16:34:02 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/24 17:28:28 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // manage cd $ENVVAR
-// manage ~/.../
+// 	2. parameter can not be accessed;
 
 short	len_2d_array(char **array)
 {
@@ -25,52 +25,75 @@ short	len_2d_array(char **array)
 	return i;
 }
 
+short	cd_main(char *pwd_new, char *pwd_old, char **envp, char **command_line)
+{
+	if (chdir(&pwd_new[4]) == 0)
+	{
+		envp[6] = pwd_new;
+		envp[22] = pwd_old;
+		return (1);
+	}
+	else
+	{
+		ft_printf("%s%s%s%s\n", RED, "cd: no such file or directory: ", command_line[1], RESET);
+		free(pwd_new);
+		ft_clean_2d_char(command_line);
+		return (0);
+	}
+}
+
+void	tilda(char **command_line, char *pwd_new)
+{
+	if (command_line[1][0] == '~')
+	{
+		ft_strcat(pwd_new, "/Users/otimofie");
+		ft_strcat(pwd_new, &command_line[1][1]);
+	}
+	else
+		ft_strcat(pwd_new, command_line[1]);
+}
+
+
 void	cd(char *str, char **envp)
 {
 	char **command_line;
 	char pwd_old[1024];
 	char *pwd_new;
+	int  len;
 
+	len = 0;
 	command_line = ft_strsplit(str, 32);
-	if (len_2d_array(command_line) != 2)
-	{
-		ft_printf("%s%s%s\n", RED, "error: too many arguments", RESET);
-		exit(0);
-	}
 
 	ft_memset(pwd_old, 0x0, sizeof(pwd_old));
 	ft_strcat(pwd_old, "OLDPWD=");
-	getcwd(&pwd_old[7], sizeof(pwd_old));	
-	pwd_new = (char *)malloc(sizeof(char) * (ft_strlen(str) + 5));
+	getcwd(&pwd_old[7], sizeof(pwd_old));
+
+	if (len_2d_array(command_line) == 1)
+	{
+		chdir("/Users/otimofie"); // make a var with homw variable !
+		envp[6] = "/Users/otimofie";
+		envp[22] = pwd_old;
+		ft_clean_2d_char(command_line);
+		return ;
+	}
+	else if (len_2d_array(command_line) != 2)
+	{
+		ft_printf("%s%s%s\n", RED, "error: too many arguments", RESET);
+		return;
+	}
+
+	if (command_line[1][0] == '~')
+		len += ft_strlen("/Users/otimofie");
+
+	pwd_new = (char *)malloc(sizeof(char) * (ft_strlen(str) + 4 + 1 + len));
+
 	ft_memset(pwd_new, 0x0, sizeof(pwd_new));
 	ft_strcat(pwd_new, "PWD=");
-	ft_strcat(pwd_new, command_line[1]);
 
-	if (chdir(command_line[1]) == 0)
-	{
-		envp[6] = pwd_new;
-		envp[22] = pwd_old;
-		ft_printf("%s\n", "dir has been changed");
-	}
-	else
-	{
-		ft_printf("%s%s%s%s\n", RED, "cd: no such file or directory: ", command_line[1], RESET);
-		exit(0);
-	}
+	tilda(command_line, pwd_new);
 
-	
-	// else
-	// {
-	// 	some error management...
-	// 	add some validation:command_line
-	// 	1. more then one parameter
-	// 	2. parameter can not be accessed;
-	// }
-	
-	ft_printf("old->%s%s%s\n", CYAN, envp[22], RESET);
-	ft_printf("new->%s%s%s\n", CYAN, envp[6], RESET);
-
+	if (!cd_main(pwd_new, pwd_new, envp, command_line))
+		return ;
 	free(pwd_new);
-
 	ft_clean_2d_char(command_line);
 }
