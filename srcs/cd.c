@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/24 17:29:03 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/24 17:39:05 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,25 @@ void	tilda(char **command_line, char *pwd_new)
 		ft_strcat(pwd_new, command_line[1]);
 }
 
+short one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
+{
+	if (len_2d_array(command_line) == 1)
+	{
+		chdir("/Users/otimofie"); // make a var with homw variable !
+		envp[6] = "/Users/otimofie";
+		envp[22] = pwd_old;
+		ft_clean_2d_char(command_line);
+		return (0);
+	}
+	else if (len_2d_array(command_line) != 2)
+	{
+		ft_printf("%s%s%s\n", RED, "error: too many arguments", RESET);
+		ft_clean_2d_char(command_line);
+
+		return (0);
+	}
+	return (1);
+}
 
 void	cd(char *str, char **envp)
 {
@@ -68,19 +87,8 @@ void	cd(char *str, char **envp)
 	ft_strcat(pwd_old, "OLDPWD=");
 	getcwd(&pwd_old[7], sizeof(pwd_old));
 
-	if (len_2d_array(command_line) == 1)
-	{
-		chdir("/Users/otimofie"); // make a var with homw variable !
-		envp[6] = "/Users/otimofie";
-		envp[22] = pwd_old;
-		ft_clean_2d_char(command_line);
-		return ;
-	}
-	else if (len_2d_array(command_line) != 2)
-	{
-		ft_printf("%s%s%s\n", RED, "error: too many arguments", RESET);
+	if (!one_and_too_many_argv(command_line, pwd_old, envp))
 		return;
-	}
 
 	if (command_line[1][0] == '~')
 		len += ft_strlen("/Users/otimofie");
