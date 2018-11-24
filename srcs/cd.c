@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/24 17:39:25 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/24 17:45:56 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 // manage cd $ENVVAR
 // 	2. parameter can not be accessed;
 
-short	len_2d_array(char **array)
+int		len_2d_array(char **array) // to libft
 {
 	short i;
 
 	i = 0;
 	while (array[i])
 		i++;
-	return i;
+	return (i);
 }
 
 short	cd_main(char *pwd_new, char *pwd_old, char **envp, char **command_line)
@@ -35,7 +35,8 @@ short	cd_main(char *pwd_new, char *pwd_old, char **envp, char **command_line)
 	}
 	else
 	{
-		ft_printf("%s%s%s%s\n", RED, "cd: no such file or directory: ", command_line[1], RESET);
+		ft_printf("%s%s%s%s\n", RED, "cd: no such file or directory: ",
+					command_line[1], RESET);
 		free(pwd_new);
 		ft_clean_2d_char(command_line);
 		return (0);
@@ -53,7 +54,7 @@ void	tilda(char **command_line, char *pwd_new)
 		ft_strcat(pwd_new, command_line[1]);
 }
 
-short one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
+short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 {
 	if (len_2d_array(command_line) == 1)
 	{
@@ -67,7 +68,6 @@ short one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 	{
 		ft_printf("%s%s%s\n", RED, "error: too many arguments", RESET);
 		ft_clean_2d_char(command_line);
-
 		return (0);
 	}
 	return (1);
@@ -75,10 +75,10 @@ short one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 
 void	cd(char *str, char **envp)
 {
-	char **command_line;
-	char pwd_old[1024];
-	char *pwd_new;
-	int  len;
+	char	**command_line;
+	char	pwd_old[1024];
+	char	*pwd_new;
+	int		len;
 
 	len = 0;
 	command_line = ft_strsplit(str, 32);
@@ -86,7 +86,7 @@ void	cd(char *str, char **envp)
 	ft_strcat(pwd_old, "OLDPWD=");
 	getcwd(&pwd_old[7], sizeof(pwd_old));
 	if (!one_and_too_many_argv(command_line, pwd_old, envp))
-		return;
+		return ;
 	if (command_line[1][0] == '~')
 		len += ft_strlen("/Users/otimofie");
 	pwd_new = (char *)malloc(sizeof(char) * (ft_strlen(str) + 4 + 1 + len));
