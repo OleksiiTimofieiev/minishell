@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/24 18:28:02 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/24 20:54:52 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 // manage cd $ENVVAR
 // 	2. parameter can not be accessed;
+// add the whole path
 
-int		len_2d_array(char **array) // to libft
+static int		len_2d_array(char **array) // to libft
 {
 	short i;
 
@@ -29,8 +30,13 @@ short	cd_main(char *pwd_new, char *pwd_old, char **envp, char **command_line)
 {
 	if (chdir(&pwd_new[4]) == 0)
 	{
-		envp[6] = pwd_new;
-		envp[22] = pwd_old;
+		if (envp[6])
+			free(envp[6]);
+		if (envp[22])
+			free(envp[22]);
+		envp[6] = ft_strdup(pwd_new);
+		envp[22] = ft_strdup(pwd_old);
+		
 		return (1);
 	}
 	else
@@ -54,24 +60,42 @@ void	tilda(char **command_line, char *pwd_new)
 		ft_strcat(pwd_new, command_line[1]);
 }
 
-char	*get_global_var(char *command_line, char **envp)
+char *get_global_var(char **envp, char *command_line) // test with setenv;
 {
 	int	i;
 	char *buf;
+	char *result;
+	// char *find = ft_strdup(&command_line[1]);
+
+// ft_printf("find->%s\n", find);
 
 	i = 0;
 	buf = NULL;
+	result = NULL;
 	while (envp[i])
 	{
-		if (ft_strnequ(envp[i], command_line + 1, ft_strlen(command_line) - 1))
+		if (ft_strncmp(envp[i], command_line + 1, 6) == 0) /* = */
 		{
-			ft_printf("%s\n", envp[i]);
+			// ft_putstr("found\n");
 			buf = ft_strdup(envp[i]);
+			// ft_putstr(buf);
+			// ft_putstr("\n");
 			break;
 		}
 		i++;
 	}
-	return (buf);
+	i = 0;
+	if (buf)
+	{
+		while (buf[i] && buf[i] != '=')
+			i++;
+		i++;
+		result = ft_strdup(&buf[i]);
+			// ft_printf("$->%s\n", result);
+		free(buf);
+		// free(find);
+	}
+	return (result);
 }
 
 
@@ -83,7 +107,7 @@ short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 	{
 		chdir("/Users/otimofie"); // make a var with homw variable !
 		envp[6] = "/Users/otimofie";
-		envp[22] = pwd_old;
+		envp[22] = ft_strdup(pwd_old);
 		ft_clean_2d_char(command_line);
 		return (0);
 	}
@@ -95,8 +119,20 @@ short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 	}
 	else if (command_line[1][0] == '$')
 	{
-		path =  get_global_var(command_line[1], envp);
-		free(path);
+		path = get_global_var(envp, command_line[1]);
+		ft_printf("path->%s\n", path);
+		if (chdir(path) == 0)
+		{ // make a var with homw variable !
+			ft_putstr("Success\n");
+			if (envp[6])
+				free(envp[6]);
+				envp[6] = ft_strdup(path);
+			if (envp[22])
+				free(envp[22]);
+				envp[22] = ft_strdup(pwd_old);
+		}
+		if (path)
+			free(path);
 		ft_clean_2d_char(command_line);
 		return (0);
 	}
@@ -123,7 +159,7 @@ void	cd(char *str, char **envp)
 	ft_memset(pwd_new, 0x0, sizeof(pwd_new));
 	ft_strcat(pwd_new, "PWD=");
 	tilda(command_line, pwd_new);
-	if (!cd_main(pwd_new, pwd_new, envp, command_line))
+	if (!cd_main(pwd_new, pwd_old, envp, command_line))
 		return ;
 	free(pwd_new);
 	ft_clean_2d_char(command_line);
