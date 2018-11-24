@@ -10,7 +10,24 @@ int		main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 
-	echo("echo sdf sd $ ~", envp);
+
+	// echo("echo sdf sd $ ~", envp);
+	char *line;
+	
+	while(get_next_line(0,&line))
+	{
+		if (ft_strstr(line, "cd"))
+		{
+			cd("/Users/otimofie/Desktop/minishell/srcs/", envp);
+
+			system("pwd");
+
+
+			ft_printf("%s\n", envp[6]);
+		}
+
+	}
+	
 
 	// while get_next_line
 

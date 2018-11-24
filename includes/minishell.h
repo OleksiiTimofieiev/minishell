@@ -5,5 +5,6 @@
 # include <sys/wait.h>
 
 void	echo(char *str, char **envp);
+void	cd(char *str, char **envp);
 
 #endif
