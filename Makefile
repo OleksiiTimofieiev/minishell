@@ -6,7 +6,7 @@
 #    By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 11:59:13 by otimofie          #+#    #+#              #
-#    Updated: 2018/11/15 19:17:55 by otimofie         ###   ########.fr        #
+#    Updated: 2018/11/24 13:29:06 by otimofie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME		= minishell
 
 CORE		= main.c \
 				echo.c \
+				cd.c \
 
 SRCS        = $(addprefix srcs/, $(CORE))
 
