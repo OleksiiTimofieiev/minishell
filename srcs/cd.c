@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/24 17:28:28 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/24 17:29:03 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,10 @@ void	cd(char *str, char **envp)
 
 	if (command_line[1][0] == '~')
 		len += ft_strlen("/Users/otimofie");
-
 	pwd_new = (char *)malloc(sizeof(char) * (ft_strlen(str) + 4 + 1 + len));
-
 	ft_memset(pwd_new, 0x0, sizeof(pwd_new));
 	ft_strcat(pwd_new, "PWD=");
-
 	tilda(command_line, pwd_new);
-
 	if (!cd_main(pwd_new, pwd_new, envp, command_line))
 		return ;
 	free(pwd_new);
