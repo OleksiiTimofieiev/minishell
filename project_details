@@ -2,7 +2,6 @@ Subject ideas:
 
 - Analyses lexicale et syntaxique basiques ("lexing" et "parsing") 
 - Exécution d'une commande dans un nouveau processus 
-- Gestion de l'environnement 
 - Gestion du PATH 
 - system’s API: process creation and synchronisation.
 - Executing a command inside a shell implies creating a new process, which execution and final state will be monitored by its parent’s process.
@@ -12,7 +11,6 @@ testing:
 https://forum.intra.42.fr/topics/16713/messages/last
 
 Project ideas:
-- bin_name: minishell;
 - search binary file if it is missing ?
 - environ => use buffer; 
 - echo = +, cd = +, setenv, unsetenv, env, exit ?
