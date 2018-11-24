@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/24 22:03:47 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/24 22:07:58 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ short	cd_main(char *pwd_new, char *pwd_old, char **envp, char **command_line)
 	{
 		ft_printf("%s%s%s%s\n", RED, "cd: no such file or directory: ",
 					command_line[1], RESET);
-		// ft_clean(envp);
 		return (0);
 	}
 }
@@ -90,10 +89,25 @@ char	*get_global_var(char **envp, char *command)
 	return (result);
 }
 
-short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
+void	path_handler(char **command_line, char *pwd_old, char **envp)
 {
 	char *path;
 
+	path = get_global_var(envp, command_line[1]);
+	ft_printf("path->%s\n", path);
+	if (chdir(path) == 0)
+	{
+		ft_clean(envp);
+		envp[6] = ft_strdup(path);
+		envp[22] = ft_strdup(pwd_old);
+	}
+	if (path)
+		free(path);
+	ft_clean_2d_char(command_line);
+}
+
+short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
+{
 	if (len_2d_array(command_line) == 1)
 	{
 		chdir("/Users/otimofie");
@@ -111,17 +125,7 @@ short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 	}
 	else if (command_line[1][0] == '$')
 	{
-		path = get_global_var(envp, command_line[1]);
-		ft_printf("path->%s\n", path);
-		if (chdir(path) == 0)
-		{
-			ft_clean(envp);
-			envp[6] = ft_strdup(path);
-			envp[22] = ft_strdup(pwd_old);
-		}
-		if (path)
-			free(path);
-		ft_clean_2d_char(command_line);
+		path_handler(command_line, pwd_old, envp);
 		return (0);
 	}
 	return (1);
