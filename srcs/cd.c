@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/24 16:07:08 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/24 16:07:20 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	cd(char *str, char **envp)
 	else
 	{
 		some error management...
+		add some validation
 	}
 	
 	ft_printf("old->%s%s%s\n", CYAN, envp[22], RESET);
