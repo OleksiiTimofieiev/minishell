@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/24 16:14:41 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/24 16:16:13 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	cd(char *str, char **envp)
 	}
 	else
 	{
-		ft_printf("%s%s\n", "cd: no such file or directory: ", command_line[1]);
+		ft_printf("%s%s%s%s\n", RED, "cd: no such file or directory: ", command_line[1], RESET);
 		exit(0);
 	}
 
