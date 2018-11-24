@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/24 21:52:22 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/24 22:03:47 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ short	cd_main(char *pwd_new, char *pwd_old, char **envp, char **command_line)
 	{
 		ft_printf("%s%s%s%s\n", RED, "cd: no such file or directory: ",
 					command_line[1], RESET);
-		ft_clean(envp);
+		// ft_clean(envp);
 		return (0);
 	}
 }
@@ -61,21 +61,21 @@ void	tilda(char **command_line, char *pwd_new)
 		ft_strcat(pwd_new, command_line[1]);
 }
 
-char	*get_global_var(char **envp, char *command_line) // test with setenv;
+char	*get_global_var(char **envp, char *command)
 {
-	int	i;
-	char *buf;
-	char *result;
+	int		i;
+	char	*buf;
+	char	*result;
 
-	i = 0;
 	buf = NULL;
+	i = 0;
 	result = NULL;
 	while (envp[i])
 	{
-		if (ft_strncmp(envp[i], &(command_line[1]), ft_strlen(&(command_line[1]))) == 0)
+		if (!ft_strncmp(envp[i], &(command[1]), ft_strlen(&(command[1]))))
 		{
 			buf = ft_strdup(envp[i]);
-			break;
+			break ;
 		}
 		i++;
 	}
