@@ -18,18 +18,14 @@ int		main(int argc, char **argv, char **envp)
 	{
 		if (ft_strstr(line, "cd"))
 		{
-			cd("/Users/otimofie/Desktop/minishell/srcs/", envp);
+			cd(line, envp);
 
-			system("pwd");
-
-
-			ft_printf("%s\n", envp[6]);
+			system("ls -laG $PWD");
+			free(line);
+			system("leaks -q minishell");
 		}
 
 	}
-	
-
-	// while get_next_line
 
 	system("leaks -q minishell");
 	return 0;
