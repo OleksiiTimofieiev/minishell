@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/24 17:45:56 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/24 17:49:14 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	tilda(char **command_line, char *pwd_new)
 		ft_strcat(pwd_new, command_line[1]);
 }
 
+// strnequ
 short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 {
 	if (len_2d_array(command_line) == 1)

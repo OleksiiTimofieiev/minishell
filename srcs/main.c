@@ -1,7 +1,6 @@
 #include "../includes/minishell.h"
 
 // use array of functions for echo, ...
-// work with ./ and maybe without it
 // You must manage expansions $ and  ̃
 // // int		check_till_equal $f case
 
@@ -21,10 +20,13 @@ int		main(int argc, char **argv, char **envp)
 			cd(line, envp);
 
 			system("ls -laG $PWD");
-			free(line);
 			system("leaks -q minishell");
 		}
-
+		else if (ft_strstr(line, "echo"))
+			echo(line, envp);
+		
+		
+		free(line);
 	}
 
 	system("leaks -q minishell");
