@@ -14,8 +14,8 @@ https://forum.intra.42.fr/topics/16713/messages/last
 Project ideas:
 - bin_name: minishell;
 - search binary file if it is missing ?
-- environ ? 
-- echo, cd, setenv, unsetenv, env, exit ?
+- environ => use buffer; 
+- echo = +, cd = +, setenv, unsetenv, env, exit ?
 - You must manage expansions $ and  ̃
 
 Bonus:
