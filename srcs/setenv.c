@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/25 19:39:11 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/25 19:45:43 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ char		**setenv_minishell(char *str, char **envp_init)
 			ft_strcat(envp_init[i], "=");
 			ft_strcat(envp_init[i], arguments[2]);
 		}
+		ft_clean_2d_char(arguments);
 	}
 	else
 	{
@@ -161,10 +162,11 @@ char		**setenv_minishell(char *str, char **envp_init)
 		ft_printf("%s%s%s\n", CYAN, "here3", RESET);
 
 		// ft_printf("%s%s%s\n", CYAN, "here3", RESET);
+		ft_clean_2d_char(arguments);
+
 		return (envp_init);
 	}
 	// ft_clean_2d_char(envp_init);
 
-	ft_clean_2d_char(arguments);
 	return (envp_init);
 }
