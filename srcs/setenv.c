@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/25 19:48:21 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/25 19:49:47 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ char		**setenv_minishell(char *str, char **envp_init)
 
 	// ft_printf("%s%s%s\n", CYAN, "her11", RESET);
 
-	envp_buf = get_buf_envp(arguments, envp_init);
+		envp_buf = get_buf_envp(arguments, envp_init);
 
 	
 
@@ -135,6 +135,7 @@ char		**setenv_minishell(char *str, char **envp_init)
 
 		// ft_printf("%s%s%s\n", CYAN, "here3", RESET);
 		ft_clean_2d_char(arguments);
+		ft_clean_2d_char(envp_init);
 
 		return (envp_buf);
 	}
