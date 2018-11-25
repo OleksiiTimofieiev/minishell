@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/25 19:46:47 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/25 19:48:21 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,35 +129,7 @@ char		**setenv_minishell(char *str, char **envp_init)
 
 	envp_buf = get_buf_envp(arguments, envp_init);
 
-	// ft_printf("%s%s%s\n", CYAN, "her12", RESET);
-
-	// i = 0;
-	// while (envp_buf[i])
-	// {
-	// 	ft_printf("%s\n", envp_buf[i++]);
-	// }
-
-		ft_clean_2d_char(envp_init);
-		// i = 0;
-
-			// envp = NULL;
-			// envp = realloc_envp(envp_buf);
-
-		// i = 0;
-		// len = len_char_2d_array(envp_buf) + 1;
-		// if (!(envp_init = (char **)malloc(sizeof(char *) * len)))
-		// {
-		// 	ft_printf("WTF ?\n");
-		// 	return (0);
-		// }
-
-		// while (envp_buf[i])
-		// {
-		// 	envp_init[i] = ft_strdup(envp_buf[i]);
-		// 	i++;
-		// }
-		// envp_init[i] = NULL;
-		// ft_clean_2d_char(envp_buf);
+	
 
 		ft_printf("%s%s%s\n", CYAN, "here3", RESET);
 
