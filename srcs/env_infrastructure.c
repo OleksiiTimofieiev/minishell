@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 12:52:03 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/25 12:54:15 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/25 13:30:32 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,22 @@ void	ft_clean(char **envp)
 		free(envp[6]);
 	if (envp[22])
 		free(envp[22]);
+}
+
+char	**init_envp_buf(char **envp)
+{
+	int		i;
+	int		len;
+	char	**envp_buf;
+
+	i = 0;
+	len = len_char_2d_array(envp);
+	envp_buf = (char **)malloc(sizeof(char *) * (len + 1));
+	while (envp[i])
+	{
+		envp_buf[i] = ft_strdup(envp[i]);
+		i++;
+	}
+	envp_buf[len] = NULL;
+	return (envp_buf);
 }

@@ -10,6 +10,7 @@ void	exit_minishell(char **envp);
 void 	env_minishell(char **envp);
 
 char	*get_global_var(char **envp, char *command);
+char	**init_envp_buf(char **envp);
 void	ft_clean(char **envp);
 
 #endif
