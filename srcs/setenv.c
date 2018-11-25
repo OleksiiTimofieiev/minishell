@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/25 19:45:43 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/25 19:46:47 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,30 +143,30 @@ char		**setenv_minishell(char *str, char **envp_init)
 			// envp = NULL;
 			// envp = realloc_envp(envp_buf);
 
-		i = 0;
-		len = len_char_2d_array(envp_buf) + 1;
-		if (!(envp_init = (char **)malloc(sizeof(char *) * len)))
-		{
-			ft_printf("WTF ?\n");
-			return (0);
-		}
+		// i = 0;
+		// len = len_char_2d_array(envp_buf) + 1;
+		// if (!(envp_init = (char **)malloc(sizeof(char *) * len)))
+		// {
+		// 	ft_printf("WTF ?\n");
+		// 	return (0);
+		// }
 
-		while (envp_buf[i])
-		{
-			envp_init[i] = ft_strdup(envp_buf[i]);
-			i++;
-		}
-		envp_init[i] = NULL;
-		ft_clean_2d_char(envp_buf);
+		// while (envp_buf[i])
+		// {
+		// 	envp_init[i] = ft_strdup(envp_buf[i]);
+		// 	i++;
+		// }
+		// envp_init[i] = NULL;
+		// ft_clean_2d_char(envp_buf);
 
 		ft_printf("%s%s%s\n", CYAN, "here3", RESET);
 
 		// ft_printf("%s%s%s\n", CYAN, "here3", RESET);
 		ft_clean_2d_char(arguments);
 
-		return (envp_init);
+		return (envp_buf);
 	}
 	// ft_clean_2d_char(envp_init);
 
-	return (envp_init);
+	return (envp_buf);
 }
