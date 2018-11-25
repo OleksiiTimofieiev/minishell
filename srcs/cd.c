@@ -6,19 +6,11 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/25 12:50:22 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/25 12:54:06 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void		ft_clean(char **envp)
-{
-	if (envp[6])
-		free(envp[6]);
-	if (envp[22])
-		free(envp[22]);
-}
 
 short	cd_main(char *pwd_new, char *pwd_old, char **envp, char **command_line)
 {
@@ -57,36 +49,6 @@ void	tilda(char **command_line, char *pwd_new)
 	}
 	else
 		ft_strcat(pwd_new, command_line[1]);
-}
-
-char	*get_global_var(char **envp, char *command)
-{
-	int		i;
-	char	*buf;
-	char	*result;
-
-	buf = NULL;
-	i = 0;
-	result = NULL;
-	while (envp[i])
-	{
-		if (!ft_strncmp(envp[i], &command[1], ft_strlen(&command[1])))
-		{
-			buf = ft_strdup(envp[i]);
-			ft_printf("pwd->%s\n", buf);
-			break ;
-		}
-		i++;
-	}
-	i = 0;
-	if (buf)
-	{
-		while (buf[i] && buf[i] != '=')
-			i++;
-		result = ft_strdup(&buf[++i]);
-		free(buf);
-	}
-	return (result);
 }
 
 void	path_handler(char **command_line, char *pwd_old, char **envp)
