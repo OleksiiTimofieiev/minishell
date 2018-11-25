@@ -44,6 +44,8 @@ int		main(int argc, char **argv, char **envp)
 			cd(line, envp_buf);
 		else if (ft_strstr(line, "echo"))
 			echo(line, envp_buf);
+		else if (ft_strequ(line, "env"))
+			env_minishell(envp_buf);
 		else if (ft_strstr(line, "exit"))
 			exit_minishell(envp_buf);
 
@@ -59,4 +61,3 @@ int		main(int argc, char **argv, char **envp)
 	system("leaks -q minishell");
 	return 0;
 }
-

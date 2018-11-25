@@ -6,7 +6,7 @@
 #    By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 11:59:13 by otimofie          #+#    #+#              #
-#    Updated: 2018/11/25 12:58:19 by otimofie         ###   ########.fr        #
+#    Updated: 2018/11/25 13:17:07 by otimofie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME		= minishell
 CORE		= main.c \
 				echo.c \
 				cd.c \
+				env.c \
 				exit.c \
 				env_infrastructure.c \
 
