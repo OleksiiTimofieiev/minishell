@@ -15,23 +15,28 @@ int		main(int argc, char **argv, char **envp)
 	while(1)
 	{
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
+
 		get_next_line(0, &line);
-		if (ft_strstr(line, "cd"))
+
+		if (!ft_strncmp(line, "cd", 2))
 			cd(line, envp_buf);
-		else if (ft_strstr(line, "echo"))
+		else if (!ft_strncmp(line, "echo", 4))
 			echo(line, envp_buf);
 		else if (ft_strequ(line, "env"))
 			env_minishell(envp_buf);
-		else if (ft_strstr(line, "exit"))
+		else if (!ft_strncmp(line, "exit", 4))
 			exit_minishell(envp_buf);
-		else if (ft_strstr(line, "setenv"))
+		else if (!ft_strncmp(line, "setenv", 6))
 			setenv_minishell(line, envp_buf);
 		// else
 			// ft_printf("%sminishell: command not found: %s%s\n", 
 			// 	RED, line, RESET);
 			// use fork;
-		system("leaks -q minishell");
+
 		free(line);
+
+
 	}
+		
 	return 0;
 }
