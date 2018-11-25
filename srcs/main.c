@@ -12,7 +12,6 @@ int		main(int argc, char **argv, char **envp)
 	char **envp_buf;
 
 	envp_buf = init_envp_buf(envp);
-
 	while(1)
 	{
 		ft_putstr("$> ");
@@ -25,16 +24,8 @@ int		main(int argc, char **argv, char **envp)
 			env_minishell(envp_buf);
 		else if (ft_strstr(line, "exit"))
 			exit_minishell(envp_buf);
-
-		// system("ls -laG $PWD");
 		system("leaks -q minishell");
-
 		free(line);
-		/* code */
 	}
-	
-
-
-	system("leaks -q minishell");
 	return 0;
 }

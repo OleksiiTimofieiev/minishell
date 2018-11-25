@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 12:57:36 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/25 13:01:03 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/25 13:32:37 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,5 @@
 void	exit_minishell(char **envp)
 {
 	ft_clean_2d_char(envp);
-	write(1, "\n", 1);
 	exit(0);
 }
