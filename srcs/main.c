@@ -44,20 +44,19 @@ int		main(int argc, char **argv, char **envp)
 			cd(line, envp_buf);
 		else if (ft_strstr(line, "echo"))
 			echo(line, envp_buf);
+		else if (ft_strstr(line, "exit"))
+			exit_minishell(envp_buf);
 
 		// system("ls -laG $PWD");
-		// system("leaks -q minishell");
+		system("leaks -q minishell");
 
 		free(line);
 		/* code */
 	}
 	
-	// {
-		
-	// }
+
 
 	system("leaks -q minishell");
-	// ft_clean_2d_char(envp_buf);
 	return 0;
 }
 

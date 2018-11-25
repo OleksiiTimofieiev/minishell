@@ -13,7 +13,7 @@ https://forum.intra.42.fr/topics/16713/messages/last
 Project ideas:
 - search binary file if it is missing ?
 - environ => use buffer; 
-- echo = +, cd = +, setenv, unsetenv, env, exit ?
+- echo = +, cd = +, setenv, unsetenv, env, exit = +
 - You must manage expansions $ and  ̃
 
 Bonus:
