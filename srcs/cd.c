@@ -6,13 +6,11 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/24 22:07:58 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/25 12:50:22 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-// 	2. parameter can not be accessed;
 
 void		ft_clean(char **envp)
 {
@@ -20,16 +18,6 @@ void		ft_clean(char **envp)
 		free(envp[6]);
 	if (envp[22])
 		free(envp[22]);
-}
-
-static int	len_2d_array(char **array)
-{
-	short i;
-
-	i = 0;
-	while (array[i])
-		i++;
-	return (i);
 }
 
 short	cd_main(char *pwd_new, char *pwd_old, char **envp, char **command_line)
@@ -43,7 +31,18 @@ short	cd_main(char *pwd_new, char *pwd_old, char **envp, char **command_line)
 	}
 	else
 	{
-		ft_printf("%s%s%s%s\n", RED, "cd: no such file or directory: ",
+		if (access(&pwd_new[4], F_OK) == -1)
+		{
+			ft_printf("%s%s%s%s\n", RED, "cd: no such file or directory: ",
+					command_line[1], RESET);
+		}
+		else if (access(&pwd_new[4], R_OK) == -1)
+		{
+			ft_printf("%s%s%s%s\n", RED, "cd: permission denied: ",
+					command_line[1], RESET);
+		}
+		else
+			ft_printf("%s%s%s%s\n", RED, "not a directory: ",
 					command_line[1], RESET);
 		return (0);
 	}
@@ -71,9 +70,10 @@ char	*get_global_var(char **envp, char *command)
 	result = NULL;
 	while (envp[i])
 	{
-		if (!ft_strncmp(envp[i], &(command[1]), ft_strlen(&(command[1]))))
+		if (!ft_strncmp(envp[i], &command[1], ft_strlen(&command[1])))
 		{
 			buf = ft_strdup(envp[i]);
+			ft_printf("pwd->%s\n", buf);
 			break ;
 		}
 		i++;
@@ -94,7 +94,6 @@ void	path_handler(char **command_line, char *pwd_old, char **envp)
 	char *path;
 
 	path = get_global_var(envp, command_line[1]);
-	ft_printf("path->%s\n", path);
 	if (chdir(path) == 0)
 	{
 		ft_clean(envp);
@@ -108,16 +107,16 @@ void	path_handler(char **command_line, char *pwd_old, char **envp)
 
 short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 {
-	if (len_2d_array(command_line) == 1)
+	if (len_char_2d_array(command_line) == 1)
 	{
 		chdir("/Users/otimofie");
 		ft_clean(envp);
-		envp[6] = ft_strdup("/Users/otimofie");
+		envp[6] = ft_strdup("PWD=/Users/otimofie");
 		envp[22] = ft_strdup(pwd_old);
 		ft_clean_2d_char(command_line);
 		return (0);
 	}
-	else if (len_2d_array(command_line) != 2)
+	else if (len_char_2d_array(command_line) != 2)
 	{
 		ft_printf("%s%s%s\n", RED, "error: too many arguments", RESET);
 		ft_clean_2d_char(command_line);

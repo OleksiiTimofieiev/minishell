@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: timofieiev <timofieiev@student.42.fr>      +#+  +:+       +#+         #
+#    By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/23 21:09:12 by otimofie          #+#    #+#              #
-#    Updated: 2018/10/25 17:18:55 by timofieiev       ###   ########.fr        #
+#    Updated: 2018/11/25 12:33:12 by otimofie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,6 +114,7 @@ SRCS =  ft_printf.c \
 		ft_check_quantity.c \
 		ft_strnccpy.c \
 		ft_line_is_digit.c \
+		len_char_2d_array.c \
 
 		#colors
 		RESET		= \033[m

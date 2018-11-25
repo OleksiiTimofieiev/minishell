@@ -4,20 +4,6 @@
 // You must manage expansions $ and  ̃
 // // int		check_till_equal $f case
 
-static int len_2d_array(char **array) // to libft
-{
-	short i;
-
-	i = 0;
-	while (array[i])
-		i++;
-	return (i);
-}
-
-void	print_the_input_sign(void)
-{
-	ft_putstr("$> ");
-}
 
 int		main(int argc, char **argv, char **envp)
 {
@@ -26,9 +12,9 @@ int		main(int argc, char **argv, char **envp)
 	char *line;
 
 	char **envp_buf;
-	int len = len_2d_array(envp);
+	int len = len_char_2d_array(envp);
 
-	ft_printf("len -> %d\n", len);
+	// ft_printf("len -> %d\n", len);
 
 	envp_buf = (char **)malloc(sizeof(char *) * (len + 1));
 
@@ -52,15 +38,15 @@ int		main(int argc, char **argv, char **envp)
 	
 	while(1)
 	{
-		print_the_input_sign();
+		ft_putstr("$> ");
 		get_next_line(0, &line);
 		if (ft_strstr(line, "cd"))
 			cd(line, envp_buf);
 		else if (ft_strstr(line, "echo"))
 			echo(line, envp_buf);
 
-		system("ls -laG $PWD");
-		system("leaks -q minishell");
+		// system("ls -laG $PWD");
+		// system("leaks -q minishell");
 
 		free(line);
 		/* code */
