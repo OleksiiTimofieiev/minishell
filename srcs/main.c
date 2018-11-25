@@ -14,6 +14,11 @@ static int len_2d_array(char **array) // to libft
 	return (i);
 }
 
+void	print_the_input_sign(void)
+{
+	ft_putstr("$> ");
+}
+
 int		main(int argc, char **argv, char **envp)
 {
 	(void)argc;
@@ -44,19 +49,26 @@ int		main(int argc, char **argv, char **envp)
 
 	envp_buf[len] = NULL;
 
-	while(get_next_line(0, &line))
+	
+	while(1)
 	{
+		print_the_input_sign();
+		get_next_line(0, &line);
 		if (ft_strstr(line, "cd"))
 			cd(line, envp_buf);
 		else if (ft_strstr(line, "echo"))
 			echo(line, envp_buf);
-		
 
 		system("ls -laG $PWD");
 		system("leaks -q minishell");
-		
+
 		free(line);
+		/* code */
 	}
+	
+	// {
+		
+	// }
 
 	system("leaks -q minishell");
 	// ft_clean_2d_char(envp_buf);
