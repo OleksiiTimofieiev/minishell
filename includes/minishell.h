@@ -9,4 +9,5 @@ void	cd(char *str, char **envp);
 
 char	*get_global_var(char **envp, char *command);
 void	ft_clean(char **envp);
+
 #endif
