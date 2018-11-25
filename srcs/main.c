@@ -24,9 +24,10 @@ int		main(int argc, char **argv, char **envp)
 			env_minishell(envp_buf);
 		else if (ft_strstr(line, "exit"))
 			exit_minishell(envp_buf);
-		else
-			ft_printf("%sminishell: command not found: %s%s\n", 
-				RED, line, RESET);
+		// else
+			// ft_printf("%sminishell: command not found: %s%s\n", 
+			// 	RED, line, RESET);
+			// use fork;
 		system("leaks -q minishell");
 		free(line);
 	}
