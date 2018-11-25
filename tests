@@ -1,0 +1,23 @@
+Here are the tests, I believe, every good (mini)shell, written by our students, must pass.
+
+1) If the user is changing the path, OLDPWD ad PWD variables must be changed. It can be tested with this command: echo $OLDPWD $PWD ; cd / ; echo $OLDPWD $PWD
+
+2) If the user deletes one of necessary variables(such as PWD, OLDPWD, HOME, etc) it must be restored, or an appropriate message must be printed. Sure there must be no segfaults if we are executing echo $PWD ; unsetenv PWD ; echo $PWD ; cd ../ or echo $OLDPWD ; unsetenv OLDPWD ; echo $OLDPWD ; cd - or echo $HOME ; unsetenv HOME ; echo $HOME ; cd
+
+3) The shell must manage SHLVL variables. echo $SHLVL
+
+4) The shell must take into account PS2 variable. echo \ 1
+
+5) The shell must understand \ in input sequence. It must read second line if the user enters echo 1 2 3\4 and the result will be: 1 2 34.
+
+6) The shell must handle 3 types of quotes: single, double and command quotes with appropriate changes for every type(nothing is changed in single quotes, several thing are changed in double quotes and everything is changed without quotes.) Pay great attention to this point, as many test can be created to test it, and it is not so easy to handle.
+
+7) The shell must print which quotes are missing if the user types something with wring number of quotes. echo "123'rrr must result in double quote-> or dquote.
+
+8) The shell must update PATH variable between every command. So ls ; unsetenv PATH ; ls must result in ls: command not found.
+
+9) The shell must manage access rights for PATH variable. So if I type mkdir exe ; cp /bin/ls exe/. ; chmod 0 exe ; setenv PATH $PWD/exe and try to execute ls -l it must fail(without message of access denied).
+
+10) Using unknown variable as a command must not segfault. $erere must result in nothing or no such command for example
+
+If you feel that there is something I forgot to include in this list, feel free to contact me:smile:
