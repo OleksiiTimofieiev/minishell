@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/25 19:49:47 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/25 19:50:44 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,24 +79,12 @@ char	**get_buf_envp(char **arguments, char **envp_init)
 
 char		**setenv_minishell(char *str, char **envp_init)
 {
-	// ft_printf("%s%s%s\n", CYAN, "asdf asdf asdf asdf asdf ", RESET);
-
 	int		i;
 	char	**arguments =NULL;
 	int		len;
 	char	**envp_buf = NULL;
 
 	arguments = ft_strsplit(str, 32);
-
-	i = 0;
-	// ft_printf("%s%s%s\n", CYAN, "3", RESET);
-
-	// while (envp_init[i])
-	// {
-	// 	ft_printf("%s\n", envp_init[i++]);
-	// }
-	// ft_printf("%s%s%s\n", CYAN, "4", RESET);
-
 	i = 0;
 	len = len_char_2d_array(arguments);
 	if (len != 4)
@@ -105,13 +93,9 @@ char		**setenv_minishell(char *str, char **envp_init)
 		return (0);
 	}
 	i = get_index_envp(envp_init, arguments[1]);
-
-	// ft_printf("%s%s%s\n", CYAN, "woohoo", RESET);
-
 	if (i)
 	{
 		ft_printf("%s%s%s\n", CYAN, "here1", RESET);
-
 		if (ft_strequ(arguments[3], "1"))
 		{
 			free(envp_init[i]);
@@ -123,23 +107,10 @@ char		**setenv_minishell(char *str, char **envp_init)
 	}
 	else
 	{
-	// ft_printf("%s%s%s\n", CYAN, "her1", RESET);
-
-	// ft_printf("%s%s%s\n", CYAN, "her11", RESET);
-
 		envp_buf = get_buf_envp(arguments, envp_init);
-
-	
-
-		ft_printf("%s%s%s\n", CYAN, "here3", RESET);
-
-		// ft_printf("%s%s%s\n", CYAN, "here3", RESET);
 		ft_clean_2d_char(arguments);
 		ft_clean_2d_char(envp_init);
-
 		return (envp_buf);
 	}
-	// ft_clean_2d_char(envp_init);
-
 	return (envp_buf);
 }
