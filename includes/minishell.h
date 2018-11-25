@@ -8,6 +8,17 @@ void	echo(char *str, char **envp);
 void	cd(char *str, char **envp);
 void	exit_minishell(char **envp);
 void 	env_minishell(char **envp);
+int		setenv_minishell(char *str, char **envp);
+
+
+
+
+
+
+
+
+
+
 
 char	*get_global_var(char **envp, char *command);
 char	**init_envp_buf(char **envp);
