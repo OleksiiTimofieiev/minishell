@@ -2,7 +2,7 @@
 
 // use array of functions for echo, ...
 // You must manage expansions $ and  ̃
-// // int		check_till_equal $f case
+// validation for setenv
 
 int		main(int argc, char **argv, char **envp)
 {
@@ -29,7 +29,7 @@ int		main(int argc, char **argv, char **envp)
 			exit_minishell(envp_buf);
 		else if (!ft_strncmp(line, "setenv", 6))
 			envp_buf = setenv_minishell(line, envp_buf);
-	system("leaks -q minishell");
+		system("leaks -q minishell");
 		
 		// else
 			// ft_printf("%sminishell: command not found: %s%s\n", 
