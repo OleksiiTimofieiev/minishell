@@ -3,6 +3,7 @@
 // use array of functions for echo, ...
 // You must manage expansions $ and  ̃
 // validation for setenv
+// validation for main
 
 int		main(int argc, char **argv, char **envp)
 {
