@@ -30,6 +30,7 @@ int		main(int argc, char **argv, char **envp)
 		else if (!ft_strncmp(line, "setenv", 6))
 		{
 			envp_buf = setenv_minishell(line, envp_buf);
+				// envp_buf = buf;
 		}
 		// else
 			// ft_printf("%sminishell: command not found: %s%s\n", 

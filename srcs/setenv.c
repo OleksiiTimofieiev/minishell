@@ -6,7 +6,7 @@
 /*   By: timofieiev <timofieiev@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/29 18:28:47 by timofieiev       ###   ########.fr       */
+/*   Updated: 2018/11/29 18:42:10 by timofieiev       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,6 @@ char	**get_buf_envp(char **arguments, char **envp_init)
 	return (buf);
 }
 
-// char	**realloc_envp(char **buf)
-// {
-// 	int i;
-// 	int len;
-// 	char **realloc_envp;
-// 	i = 0;
-// 	len = len_char_2d_array(buf) + 1;
-// 	realloc_envp = (char **)malloc(sizeof(char *) * len);
-// 	while (buf[i])
-// 	{
-// 		realloc_envp[i] = ft_strdup(buf[i]);
-// 		i++;
-// 	}
-// 	realloc_envp[i] = NULL;
-// 	return (realloc_envp);
-
-
-// }
-
 char		**copy_2d_char(char **src)
 {
 	int i;
@@ -111,7 +92,7 @@ char		**setenv_minishell(char *str, char **envp_init)
 	if (len != 4)
 	{
 		ft_clean_2d_char(arguments);
-		return (0);
+		return (envp_init);
 	}
 	i = get_index_envp(envp_init, arguments[1]);
 	if (i)
@@ -120,6 +101,7 @@ char		**setenv_minishell(char *str, char **envp_init)
 		if (ft_strequ(arguments[3], "1"))
 		{
 			envp_res = copy_2d_char(envp_init);
+			
 			free(envp_res[i]);
 			envp_res[i] = ft_strdup(arguments[1]);
 			ft_strcat(envp_res[i], "=");
@@ -127,11 +109,9 @@ char		**setenv_minishell(char *str, char **envp_init)
 		}
 	}
 	else
-	{
 		envp_res = get_buf_envp(arguments, envp_init);
-	}
-		ft_clean_2d_char(arguments);
-		ft_clean_2d_char(envp_init);
+	ft_clean_2d_char(arguments);
+	ft_clean_2d_char(envp_init);
 	
 	return (envp_res);
 }
