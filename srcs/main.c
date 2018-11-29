@@ -4,6 +4,7 @@
 // You must manage expansions $ and  ̃
 // validation for setenv
 // validation for main
+// quotes -> dismiss quotes;
 
 int		main(int argc, char **argv, char **envp)
 {

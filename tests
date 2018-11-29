@@ -10,7 +10,7 @@ echo $OLDPWD ; cd - or echo $HOME ; unsetenv HOME ; echo $HOME ; cd
 
 3) The shell must manage SHLVL variables. echo $SHLVL
 
-4) The shell must take into account PS2 variable. echo \ 1
+4) The shell must take into account PS2 variable. echo \ 1 - !!!!!!!!!!!!!!!!!!!!!
 
 5) The shell must understand \ in input sequence. It must read second line if the 
 user enters echo 1 2 3\4 and the result will be: 1 2 34.
