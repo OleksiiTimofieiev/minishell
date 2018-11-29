@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   setenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: timofieiev <timofieiev@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/25 19:50:44 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/11/29 18:28:47 by timofieiev       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		get_index_envp(char **envp_fuck, char *name)
+int		get_index_envp(char **envp_finde, char *name)
 {
 	int i;
 	int	len;
 
 	i = 0;
-if (!name)
-ft_putstr("asdfasdfasdfasdfasdfasdf\n");
-ft_putstr("2bla\n");
+// if (!name)
+// ft_putstr("asdfasdfasdfasdfasdfasdf\n");
+// ft_putstr("2bla\n");
 
 len = ft_strlen(name);
-ft_putstr("3bla\n");
+// ft_putstr("3bla\n");
 
-while (envp_fuck[i])
+while (envp_finde[i])
 {
-	ft_printf("%s\n", envp_fuck[i]);
-	ft_printf("%s\n", name);
-	ft_printf("%d\n", len);
+	// ft_printf("%s\n", envp_finde[i]);
+	// ft_printf("%s\n", name);
+	// ft_printf("%d\n", len);
 
-	if (ft_strncmp(envp_fuck[i], name, len) == 0)
+	if (ft_strncmp(envp_finde[i], name, len) == 0)
 		return (i);
 	i++;
 }
-	ft_printf("iiiiii->%d", i);
+	// ft_printf("iiiiii->%d", i);
 	return (0);
 }
 
@@ -75,14 +75,35 @@ char	**get_buf_envp(char **arguments, char **envp_init)
 // 	}
 // 	realloc_envp[i] = NULL;
 // 	return (realloc_envp);
+
+
 // }
+
+char		**copy_2d_char(char **src)
+{
+	int i;
+	int len;
+	char **res;
+
+	i = 0;
+	len = len_char_2d_array(src) + 1;
+	res = (char **)malloc(sizeof(char *) * len);
+	res[len] = NULL;
+
+	while (src[i])
+	{
+		res[i] = ft_strdup(src[i]);
+		i++;
+	}
+	return (res);
+}
 
 char		**setenv_minishell(char *str, char **envp_init)
 {
 	int		i;
-	char	**arguments =NULL;
+	char	**arguments = NULL;
 	int		len;
-	char	**envp_buf = NULL;
+	char	**envp_res = NULL;
 
 	arguments = ft_strsplit(str, 32);
 	i = 0;
@@ -98,19 +119,19 @@ char		**setenv_minishell(char *str, char **envp_init)
 		ft_printf("%s%s%s\n", CYAN, "here1", RESET);
 		if (ft_strequ(arguments[3], "1"))
 		{
-			free(envp_init[i]);
-			envp_init[i] = ft_strdup(arguments[1]);
-			ft_strcat(envp_init[i], "=");
-			ft_strcat(envp_init[i], arguments[2]);
+			envp_res = copy_2d_char(envp_init);
+			free(envp_res[i]);
+			envp_res[i] = ft_strdup(arguments[1]);
+			ft_strcat(envp_res[i], "=");
+			ft_strcat(envp_res[i], arguments[2]);
 		}
-		ft_clean_2d_char(arguments);
 	}
 	else
 	{
-		envp_buf = get_buf_envp(arguments, envp_init);
+		envp_res = get_buf_envp(arguments, envp_init);
+	}
 		ft_clean_2d_char(arguments);
 		ft_clean_2d_char(envp_init);
-		return (envp_buf);
-	}
-	return (envp_buf);
+	
+	return (envp_res);
 }
