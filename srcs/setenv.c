@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timofieiev <timofieiev@student.42.fr>      +#+  +:+       +#+        */
+/*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/29 18:45:07 by timofieiev       ###   ########.fr       */
+/*   Updated: 2018/12/01 11:37:55 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,13 @@ int		get_index_envp(char **envp_finde, char *name)
 	int	len;
 
 	i = 0;
-// if (!name)
-// ft_putstr("asdfasdfasdfasdfasdfasdf\n");
-// ft_putstr("2bla\n");
-
-len = ft_strlen(name);
-// ft_putstr("3bla\n");
-
-while (envp_finde[i])
-{
-	// ft_printf("%s\n", envp_finde[i]);
-	// ft_printf("%s\n", name);
-	// ft_printf("%d\n", len);
-
-	if (ft_strncmp(envp_finde[i], name, len) == 0)
-		return (i);
-	i++;
-}
-	// ft_printf("iiiiii->%d", i);
+	len = ft_strlen(name);
+	while (envp_finde[i])
+	{
+		if (ft_strncmp(envp_finde[i], name, len) == 0)
+			return (i);
+		i++;
+	}
 	return (0);
 }
 
@@ -60,17 +49,16 @@ char	**get_buf_envp(char **arguments, char **envp_init)
 	return (buf);
 }
 
-char		**copy_2d_char(char **src)
+char	**copy_2d_char(char **src)
 {
-	int i;
-	int len;
-	char **res;
+	int		i;
+	int		len;
+	char	**res;
 
 	i = 0;
 	len = len_char_2d_array(src) + 1;
 	res = (char **)malloc(sizeof(char *) * len);
 	res[len] = NULL;
-
 	while (src[i])
 	{
 		res[i] = ft_strdup(src[i]);
@@ -79,7 +67,7 @@ char		**copy_2d_char(char **src)
 	return (res);
 }
 
-char		**setenv_minishell(char *str, char **envp_init)
+char	**setenv_minishell(char *str, char **envp_init)
 {
 	int		i;
 	char	**arguments;
@@ -104,6 +92,8 @@ char		**setenv_minishell(char *str, char **envp_init)
 			ft_strcat(envp_res[i], "=");
 			ft_strcat(envp_res[i], arguments[2]);
 		}
+		else
+			envp_res = copy_2d_char(envp_init);
 	}
 	else
 		envp_res = get_buf_envp(arguments, envp_init);
