@@ -7,7 +7,7 @@
 // quotes -> dismiss quotes;
 // getcwd as parameter to PWD in cd command;
 // unsetenv value is not in the env list , NAME=Value format, arguments is more then 2;
-// cfunc to detect the type of the comd
+// cfunc to detect the type of the comd (if true -> continue);
 
 int		main(int argc, char **argv, char **envp)
 {
