@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/01 11:37:55 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/01 11:44:48 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,23 @@ char	**copy_2d_char(char **src)
 	return (res);
 }
 
+char	**envp_res_logic(char **arguments, char **envp_init)
+{
+	char **envp_buf;
+
+	if (ft_strequ(arguments[3], "1"))
+	{
+		envp_buf = copy_2d_char(envp_init);
+		free(envp_buf[i]);
+		envp_buf[i] = ft_strdup(arguments[1]);
+		ft_strcat(envp_buf[i], "=");
+		ft_strcat(envp_buf[i], arguments[2]);
+	}
+	else
+		envp_buf = copy_2d_char(envp_init);
+	return (envp_buf);
+}
+
 char	**setenv_minishell(char *str, char **envp_init)
 {
 	int		i;
@@ -75,7 +92,6 @@ char	**setenv_minishell(char *str, char **envp_init)
 
 	envp_res = NULL;
 	arguments = ft_strsplit(str, 32);
-	i = 0;
 	if (len_char_2d_array(arguments) != 4)
 	{
 		ft_clean_2d_char(arguments);
@@ -83,18 +99,7 @@ char	**setenv_minishell(char *str, char **envp_init)
 	}
 	i = get_index_envp(envp_init, arguments[1]);
 	if (i)
-	{
-		if (ft_strequ(arguments[3], "1"))
-		{
-			envp_res = copy_2d_char(envp_init);
-			free(envp_res[i]);
-			envp_res[i] = ft_strdup(arguments[1]);
-			ft_strcat(envp_res[i], "=");
-			ft_strcat(envp_res[i], arguments[2]);
-		}
-		else
-			envp_res = copy_2d_char(envp_init);
-	}
+		envp_res = envp_res_logic(arguments, envp_init);
 	else
 		envp_res = get_buf_envp(arguments, envp_init);
 	ft_clean_2d_char(arguments);
