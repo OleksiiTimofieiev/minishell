@@ -2,7 +2,7 @@
 
 // use array of functions for echo, ...
 // You must manage expansions $ and  ̃
-// validation for setenv
+// validation for setenv (quantity of arguments, 1 or 0)
 // validation for main
 // quotes -> dismiss quotes;
 // getcwd as parameter to PWD;
