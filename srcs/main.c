@@ -5,7 +5,8 @@
 // validation for setenv (quantity of arguments, 1 or 0)
 // validation for main
 // quotes -> dismiss quotes;
-// getcwd as parameter to PWD;
+// getcwd as parameter to PWD in cd command;
+// unsetenv value is not in the env list , NAME=Value format
 
 int		main(int argc, char **argv, char **envp)
 {
@@ -32,6 +33,8 @@ int		main(int argc, char **argv, char **envp)
 			exit_minishell(envp_buf);
 		else if (!ft_strncmp(line, "setenv", 6))
 			envp_buf = setenv_minishell(line, envp_buf);
+		else if (!ft_strncmp(line, "unsetenv", 8))
+			envp_buf = unsetenv_minishell(line, envp_buf);
 		system("leaks -q minishell");
 		
 		// else

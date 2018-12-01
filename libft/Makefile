@@ -6,7 +6,7 @@
 #    By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/23 21:09:12 by otimofie          #+#    #+#              #
-#    Updated: 2018/11/25 12:33:12 by otimofie         ###   ########.fr        #
+#    Updated: 2018/12/01 11:57:48 by otimofie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,6 +115,7 @@ SRCS =  ft_printf.c \
 		ft_strnccpy.c \
 		ft_line_is_digit.c \
 		len_char_2d_array.c \
+		copy_2d_char.c \
 
 		#colors
 		RESET		= \033[m

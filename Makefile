@@ -6,7 +6,7 @@
 #    By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 11:59:13 by otimofie          #+#    #+#              #
-#    Updated: 2018/11/25 15:31:31 by otimofie         ###   ########.fr        #
+#    Updated: 2018/12/01 12:00:04 by otimofie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ CORE		= main.c \
 				setenv.c \
 				exit.c \
 				env_infrastructure.c \
+				unsetenv.c \
 
 SRCS        = $(addprefix srcs/, $(CORE))
 
