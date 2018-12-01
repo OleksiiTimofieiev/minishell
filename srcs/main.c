@@ -5,6 +5,7 @@
 // validation for setenv
 // validation for main
 // quotes -> dismiss quotes;
+// getcwd as parameter to PWD;
 
 int		main(int argc, char **argv, char **envp)
 {
