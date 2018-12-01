@@ -6,20 +6,21 @@
 #    By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 11:59:13 by otimofie          #+#    #+#              #
-#    Updated: 2018/12/01 12:00:04 by otimofie         ###   ########.fr        #
+#    Updated: 2018/12/01 15:24:07 by otimofie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
 CORE		= main.c \
-				echo.c \
-				cd.c \
-				env.c \
-				setenv.c \
-				exit.c \
-				env_infrastructure.c \
-				unsetenv.c \
+			echo.c \
+			cd.c \
+			env.c \
+			setenv.c \
+			exit.c \
+			env_infrastructure.c \
+			unsetenv.c \
+			#fork_execve_module.c \
 
 SRCS        = $(addprefix srcs/, $(CORE))
 

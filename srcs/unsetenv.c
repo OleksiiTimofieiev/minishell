@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 11:52:16 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/01 12:22:26 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/01 15:31:54 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		detect_del_var(char *env, char **haystack)
 	len_of_env = ft_strlen(env);
 	while (haystack[i])
 	{
+		ft_printf("%s\n", haystack[i]);
 		if (!ft_strncmp(env, haystack[i], len_of_env))
 			return (i);
 		i++;
@@ -40,9 +41,13 @@ char	**delete_var(char *env_var, char **envp_init)
 	j = 0;
 	len = len_char_2d_array(envp_init) - 1;
 	skip = detect_del_var(env_var, envp_init);
+
 	deleted = NULL;
 	deleted = (char **)malloc(sizeof(char *) * len + 1);
 	deleted[len] = NULL;
+
+	ft_printf("%sskip->%d%s\n", CYAN, skip, RESET);
+
 	while (i < len)
 	{
 		if (j != skip)
@@ -62,8 +67,8 @@ char	**unsetenv_minishell(char *str, char **envp_init)
 
 	envp_res = NULL;
 	arguments = ft_strsplit(str, 32);
+	envp_res = delete_var(arguments[1], envp_init);
 	ft_clean_2d_char(arguments);
 	ft_clean_2d_char(envp_init);
-	envp_res = delete_var(arguments[1], envp_init);
 	return (envp_res);
 }
