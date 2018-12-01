@@ -6,7 +6,8 @@
 // validation for main
 // quotes -> dismiss quotes;
 // getcwd as parameter to PWD in cd command;
-// unsetenv value is not in the env list , NAME=Value format
+// unsetenv value is not in the env list , NAME=Value format, arguments is more then 2;
+// cfunc to detect the type of the comd
 
 int		main(int argc, char **argv, char **envp)
 {
@@ -17,7 +18,7 @@ int		main(int argc, char **argv, char **envp)
 
 	envp_buf = init_envp_buf(envp);
 
-	while(1)
+	while (1)
 	{
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
 
