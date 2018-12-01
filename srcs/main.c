@@ -1,13 +1,13 @@
 #include "../includes/minishell.h"
 
-// use array of functions for echo, ...
-// You must manage expansions $ and  ̃
-// validation for setenv (quantity of arguments, 1 or 0)
-// validation for main
-// quotes -> dismiss quotes;
-// getcwd as parameter to PWD in cd command;
-// unsetenv value is not in the env list , NAME=Value format, arguments is more then 2;
-// cfunc to detect the type of the comd (if true -> continue);
+// TODO: use array of functions for echo, ...
+// TODO: You must manage expansions $ and  ̃
+// TODO: validation for setenv (quantity of arguments, 1 or 0)
+// TODO: validation for main
+// TODO: quotes -> dismiss quotes;
+// TODO: getcwd as parameter to PWD in cd command;
+// TODO: unsetenv value is not in the env list , NAME=Value format, arguments is more then 2;
+// TODO: cfunc to detect the type of the comd (if true -> continue);
 
 int		main(int argc, char **argv, char **envp)
 {
