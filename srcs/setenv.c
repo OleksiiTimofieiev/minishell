@@ -49,7 +49,7 @@ char	**get_buf_envp(char **arguments, char **envp_init)
 	return (buf);
 }
 
-char	**envp_res_logic(char **arguments, char **envp_init)
+char	**envp_res_logic(char **arguments, char **envp_init, int i)
 {
 	char **envp_buf;
 
@@ -81,7 +81,7 @@ char	**setenv_minishell(char *str, char **envp_init)
 	}
 	i = get_index_envp(envp_init, arguments[1]);
 	if (i)
-		envp_res = envp_res_logic(arguments, envp_init);
+		envp_res = envp_res_logic(arguments, envp_init, i);
 	else
 		envp_res = get_buf_envp(arguments, envp_init);
 	ft_clean_2d_char(arguments);
