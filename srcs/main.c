@@ -20,8 +20,8 @@
 // TODO: quotes -> dismiss quotes;
 // TODO: getcwd as parameter to PWD in cd command;
 // TODO: unsetenv value is not in the env list , NAME=Value format, arguments is more then 2;
-// TODO: cfunc to detect the type of the comd (if true -> continue);
-// TODO: handle the error when i change variable in setenv
+// TODO: maybe: cfunc to detect the type of the comd (if true -> continue);
+// TODO: work out when there is no such env var in unsetenv
 
 int		main(int argc, char **argv, char **envp)
 {
