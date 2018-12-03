@@ -12,6 +12,7 @@
 
 #include "../includes/minishell.h"
 
+// TODO: norminette & leaks
 // TODO: use array of functions for echo, ...
 // TODO: You must manage expansions $ and  ̃
 // TODO: validation for setenv (quantity of arguments, 1 or 0)
