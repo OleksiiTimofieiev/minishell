@@ -12,6 +12,8 @@
 
 #include "../includes/minishell.h"
 
+#include <stdio.h>
+
 // TODO: norminette & leaks
 // TODO: You must manage expansions $ and  ̃
 // TODO: validation for setenv (quantity of arguments, 1 or 0)
@@ -20,6 +22,33 @@
 // TODO: maybe: cfunc to detect the type of the comd (if true -> continue);
 // TODO: work out when there is no such env var in unsetenv
 // TODO: unsetenv value is not in the env list , NAME=Value format, arguments is more then 2;
+
+
+// check if the command available -> spit path by :
+// if available ->strdup
+int lsh_launch(char **env_array)
+{
+   pid_t pid, wpid;
+   int status;
+   pid = fork();
+   char* argv[] = { "/bin/ls", "-l", "-a", "-G", NULL };
+   if (pid == 0) {
+     // Child process
+     if (execve(argv[0], argv, env_array) == -1) {
+       perror("lsh");
+}
+     exit(EXIT_FAILURE);
+   } else if (pid < 0) {
+     // Error forking
+     perror("lsh");
+   } else {
+ 
+      // Parent process
+     do {
+       wpid = waitpid(pid, &status, WUNTRACED);
+     } while (!WIFEXITED(status) && !WIFSIGNALED(status));
+   }
+return 1; }
 
 int		main(int argc, char **argv, char **envp)
 {
@@ -49,6 +78,8 @@ int		main(int argc, char **argv, char **envp)
 		else if (!ft_strncmp(line, "unsetenv", 8))
 			envp_buf = unsetenv_minishell(line, envp_buf);
 		system("leaks -q minishell");
+
+		lsh_launch(envp);
 		
 		// else
 			// ft_printf("%sminishell: command not found: %s%s\n", 
