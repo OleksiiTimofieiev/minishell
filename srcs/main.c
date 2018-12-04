@@ -24,7 +24,7 @@
 // TODO: unsetenv value is not in the env list , NAME=Value format, arguments is more then 2;
 // TODO: try getcwd with cd to get more cool cd
 
-// check if the command available -> spit path by :
+// check if the command available -> split path by : check that the file is binary one and access rights;
 // if available ->strdup
 int lsh_launch(char **env_array)
 {
