@@ -77,9 +77,10 @@ int		main(int argc, char **argv, char **envp)
 			envp_buf = setenv_minishell(line, envp_buf);
 		else if (!ft_strncmp(line, "unsetenv", 8))
 			envp_buf = unsetenv_minishell(line, envp_buf);
-		system("leaks -q minishell");
 
 		lsh_launch(envp);
+		system("leaks -q minishell");
+		
 		
 		// else
 			// ft_printf("%sminishell: command not found: %s%s\n", 
