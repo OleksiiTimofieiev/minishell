@@ -31,7 +31,7 @@ int lsh_launch(char **env_array)
    pid_t pid, wpid;
    int status;
    pid = fork();
-   char* argv[] = { "/bin/ls", "-l", "-a", "-G", "/", NULL };
+   char* argv[] = { "/bin/ls", "-l", "-a", "-G", ".", NULL };
    if (pid == 0) {
      // Child process
      if (execve(argv[0], argv, env_array) == -1) {
@@ -80,7 +80,7 @@ int		main(int argc, char **argv, char **envp)
 
 		lsh_launch(envp);
 		system("leaks -q minishell");
-		
+
 		
 		// else
 			// ft_printf("%sminishell: command not found: %s%s\n", 
