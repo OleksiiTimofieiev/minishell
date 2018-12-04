@@ -22,7 +22,7 @@
 // TODO: maybe: cfunc to detect the type of the comd (if true -> continue);
 // TODO: work out when there is no such env var in unsetenv
 // TODO: unsetenv value is not in the env list , NAME=Value format, arguments is more then 2;
-
+// TODO: try getcwd with cd to get more cool cd
 
 // check if the command available -> spit path by :
 // if available ->strdup
@@ -31,7 +31,7 @@ int lsh_launch(char **env_array)
    pid_t pid, wpid;
    int status;
    pid = fork();
-   char* argv[] = { "/bin/ls", "-l", "-a", "-G", NULL };
+   char* argv[] = { "/bin/ls", "-l", "-a", "-G", "/", NULL };
    if (pid == 0) {
      // Child process
      if (execve(argv[0], argv, env_array) == -1) {
