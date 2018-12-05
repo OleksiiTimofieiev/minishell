@@ -24,34 +24,6 @@
 // TODO: unsetenv value is not in the env list , NAME=Value format, arguments is more then 2;
 // TODO: try getcwd with cd to get more cool cd
 
-// find in PATH variable;
-// check if the command available -> split path by : check that the file is binary one and access rights;
-// if available ->strdup
-
-int lsh_launch(char **env_array)
-{
-   pid_t pid, wpid;
-   int status;
-   pid = fork();
-   char* argv[] = { "/bin/ls", "-l", "-a", "-G", ".", NULL };
-   if (pid == 0) {
-     // Child process
-     if (execve(argv[0], argv, env_array) == -1) {
-       perror("lsh");
-}
-     exit(EXIT_FAILURE);
-   } else if (pid < 0) {
-     // Error forking
-     perror("lsh");
-   } else {
- 
-      // Parent process
-     do {
-       wpid = waitpid(pid, &status, WUNTRACED);
-     } while (!WIFEXITED(status) && !WIFSIGNALED(status));
-   }
-return 1; }
-
 int		main(int argc, char **argv, char **envp)
 {
 	(void)argc;
