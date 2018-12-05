@@ -52,7 +52,7 @@ int		main(int argc, char **argv, char **envp)
 		else if (!ft_strncmp(line, "unsetenv", 8))
 			envp_buf = unsetenv_minishell(line, envp_buf);
 
-		lsh_launch(envp);
+		run_buitin_cmd(envp);
 		system("leaks -q minishell");
 
 		
