@@ -13,7 +13,6 @@
 #include "../includes/minishell.h"
 
 // check if the command available -> split path by : check that the file is binary one and access rights;
-// if available ->strdup
 // validation -> no path / no such binary;
 // if not ./ <-> current minishell;
 
@@ -99,12 +98,15 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 
 void run_buitin_cmd(char **env_array) // binary name = first | flags = all with - prefix and remaining
 {
-	char *binary = find_binary_path("ls", env_array);;
+	char *binary = find_binary_path("ls", env_array);
+
+	if (binary == NULL)
+		ft_printf("No such file\n");
 	
 	pid_t pid, wpid;
 	int status;
 	pid = fork();
-	char* argv[] = { binary, "-l", "-a", "-G", ".", NULL };
+	char* argv[] = { binary, "-laG", NULL };
 	if (pid == 0) // Child process
 	{
 		if (execve(argv[0], argv, env_array) == -1) 
