@@ -25,7 +25,7 @@
 // TODO: try getcwd with cd to get more cool cd
 // TODO: if line == NULL;
 
-void	main_routine(char *line, char **envp_buf)
+void	minishell(char *line, char **envp_buf)
 {
 	while (1)
 	{
@@ -46,7 +46,6 @@ void	main_routine(char *line, char **envp_buf)
 		else
 			run_buitin_cmd(envp_buf);
 		free(line);
-		
 		system("leaks -q minishell");
 	}
 }
@@ -60,9 +59,6 @@ int		main(int argc, char **argv, char **envp)
 
 	line = NULL;
 	envp_buf = init_envp_buf(envp);
-
-	main_routine(line, envp_buf);
-
-
+	minishell(line, envp_buf);
 	return 0;
 }
