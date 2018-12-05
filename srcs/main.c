@@ -46,6 +46,7 @@ void	minishell(char *line, char **envp_buf)
 		else
 			run_buitin_cmd(envp_buf);
 		free(line);
+		
 		system("leaks -q minishell");
 	}
 }
