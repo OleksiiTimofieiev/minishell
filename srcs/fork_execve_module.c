@@ -123,11 +123,11 @@ void lsh_launch(char **env_array) // binary name = first | flags = all with - pr
    } 
    else 	  // Parent process
    {
-		do
-		{
+		// do
+		// {
 	   		wpid = waitpid(pid, &status, WUNTRACED);
 			free(binary);
-		} 
-	 	while (!WIFEXITED(status) && !WIFSIGNALED(status));
+		// } 
+	 // 	while (!WIFEXITED(status) && !WIFSIGNALED(status));
    }
 }
