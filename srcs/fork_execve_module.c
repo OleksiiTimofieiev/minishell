@@ -12,10 +12,8 @@
 
 #include "../includes/minishell.h"
 
-// find in PATH variable;
 // check if the command available -> split path by : check that the file is binary one and access rights;
 // if available ->strdup
-
 // validation -> no path / no such binary;
 // if not ./ <-> current minishell;
 
@@ -88,11 +86,9 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 	full_binary = NULL;
 	index = find_env_path(env_array);
 	path_list = ft_strsplit(env_array[index], ':');
-
 	buf = ft_strdup(path_list[0]);
 	free(path_list[0]);
 	path_list[0] = ft_strdup(&buf[5]);
-
 	full_binary = find_dir_path(binary_name, path_list);
 	ft_strcat(full_binary, "/");
 	ft_strcat(full_binary, binary_name);
@@ -101,7 +97,7 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 	return (full_binary);
 }
 
-void lsh_launch(char **env_array) // binary name = first | flags = all with - prefix and remaining
+void run_buitin_cmd(char **env_array) // binary name = first | flags = all with - prefix and remaining
 {
 	char *binary = find_binary_path("ls", env_array);;
 	
