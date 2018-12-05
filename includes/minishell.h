@@ -3,6 +3,8 @@
 
 # include "../libft/libft.h"
 # include <sys/wait.h>
+# include <dirent.h>
+# include <stdio.h> // delete;
 
 void	echo(char *str, char **envp);
 void	cd(char *str, char **envp);
