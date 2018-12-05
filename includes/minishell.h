@@ -16,7 +16,7 @@ char	**unsetenv_minishell(char *str, char **envp_init);
 
 
 
-int lsh_launch(char **env_array);
+void	lsh_launch(char **env_array);
 
 
 
