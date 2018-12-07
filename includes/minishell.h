@@ -21,7 +21,7 @@ void	run_buitin_cmd(char **env_array);
 
 
 
-
+	
 
 char	*get_global_var(char **envp, char *command);
 char	**init_envp_buf(char **envp);
