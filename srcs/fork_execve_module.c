@@ -107,13 +107,13 @@ void run_buitin_cmd(char **env_array) // binary name = first | flags = all with 
 	{
 		if (execve(argv[0], argv, env_array) == -1) 
 		{
-	   		perror("lsh");
+	   		perror("lsh"); // change to the error func
 		}
 	 	exit(EXIT_FAILURE);
    } 
    else if (pid < 0) 	 // Error forking
    {
-		perror("lsh");
+		perror("lsh"); // change to the error func
    } 
    else 	  // Parent process
    {

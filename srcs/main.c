@@ -28,6 +28,8 @@
 // TODO: if not ./ <-> current minishell;
 // TODO: mod the main func to the possible input params;
 
+// TODO: add var if $ or ~ to the line, rethink the funcs
+
 // TODO: echo "" || '', errors -> replace with spaces " symbol;
 // TODO: detect missing '' || ""
 
