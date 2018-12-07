@@ -15,8 +15,6 @@
 
 // TODO: norminette (rename funcs to static) & leaks
 
-// TODO: permission denied for deleting env var with UNSETENV;\// TODO: init pwd old pws
-
 // TODO: fork section:
 // TODO: check if the command available -> split path by : check that the file is binary one and access rights;
 // TODO: validation -> no path / no such binary;

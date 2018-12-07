@@ -63,9 +63,7 @@ char	**unsetenv_minishell(char *str, char **envp_init, int len_env_vars)
 	char **arguments;
 
 	envp_res = NULL;
-
 	arguments = ft_strsplit(str, 32);
-
 	if (len_char_2d_array(arguments) != 2)
 	{
 		envp_res = copy_2d_char(envp_init);
@@ -74,19 +72,15 @@ char	**unsetenv_minishell(char *str, char **envp_init, int len_env_vars)
 		ft_printf("%s%s%s", RED, "Wrong number of arguments -> has to be 1\n", RESET);
 		return (envp_res);
 	}
-
 	if (!(envp_res = delete_var(arguments[1], envp_init, len_env_vars)))
 	{
 		envp_res = copy_2d_char(envp_init);
 		ft_clean_2d_char(arguments);
 		ft_clean_2d_char(envp_init);
-
+		ft_printf("%s%s%s", RED, "Permision denied.\n", RESET);
 		return (envp_res);
 	}
-
-
 	ft_clean_2d_char(arguments);
 	ft_clean_2d_char(envp_init);
-
 	return (envp_res);
 }
