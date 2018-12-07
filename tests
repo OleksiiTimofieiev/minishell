@@ -1,8 +1,3 @@
-2) If the user deletes one of necessary variables(such as PWD, OLDPWD, HOME, etc) it must be 
-restored, or an appropriate message must be printed. Sure there must be no segfaults if we 
-are executing echo $PWD ; unsetenv PWD ; echo $PWD ; cd ../ or echo $OLDPWD ; unsetenv OLDPWD ; 
-echo $OLDPWD ; cd - or echo $HOME ; unsetenv HOME ; echo $HOME ; cd
-
 4) The shell must take into account PS2 variable. echo \ 1 - !!!!!!!!!!!!!!!!!!!!!
 
 5) The shell must understand \ in input sequence. It must read second line if the 

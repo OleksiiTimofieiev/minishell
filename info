@@ -1,9 +1,3 @@
-- env variable || env command
-- unset env PATH
-- PATH is the information of the necessary infrastructure for the project
-- mishell shall be posiible to work even without PATH variable
-- use of wait
-
 links to be checked:
 
 ~ Processes in general:
