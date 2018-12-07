@@ -15,8 +15,6 @@
 
 // TODO: norminette (rename funcs to static) & leaks
 
-// TODO: validation for setenv (quantity of arguments, 1 or 0) if not 3 arguments, defaul == 0;
-
 // TODO: work out when there is no such env var in unsetenv
 // TODO: unsetenv value is not in the env list, NAME=Value format, arguments is more then 2;
 // TODO: permission denied for restoring UNSETENV;
@@ -37,7 +35,9 @@ void	minishell(char *line, char **envp_buf)
 	while (1)
 	{
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
+
 		get_next_line(0, &line);
+
 		if (!ft_strncmp(line, "cd", 2))
 			cd(line, envp_buf);
 		else if (!ft_strncmp(line, "echo", 4))

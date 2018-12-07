@@ -71,10 +71,12 @@ char	**setenv_minishell(char *str, char **envp_init)
 	int		i;
 	char	**arguments;
 	char	**envp_res;
+	int 	q_params;
 
 	envp_res = NULL;
 	arguments = ft_strsplit(str, 32);
-	if (len_char_2d_array(arguments) != 4)
+	q_params = len_char_2d_array(arguments);
+	if (q_params < 3 || q_params > 4)
 	{
 		ft_clean_2d_char(arguments);
 		return (envp_init);
