@@ -12,7 +12,6 @@
 
 #include "../includes/minishell.h"
 
-#include <stdio.h>
 
 // TODO: norminette (rename funcs to static) & leaks
 
