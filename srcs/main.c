@@ -24,6 +24,7 @@
 // TODO: unsetenv value is not in the env list , NAME=Value format, arguments is more then 2;
 // TODO: try getcwd with cd to get more cool cd
 // TODO: if line == NULL;
+// TODO: echo $PATH
 
 void	minishell(char *line, char **envp_buf)
 {
