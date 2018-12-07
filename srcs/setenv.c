@@ -85,7 +85,10 @@ char	**setenv_minishell(char *str, char **envp_init)
 	if (i)
 		envp_res = envp_res_logic(arguments, envp_init, i);
 	else
+	{
 		envp_res = get_buf_envp(arguments, envp_init);
+		
+	}
 	ft_clean_2d_char(arguments);
 	ft_clean_2d_char(envp_init);
 	return (envp_res);

@@ -21,11 +21,11 @@ char	**copy_2d_char(char **src)
 	i = 0;
 	len = len_char_2d_array(src) + 1;
 	res = (char **)malloc(sizeof(char *) * len);
-	res[len] = NULL;
 	while (src[i])
 	{
 		res[i] = ft_strdup(src[i]);
 		i++;
 	}
+	res[len] = NULL;
 	return (res);
 }

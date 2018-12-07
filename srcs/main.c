@@ -15,10 +15,7 @@
 
 // TODO: norminette (rename funcs to static) & leaks
 
-// TODO: work out when there is no such env var in unsetenv
-// TODO: unsetenv value is not in the env list, 
-// TODO: NAME=Value format, arguments is more then 2;
-// TODO: permission denied for deleting env var with UNSETENV;
+// TODO: permission denied for deleting env var with UNSETENV;\// TODO: init pwd old pws
 
 // TODO: fork section:
 // TODO: check if the command available -> split path by : check that the file is binary one and access rights;
@@ -33,6 +30,10 @@
 
 void	minishell(char *line, char **envp_buf)
 {
+	int len_env_vars;
+
+	len_env_vars = ft_2d_arr_size(envp_buf) - 1;
+
 	while (1)
 	{
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
@@ -50,7 +51,7 @@ void	minishell(char *line, char **envp_buf)
 		else if (!ft_strncmp(line, "setenv", 6))
 			envp_buf = setenv_minishell(line, envp_buf);
 		else if (!ft_strncmp(line, "unsetenv", 8))
-			envp_buf = unsetenv_minishell(line, envp_buf);
+			envp_buf = unsetenv_minishell(line, envp_buf, len_env_vars);
 		// else
 		// 	run_buitin_cmd(envp_buf);
 		free(line);
