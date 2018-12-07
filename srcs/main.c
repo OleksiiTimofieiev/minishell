@@ -18,7 +18,6 @@
 // TODO: validation for setenv (quantity of arguments, 1 or 0)
 // TODO: work out when there is no such env var in unsetenv
 // TODO: unsetenv value is not in the env list, NAME=Value format, arguments is more then 2;
-// TODO: try getcwd with cd to get more cool cd, work with cd more on the path logic
 // TODO: echo "" || '', errors -> replace with spaces " symbol;
 // TODO: detect missing '' || ""
 
