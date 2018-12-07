@@ -12,11 +12,6 @@
 
 #include "../includes/minishell.h"
 
-// check if the command available -> split path by : check that the file is binary one and access rights;
-// validation -> no path / no such binary;
-// if not ./ <-> current minishell;
-// mod the main func to the possible input params;
-
 int		find_env_path(char **env_array)
 {
 	int i;
