@@ -15,7 +15,7 @@
 #include <stdio.h>
 
 // TODO: norminette & leaks
-// TODO: validation for setenv (quantity of arguments, 1 or 0)
+// TODO: validation for setenv (quantity of arguments, 1 or 0) if no 3 argument, defaul == 0;
 // TODO: work out when there is no such env var in unsetenv
 // TODO: unsetenv value is not in the env list, NAME=Value format, arguments is more then 2;
 // TODO: echo "" || '', errors -> replace with spaces " symbol;
