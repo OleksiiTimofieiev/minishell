@@ -25,6 +25,7 @@
 // TODO: try getcwd with cd to get more cool cd
 // TODO: if line == NULL;
 // TODO: echo $PATH
+// TODO: echo "" || '', errors
 
 void	minishell(char *line, char **envp_buf)
 {
@@ -44,8 +45,8 @@ void	minishell(char *line, char **envp_buf)
 			envp_buf = setenv_minishell(line, envp_buf);
 		else if (!ft_strncmp(line, "unsetenv", 8))
 			envp_buf = unsetenv_minishell(line, envp_buf);
-		else
-			run_buitin_cmd(envp_buf);
+		// else
+		// 	run_buitin_cmd(envp_buf);
 		free(line);
 		
 		system("leaks -q minishell");

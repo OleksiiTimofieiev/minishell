@@ -1,14 +1,7 @@
-Here are the tests, I believe, every good (mini)shell, written by our students, must pass.
-
-1) If the user is changing the path, OLDPWD ad PWD variables must be changed. It can be tested 
-with this command: echo $OLDPWD $PWD ; cd / ; echo $OLDPWD $PWD
-
 2) If the user deletes one of necessary variables(such as PWD, OLDPWD, HOME, etc) it must be 
 restored, or an appropriate message must be printed. Sure there must be no segfaults if we 
 are executing echo $PWD ; unsetenv PWD ; echo $PWD ; cd ../ or echo $OLDPWD ; unsetenv OLDPWD ; 
 echo $OLDPWD ; cd - or echo $HOME ; unsetenv HOME ; echo $HOME ; cd
-
-3) The shell must manage SHLVL variables. echo $SHLVL
 
 4) The shell must take into account PS2 variable. echo \ 1 - !!!!!!!!!!!!!!!!!!!!!
 
@@ -29,8 +22,3 @@ number of quotes. echo "123'rrr must result in double quote-> or dquote.
 9) The shell must manage access rights for PATH variable. So if I type mkdir exe ;
 cp /bin/ls exe/. ; chmod 0 exe ; setenv PATH $PWD/exe and try to execute ls -l 
 it must fail(without message of access denied).
-
-10) Using unknown variable as a command must not segfault. $erere must result in
-nothing or no such command for example
-
-If you feel that there is something I forgot to include in this list, feel free to contact me:smile:
