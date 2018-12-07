@@ -12,20 +12,6 @@
 
 #include "../includes/minishell.h"
 
-// int		check_till_equal(char *haystack, char *needle)
-// {
-// 	while (*needle && *haystack)
-// 	{
-// 		if (*needle != *haystack)
-// 			return (0);
-// 		needle++;
-// 		haystack++;
-// 	}
-// 	if (*(haystack) == '=')
-// 		return (1);
-// 	return (0);
-// }
-
 void	display_global_variable(char *str, char **envp)
 {
 	int i;
