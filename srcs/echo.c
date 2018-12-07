@@ -28,11 +28,20 @@ int		check_till_equal(char *haystack, char *needle)
 
 void	display_global_variable(char *str, char **envp)
 {
-	while (*envp)
+	int i;
+	int j;
+
+	i = 0;
+	while (envp[i])
 	{
-		if (!ft_strequ(*envp, "$") && check_till_equal(*envp, &str[1]))
-			ft_printf("%s", *envp);
-		envp++;
+		if (!ft_strequ(envp[i], "$") && check_till_equal(envp[i], &str[1]))
+		{
+			j = 0;
+			while (envp[i][j] != '=')
+				j++;
+			ft_printf("%s", &envp[i][j + 1]);
+		}
+		i++;
 	}
 }
 
@@ -85,6 +94,11 @@ void	echo(char *str, char **envp)
 
 	n_flag = 0;
 	command_line = ft_strsplit(str, 32);
+
+	// int i = 0;
+	// while (command_line[i])
+	// 	ft_printf("%s\n", command_line[i++]);
+
 	if (ft_strequ("-n", command_line[1]))
 		n_flag = 1;
 	display_arguments(command_line, envp, n_flag);

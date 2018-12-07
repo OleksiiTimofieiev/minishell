@@ -12,12 +12,22 @@
 
 #include "../includes/minishell.h"
 
+char *get_cool_path(char *pwd_new)
+{
+	char cool_path[1024];
+
+	ft_memset(cool_path, 0x0, sizeof(cool_path));
+	ft_strcat(cool_path, pwd_new);
+	getcwd(&cool_path[4], sizeof(cool_path));
+	return (ft_strdup(cool_path));
+}
+
 short	cd_main(char *pwd_new, char *pwd_old, char **envp, char **command_line)
 {
 	if (chdir(&pwd_new[4]) == 0)
 	{
 		ft_clean(envp);
-		envp[6] = ft_strdup(pwd_new);
+		envp[6] = get_cool_path(pwd_new);
 		envp[22] = ft_strdup(pwd_old);
 		return (1);
 	}

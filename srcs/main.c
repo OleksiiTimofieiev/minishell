@@ -15,17 +15,12 @@
 #include <stdio.h>
 
 // TODO: norminette & leaks
-// TODO: You must manage expansions $ and  ̃
 // TODO: validation for setenv (quantity of arguments, 1 or 0)
-// TODO: validation for main
-// TODO: quotes -> dismiss quotes;
-// TODO: maybe: cfunc to detect the type of the cmd (if true -> continue);
 // TODO: work out when there is no such env var in unsetenv
-// TODO: unsetenv value is not in the env list , NAME=Value format, arguments is more then 2;
-// TODO: try getcwd with cd to get more cool cd
-// TODO: if line == NULL;
-// TODO: echo $PATH
-// TODO: echo "" || '', errors
+// TODO: unsetenv value is not in the env list, NAME=Value format, arguments is more then 2;
+// TODO: try getcwd with cd to get more cool cd, work with cd more on the path logic
+// TODO: echo "" || '', errors -> replace with spaces " symbol;
+// TODO: detect missing '' || ""
 
 void	minishell(char *line, char **envp_buf)
 {
@@ -63,5 +58,5 @@ int		main(int argc, char **argv, char **envp)
 	line = NULL;
 	envp_buf = init_envp_buf(envp);
 	minishell(line, envp_buf);
-	return 0;
+	return (0);
 }
