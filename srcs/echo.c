@@ -12,19 +12,19 @@
 
 #include "../includes/minishell.h"
 
-int		check_till_equal(char *haystack, char *needle)
-{
-	while (*needle && *haystack)
-	{
-		if (*needle != *haystack)
-			return (0);
-		needle++;
-		haystack++;
-	}
-	if (*(haystack) == '=')
-		return (1);
-	return (0);
-}
+// int		check_till_equal(char *haystack, char *needle)
+// {
+// 	while (*needle && *haystack)
+// 	{
+// 		if (*needle != *haystack)
+// 			return (0);
+// 		needle++;
+// 		haystack++;
+// 	}
+// 	if (*(haystack) == '=')
+// 		return (1);
+// 	return (0);
+// }
 
 void	display_global_variable(char *str, char **envp)
 {
@@ -34,7 +34,7 @@ void	display_global_variable(char *str, char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		if (!ft_strequ(envp[i], "$") && check_till_equal(envp[i], &str[1]))
+		if (!ft_strequ(envp[i], "$") && ft_strncmp(envp[i], &str[1], ft_strlen(&str[1])) == 0)
 		{
 			j = 0;
 			while (envp[i][j] != '=')
