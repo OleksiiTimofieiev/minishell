@@ -14,7 +14,7 @@
 
 #include <stdio.h>
 
-// TODO: norminette & leaks
+// TODO: norminette (rename funcs to static) & leaks
 
 // TODO: validation for setenv (quantity of arguments, 1 or 0) if no 3 argument, defaul == 0;
 
