@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: otimofie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 13:40:09 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/18 13:40:11 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 16:03:12 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	display_global_variable(char *str, char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		if (!ft_strequ(envp[i], "$") && ft_strncmp(envp[i], &str[1], ft_strlen(&str[1])) == 0)
+		if (!ft_strequ(envp[i], "$") && ft_strncmp(envp[i], &str[1], ft_strlen(&str[1])) == 0 
+			&& (envp[i][ft_strlen(&str[1])] == '='))
 		{
 			j = 0;
 			while (envp[i][j] != '=')
