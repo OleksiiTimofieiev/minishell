@@ -100,7 +100,8 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 	buf = ft_strdup(path_list[0]);
 	free(path_list[0]);
 	path_list[0] = ft_strdup(&buf[5]);
-	full_binary = find_dir_path(binary_name, path_list);
+	if (!(full_binary = find_dir_path(binary_name, path_list)))
+		return (full_binary);
 	ft_strcat(full_binary, "/");
 	ft_strcat(full_binary, binary_name);
 	ft_clean_2d_char(path_list);
