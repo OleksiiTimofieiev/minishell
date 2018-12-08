@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 12:52:03 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/25 18:53:25 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 18:16:19 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,33 @@ char	*get_global_var(char **envp, char *command)
 	return (result);
 }
 
+int detect_del_var_cd_del(char *env, char **haystack)
+{
+	int i;
+	int len_of_env;
+
+	i = 0;
+	len_of_env = ft_strlen(env);
+	while (haystack[i])
+	{
+		if (ft_strncmp(env, haystack[i], len_of_env) == 0) //
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
 void	ft_clean(char **envp)
 {
-	if (envp[6])
-		free(envp[6]);
-	if (envp[22])
-		free(envp[22]);
+	int path[2];
+
+	path[0] = detect_del_var_cd_del("PWD", envp);
+	path[1] = detect_del_var_cd_del("OLDPWD", envp);
+
+	if (envp[path[0]])
+		free(envp[path[0]]);
+	if (envp[path[1]])
+		free(envp[path[1]]);
 }
 
 char	**init_envp_buf(char **envp)

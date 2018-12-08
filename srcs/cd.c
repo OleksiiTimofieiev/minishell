@@ -6,16 +6,31 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 17:38:09 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 18:13:22 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 // var index, not fixed one;
-
-// if pwd, oldpwd is NULL;
+// if pwd, oldpwd is
 
 #include "../includes/minishell.h"
+
+int		detect_del_var_cd(char *env, char **haystack)
+{
+	int i;
+	int len_of_env;
+
+	i = 0;
+	len_of_env = ft_strlen(env);
+	while (haystack[i])
+	{
+		if (ft_strncmp(env, haystack[i], len_of_env) == 0) //
+			return (i);
+		i++;
+	}
+	return (0);
+}
 
 char *get_cool_path(char *pwd_new)
 {
@@ -29,11 +44,16 @@ char *get_cool_path(char *pwd_new)
 
 short	cd_main(char *pwd_new, char *pwd_old, char **envp, char **command_line)
 {
+	int path[2];
+
+	path[0] = detect_del_var_cd("PWD", envp);
+	path[1] = detect_del_var_cd("OLDPWD", envp);
+
 	if (chdir(&pwd_new[4]) == 0)
 	{
 		ft_clean(envp);
-		envp[6] = get_cool_path(pwd_new);
-		envp[22] = ft_strdup(pwd_old);
+		envp[path[0]] = get_cool_path(pwd_new);
+		envp[path[1]] = ft_strdup(pwd_old);
 		return (1);
 	}
 	else
@@ -68,28 +88,37 @@ void	tilda(char **command_line, char *pwd_new)
 
 void	path_handler(char **command_line, char *pwd_old, char **envp)
 {
-	char *path;
+	char *path_v;
+	int path[2];
 
-	path = get_global_var(envp, command_line[1]);
-	if (chdir(path) == 0)
+	path[0] = detect_del_var_cd("PWD", envp);
+	path[1] = detect_del_var_cd("OLDPWD", envp);
+
+	path_v = get_global_var(envp, command_line[1]);
+	if (chdir(path_v) == 0)
 	{
 		ft_clean(envp);
-		envp[6] = ft_strdup(path);
-		envp[22] = ft_strdup(pwd_old);
+		envp[path[0]] = ft_strdup(path_v);
+		envp[path[1]] = ft_strdup(pwd_old);
 	}
-	if (path)
-		free(path);
+	if (path_v)
+		free(path_v);
 	ft_clean_2d_char(command_line);
 }
 
 short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 {
+	int path[2];
+
+	path[0] = detect_del_var_cd("PWD", envp);
+	path[1] = detect_del_var_cd("OLDPWD", envp);
+
 	if (len_char_2d_array(command_line) == 1)
 	{
 		chdir("/Users/otimofie");
 		ft_clean(envp);
-		envp[6] = ft_strdup("PWD=/Users/otimofie");
-		envp[22] = ft_strdup(pwd_old);
+		envp[path[0]] = ft_strdup("PWD=/Users/otimofie");
+		envp[path[1]] = ft_strdup(pwd_old);
 		ft_clean_2d_char(command_line);
 		return (0);
 	}
@@ -109,8 +138,8 @@ short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 	{
 		chdir("/Users/otimofie");
 		ft_clean(envp);
-		envp[6] = ft_strdup("PWD=/Users/otimofie");
-		envp[22] = ft_strdup(pwd_old);
+		envp[path[0]] = ft_strdup("PWD=/Users/otimofie");
+		envp[path[1]] = ft_strdup(pwd_old);
 		ft_clean_2d_char(command_line);
 		return (0);
 	}
@@ -118,19 +147,19 @@ short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 	{
 		ft_putstr("work2\n");
 		
-		char *path;
+		char *path_v;
 
-		path = get_global_var(envp, "$OLDPWD");
+		path_v = get_global_var(envp, "$OLDPWD");
 
-		ft_putstr(path);
+		ft_putstr(path_v);
 
-		chdir(path);
+		chdir(path_v);
 		ft_clean(envp);
-		envp[6] = ft_strdup("PWD=");
-		ft_strcat(envp[6], path);
-		envp[22] = ft_strdup(pwd_old);
+		envp[path[0]] = ft_strdup("PWD=");
+		ft_strcat(envp[6], path_v);
+		envp[path[1]] = ft_strdup(pwd_old);
 
-		free(path);
+		free(path_v);
 		ft_clean_2d_char(command_line);
 
 		return (0);
