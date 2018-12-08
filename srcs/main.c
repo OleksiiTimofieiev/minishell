@@ -15,26 +15,22 @@
 
 // TODO: norminette (rename funcs to static) & leaks
 
-// TODO: add var if $ or ~ to the line, rethink the funcs
+// TODO: add var if $ or ~ to the line, rethink the funcs;
 
 // TODO: echo "" || '', errors -> replace with spaces " symbol;
 // TODO: detect missing '' || ""
 
 void	minishell(char **envp_buf)
 {
-	char *line;
-
-	int len_env_vars;
+	char	*line;
+	int		len_env_vars;
 
 	line = NULL;
 	len_env_vars = ft_2d_arr_size(envp_buf) - 1;
-
 	while (1)
 	{
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
-
 		get_next_line(0, &line);
-
 		if (!ft_strncmp(line, "cd", 2))
 			cd(line, envp_buf);
 		else if (!ft_strncmp(line, "echo", 4))
@@ -49,12 +45,7 @@ void	minishell(char **envp_buf)
 			envp_buf = unsetenv_minishell(line, envp_buf, len_env_vars);
 		else
 			run_buitin_cmd(line, envp_buf);
-		if (line)
-		{
-			free(line);
-			line = NULL;
-		}
-		
+		(line) ? free(line) : 0;
 		system("leaks -q minishell");
 	}
 }
