@@ -58,6 +58,7 @@ int		check_dir_for_binary(char *path, char *binary_name)
 			{
 				ft_printf("OK\n");
 				closedir(dir);
+				
 				return (1);
 			}
 		}
