@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 18:25:24 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 18:26:57 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,13 +143,13 @@ short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 	}
 	else if ((command_line[1][0] == '-' && ft_strlen(command_line[1]) == 1))
 	{
-		ft_putstr("work2\n");
+		// ft_putstr("work2\n");
 		
 		char *path_v;
 
 		path_v = get_global_var(envp, "$OLDPWD");
 
-		ft_putstr(path_v);
+		// ft_putstr(path_v);
 
 		chdir(path_v);
 		ft_clean(envp);
