@@ -6,12 +6,13 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 17:34:07 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 17:38:09 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 // var index, not fixed one;
+
 // if pwd, oldpwd is NULL;
 
 #include "../includes/minishell.h"
