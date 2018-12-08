@@ -20,10 +20,13 @@
 // TODO: echo "" || '', errors -> replace with spaces " symbol;
 // TODO: detect missing '' || ""
 
-void	minishell(char *line, char **envp_buf)
+void	minishell(char **envp_buf)
 {
+	char *line;
+
 	int len_env_vars;
 
+	line = NULL;
 	len_env_vars = ft_2d_arr_size(envp_buf) - 1;
 
 	while (1)
@@ -45,8 +48,9 @@ void	minishell(char *line, char **envp_buf)
 		else if (!ft_strncmp(line, "unsetenv", 8))
 			envp_buf = unsetenv_minishell(line, envp_buf, len_env_vars);
 		else
-			run_buitin_cmd(envp_buf);
+			run_buitin_cmd(line, envp_buf);
 		free(line);
+		line = NULL;
 		
 		system("leaks -q minishell");
 	}
@@ -56,11 +60,9 @@ int		main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
-	char *line;
 	char **envp_buf;
 
-	line = NULL;
 	envp_buf = init_envp_buf(envp);
-	minishell(line, envp_buf);
+	minishell(envp_buf);
 	return (0);
 }

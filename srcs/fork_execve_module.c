@@ -111,13 +111,15 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 	return (full_binary);
 }
 
-void	run_buitin_cmd(char **env_array) // binary name = first | flags = all with - prefix and remaining
+void	run_buitin_cmd(char *str, char **env_array) // binary name = first | flags = all with - prefix and remaining
 {
-	char *binary = find_binary_path("ls", env_array);
+	char **argument = ft_strsplit(str, 32);
+	char *binary = find_binary_path(argument[0], env_array);
 
 	if (binary == NULL)
 	{
 		free(binary);
+		ft_clean_2d_char(argument);
 		ft_printf("%s%s%s", RED, "No such binary\n", RESET);
 		return ;
 	}
@@ -145,6 +147,8 @@ void	run_buitin_cmd(char **env_array) // binary name = first | flags = all with 
 		// {
 	   		wpid = waitpid(pid, &status, WUNTRACED);
 			free(binary);
+		ft_clean_2d_char(argument);
+			
 		// } 
 	 // 	while (!WIFEXITED(status) && !WIFSIGNALED(status));
    }
