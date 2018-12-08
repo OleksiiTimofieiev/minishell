@@ -19,12 +19,14 @@
 
 // bonus: Management of execution rights in the PATH, ; stuff;
 
-void	minishell(char **envp_buf)
+void	minishell(char **envp_in)
 {
 	char	*line;
+	char	**envp_buf;
 	int		len_env_vars;
 
 	line = NULL;
+	envp_buf = init_envp_buf(envp_in);
 	len_env_vars = ft_2d_arr_size(envp_buf) - 1;
 	while (1)
 	{
@@ -51,16 +53,9 @@ void	minishell(char **envp_buf)
 
 int		main(int argc, char **argv, char **envp)
 {
-	if (argc != 1)
-	{
-		ft_printf("%s%s%s", RED, "No params are acceptable.\n", RESET);
-		exit (0);
-	}
-	// (void)argv;
+	(void)argc;
+	(void)argv;
 
-	char **envp_buf;
-
-	envp_buf = init_envp_buf(envp);
-	minishell(envp_buf);
+	minishell(envp);
 	return (0);
 }
