@@ -16,7 +16,6 @@
 // TODO: norminette (rename funcs to static) & leaks
 
 // TODO: fork section:
-// TODO: check if the command available -> split path by : check that the file is binary one and access rights;
 // TODO: validation -> no path / no such binary;
 // TODO: if not ./ <-> current minishell;
 // TODO: mod the main func to the possible input params;
@@ -50,8 +49,8 @@ void	minishell(char *line, char **envp_buf)
 			envp_buf = setenv_minishell(line, envp_buf);
 		else if (!ft_strncmp(line, "unsetenv", 8))
 			envp_buf = unsetenv_minishell(line, envp_buf, len_env_vars);
-		// else
-		// 	run_buitin_cmd(envp_buf);
+		else
+			run_buitin_cmd(envp_buf);
 		free(line);
 		
 		system("leaks -q minishell");

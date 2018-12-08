@@ -3,6 +3,7 @@
 
 # include "../libft/libft.h"
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include <dirent.h>
 # include <stdio.h> // delete;
 

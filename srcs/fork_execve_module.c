@@ -30,19 +30,31 @@ int		check_dir_for_binary(char *path, char *binary_name)
 {
 	DIR *dir;
 	struct dirent *dp;
+	struct stat buf;
+	char   path_buf[1024];
+	ft_memset(path_buf, 0x0, sizeof(path_buf));
 
 	if ((dir = opendir (path)) == NULL) 
 	 {
-		perror ("Cannot open .");
+		ft_putstr("Cannot open .\n");
 		exit (1);
 	}
 
 	while ((dp = readdir (dir)) != NULL) 
 	{
-		if (ft_strequ(dp->d_name, binary_name))
+		if (ft_strequ(dp->d_name, binary_name)) ///  && (dp->st_mode & S_IXUSR)
 		{
-			closedir(dir);
-			return (1);
+			ft_strcat(path_buf, path);
+			ft_strcat(path_buf, "/");
+			ft_strcat(path_buf, dp->d_name);
+
+			lstat(path_buf, &buf);
+			if (buf.st_mode & S_IXUSR)
+			{
+				ft_printf("OK\n");
+				closedir(dir);
+				return (1);
+			}
 		}
 		
 	}
