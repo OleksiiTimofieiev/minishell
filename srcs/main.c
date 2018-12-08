@@ -17,8 +17,7 @@
 
 // TODO: add var if $ or ~ to the line, rethink the funcs;
 
-// TODO: echo "" || '', errors -> replace with spaces " symbol;
-// TODO: detect missing '' || ""
+// bonus: Management of execution rights in the PATH, ; stuff;
 
 void	minishell(char **envp_buf)
 {
