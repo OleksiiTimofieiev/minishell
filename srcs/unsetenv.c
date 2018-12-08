@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 11:52:16 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 16:38:07 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 17:48:42 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**unsetenv_minishell(char *str, char **envp_init)
 		ft_printf("%s%s%s", RED, "Wrong number of arguments -> has to be 1\n", RESET);
 		return (envp_res);
 	}
-	if (NULL == (envp_res = delete_var(arguments[1], envp_init/*, len_env_vars*/)))
+	if (!(envp_res = delete_var(arguments[1], envp_init)))
 	{
 		envp_res = copy_2d_char(envp_init);
 		ft_clean_2d_char(arguments);
