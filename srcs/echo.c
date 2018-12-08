@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 13:40:09 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 21:00:14 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 21:01:03 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ void	echo(char *str, char **envp)
 	n_flag = 0;
 	command_line = ft_strsplit(str, 32);
 
-	int i = 0;
-	while (command_line[i])
-		ft_printf("%s\n", command_line[i++]);
+	// int i = 0;
+	// while (command_line[i])
+	// 	ft_printf("%s\n", command_line[i++]);
 
 	if (ft_strequ("-n", command_line[1]))
 		n_flag = 1;
