@@ -55,7 +55,6 @@ int		check_dir_for_binary(char *path, char *binary_name)
 			lstat(path_buf, &buf);
 			if (buf.st_mode & S_IXUSR)
 			{
-				ft_printf("OK\n");
 				closedir(dir);
 				return (1);
 			}
@@ -131,14 +130,14 @@ void	run_buitin_cmd(char **env_array) // binary name = first | flags = all with 
 	{
 		if (execve(binary, argv, env_array) == -1) 
 		{
-	   		perror("lsh"); // change to the error func
+	   		ft_printf("%s%s%s", RED, "execve error\n", RESET);
 	 	exit(EXIT_FAILURE);
 
 		}
    } 
    else if (pid < 0) 	 // Error forking
    {
-		perror("lsh"); // change to the error func
+		ft_printf("%s%s%s", RED, "Error with fork func\n", RESET); // change to the error func
    } 
    else 	  // Parent process
    {
