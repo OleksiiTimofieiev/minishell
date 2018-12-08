@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/11/25 12:54:06 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 17:20:24 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,21 @@ short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 	else if (command_line[1][0] == '$')
 	{
 		path_handler(command_line, pwd_old, envp);
+		return (0);
+	}
+	else if ((command_line[1][0] == '-' && command_line[1][1] == '-' 
+		&& ft_strlen(command_line[1]) == 2))
+	{
+		ft_putstr("work1\n");
+		ft_clean_2d_char(command_line);
+
+		return (0);
+	}
+	else if ((command_line[1][0] == '-' && ft_strlen(command_line[1]) == 1))
+	{
+		ft_putstr("work2\n");
+		ft_clean_2d_char(command_line);
+
 		return (0);
 	}
 	return (1);
