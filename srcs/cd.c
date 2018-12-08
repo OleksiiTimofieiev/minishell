@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 20:28:18 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 20:37:40 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ void	path_handler(char **command_line, char *pwd_old, char **envp)
 {
 	char *path_v;
 	int path[2];
+	// char *buf;
 
+	// buf = NULL;
 	path[0] = detect_del_var_cd("PWD", envp);
 	path[1] = detect_del_var_cd("OLDPWD", envp);
 
@@ -98,8 +100,13 @@ void	path_handler(char **command_line, char *pwd_old, char **envp)
 	if (chdir(path_v) == 0)
 	{
 		ft_clean(envp);
-		envp[path[0]] = ft_strdup("PWD=");
-		/*envp[path[0]] = */ft_strcat(envp[path[0]], path_v);
+		envp[path[0]] = ft_strnew(4 + ft_strlen(path_v));
+		ft_strcpy(envp[path[0]], "PWD=");
+			// envp[path[0]] = ft_strdup("PWD=");
+		ft_strcpy(&envp[path[0]][4], path_v);
+
+		// envp[path[0]] = ft_strjoin(envp[path[0]], path_v);
+
 		envp[path[1]] = ft_strdup(pwd_old);
 	}
 	if (path_v)
