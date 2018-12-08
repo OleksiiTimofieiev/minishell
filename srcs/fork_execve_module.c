@@ -31,10 +31,10 @@ int		find_env_path(char **env_array)
 
 int		check_dir_for_binary(char *path, char *binary_name)
 {
-	DIR *dir;
-	struct dirent *dp;
-	struct stat buf;
-	char   path_buf[1024];
+	DIR		*dir;
+	struct	dirent *dp;
+	struct	stat buf;
+	char	path_buf[1024];
 
 	ft_memset(path_buf, 0x0, sizeof(path_buf));
 	if ((dir = opendir (path)) == NULL) 
@@ -132,8 +132,9 @@ void	run_buitin_cmd(char **env_array) // binary name = first | flags = all with 
 		if (execve(argv[0], argv, env_array) == -1) 
 		{
 	   		perror("lsh"); // change to the error func
-		}
 	 	exit(EXIT_FAILURE);
+	   		
+		}
    } 
    else if (pid < 0) 	 // Error forking
    {
