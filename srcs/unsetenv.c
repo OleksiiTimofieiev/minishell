@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 11:52:16 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 16:35:32 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 16:38:07 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		detect_del_var(char *env, char **haystack)
 	return (0);
 }
 
-char	**delete_var(char *env_var, char **envp_init /*, int len_env_vars*/)
+char	**delete_var(char *env_var, char **envp_init)
 {
 	int		i;
 	int		j;
@@ -40,11 +40,8 @@ char	**delete_var(char *env_var, char **envp_init /*, int len_env_vars*/)
 	j = 0;
 
 	len = len_char_2d_array(envp_init);
-
 	skip = detect_del_var(env_var, envp_init);
-
 	deleted = (char **)malloc(sizeof(char *) * (len));
-	// ft_printf("%s%s%s", CYAN, "1\n", RESET);
 	while (j < len)
 	{
 		if (j == skip)
@@ -55,11 +52,10 @@ char	**delete_var(char *env_var, char **envp_init /*, int len_env_vars*/)
 		deleted[i++] = ft_strdup(envp_init[j++]);
 	}
 	deleted[i] = NULL;
-	// ft_printf("%s%s%s", CYAN, "2\n", RESET);
 	return (deleted);
 }
 
-char	**unsetenv_minishell(char *str, char **envp_init /*, int len_env_vars*/)
+char	**unsetenv_minishell(char *str, char **envp_init)
 {
 	char **envp_res;
 	char **arguments;
