@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:34:52 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 20:57:45 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 20:58:25 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 	return (result);
 }
 
-void	run_buitin_cmd(char *line, char **env_array) // binary name = first | flags = all with - prefix and remaining
+void	run_buitin_cmd(char *line, char **env_array)
 {
 	// ft_printf("%s%s%s", CYAN, "6\n", RESET);
 
