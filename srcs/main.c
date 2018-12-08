@@ -56,7 +56,7 @@ int		main(int argc, char **argv, char **envp)
 		ft_printf("%s%s%s", RED, "No params are acceptable.\n", RESET);
 		exit (0);
 	}
-	(void)argv;
+	// (void)argv;
 
 	char **envp_buf;
 
