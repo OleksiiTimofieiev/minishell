@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 11:52:16 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 14:26:07 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 15:39:20 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@ char	**delete_var(char *env_var, char **envp_init /*, int len_env_vars*/)
 	i = 0;
 	j = 0;
 	len = len_char_2d_array(envp_init) - 1;
-	skip = detect_del_var(env_var, envp_init);
-	// if (skip <= len_env_vars)
-	// 	return (NULL);
+	skip = detect_del_var(env_var, envp_init); // skip == 0
 	deleted = (char **)malloc(sizeof(char *) * len + 1);
 	deleted[len] = NULL;
 	while (j < len)
@@ -72,7 +70,7 @@ char	**unsetenv_minishell(char *str, char **envp_init /*, int len_env_vars*/)
 		ft_printf("%s%s%s", RED, "Wrong number of arguments -> has to be 1\n", RESET);
 		return (envp_res);
 	}
-	if (!(envp_res = delete_var(arguments[1], envp_init/*, len_env_vars*/)))
+	if (NULL == (envp_res = delete_var(arguments[1], envp_init/*, len_env_vars*/)))
 	{
 		envp_res = copy_2d_char(envp_init);
 		ft_clean_2d_char(arguments);

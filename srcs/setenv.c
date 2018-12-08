@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/01 11:57:06 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 15:36:19 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int		get_index_envp(char **envp_finde, char *name)
 	while (envp_finde[i])
 	{
 		if (ft_strncmp(envp_finde[i], name, len) == 0)
+		{
+			
 			return (i);
+		}
 		i++;
 	}
 	return (0);
