@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:34:52 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/01 15:35:03 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 15:22:56 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ int		check_dir_for_binary(char *path, char *binary_name)
 
 	ft_memset(path_buf, 0x0, sizeof(path_buf));
 	if ((dir = opendir (path)) == NULL) 
-	{
-		ft_printf("%sCannot open: access rights.\n%s", RED, RESET);
-		exit(1);
-	}
+		return (0);
 	while ((dp = readdir (dir)) != NULL) 
 	{
 		if (ft_strequ(dp->d_name, binary_name))
@@ -124,7 +121,7 @@ void	run_buitin_cmd(char *line, char **env_array) // binary name = first | flags
 	{
 		free(binary);
 		ft_clean_2d_char(argument);
-		ft_printf("%s%s%s", RED, "No such binary.\n", RESET);
+		// ft_printf("%s%s%s", RED, "No such binary.\n", RESET);
 		return ;
 	}
 	pid = fork();
