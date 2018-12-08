@@ -115,6 +115,7 @@ void	run_buitin_cmd(char *line, char **env_array) // binary name = first | flags
 {
 	char **argument = ft_strsplit(line, 32);
 	char *binary = find_binary_path(argument[0], env_array);
+	// char **params;
 
 	if (binary == NULL)
 	{
@@ -127,7 +128,7 @@ void	run_buitin_cmd(char *line, char **env_array) // binary name = first | flags
 	pid_t pid, wpid;
 	int status;
 	pid = fork();
-	char* argv[] = { binary, "-laG", NULL };
+	char* argv[] = { binary, argument[1], NULL };
 	if (pid == 0) // Child process
 	{
 		if (execve(binary, argv, env_array) == -1) 
