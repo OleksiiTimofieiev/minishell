@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 19:19:02 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 19:23:17 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@
 // TODO: norminette (rename funcs to static) & leaks
 
 // TODO: add var if $ or ~ to the line, rethink the funcs;
+
 // TODO: $...$...
 
 // TODO: quotes "" ''
-
-// TODO: HOME
-
 
 int detect_del_var_main(char *env, char **haystack)
 {
@@ -42,8 +40,23 @@ int detect_del_var_main(char *env, char **haystack)
 	return ('x');
 }
 
+char	**check(char **envp_buf)
+{
+	if (detect_del_var_main("OLDPWD", envp_buf) == 'x')
+		envp_buf = setenv_minishell("setenv OLDPWD /Users/otimofie 1", envp_buf);
+	else if (detect_del_var_main("PWD", envp_buf) == 'x')
+		envp_buf = setenv_minishell("setenv PWD /Users/otimofie 1", envp_buf);
+	else if (detect_del_var_main("HOME", envp_buf) == 'x') // wtf ?
+	{
+		ft_putstr("No home\n");
+		envp_buf = setenv_minishell("setenv HOME /Users/otimofie 1", envp_buf);
+	}
 
-void	minishell(char **envp_in)
+		return (envp_buf);
+	
+}
+
+void 	minishell(char **envp_in)
 {
 	char	*line;
 	char	**envp_buf;
@@ -86,16 +99,8 @@ void	minishell(char **envp_in)
 			// ft_printf("%s%s%s", CYAN, "5\n", RESET);
 		}
 		(line) ? free(line) : 0;
+		envp_buf = check(envp_buf);
 
-		if (detect_del_var_main("OLDPWD", envp_buf) == 'x')
-			envp_buf = setenv_minishell("setenv OLDPWD /Users/otimofie 1", envp_buf);
-		else if (detect_del_var_main("PWD", envp_buf) == 'x')
-			envp_buf = setenv_minishell("setenv PWD /Users/otimofie 1", envp_buf);
-		else if (detect_del_var_main("HOME", envp_buf) == 'x') // wtf ?
-		{
-			ft_putstr("No home\n");
-			envp_buf = setenv_minishell("setenv HOME /Users/otimofie 1", envp_buf);
-		}
 		// system("leaks -q minishell");
 	}
 }

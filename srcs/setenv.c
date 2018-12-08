@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 19:07:23 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 19:32:13 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ char	**get_buf_envp(char **arguments, char **envp_init)
 		i++;
 	}
 	buf[i] = ft_strdup(arguments[1]);
-	ft_strcat(buf[i], "=");
-	ft_strcat(buf[i++], arguments[2]);
-	buf[i] = NULL;
+	buf[i] = ft_strcat(buf[i], "=");
+	buf[i] = ft_strcat(buf[i], arguments[2]);
+	buf[len] = NULL;
 	return (buf);
 }
 
