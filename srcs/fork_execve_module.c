@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:34:52 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 20:52:00 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 20:55:34 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,16 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 		free(buf);
 		return (full_binary);
 	}
-	
-	ft_strcat(full_binary, "/");
-	ft_strcat(full_binary, binary_name);
+	char *result;
+	result = ft_strnew(ft_strlen(full_binary) + 1 + ft_strlen(binary_name));
+
+	ft_strcat(result, full_binary);
+	ft_strcat(result, "/");
+	ft_strcat(result, binary_name);
 	ft_clean_2d_char(path_list);
 	free(buf);
-	return (full_binary);
+	free(full_binary);
+	return (result);
 }
 
 void	run_buitin_cmd(char *line, char **env_array) // binary name = first | flags = all with - prefix and remaining
