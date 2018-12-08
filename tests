@@ -11,7 +11,3 @@ to this point, as many test can be created to test it, and it is not so easy to 
 7) The shell must print which quotes are missing if the user types something with wring 
 number of quotes. echo "123'rrr must result in double quote-> or dquote.
 
-9) The shell must manage access rights for PATH variable. So if I type mkdir exe ;
-cp /bin/ls exe/. ; chmod 0 exe ; setenv PATH $PWD/exe and try to execute ls -l 
-it must fail(without message of access denied).
-

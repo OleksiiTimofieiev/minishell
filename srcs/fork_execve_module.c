@@ -12,8 +12,7 @@
 
 #include "../includes/minishell.h"
 
-// TODO: if not ./ <-> current minishell;
-// TODO: error func with memory cleaning;
+// TODO: error func with memory cleaning and norminette;
 
 int		find_env_path(char **env_array)
 {
@@ -39,8 +38,8 @@ int		check_dir_for_binary(char *path, char *binary_name)
 	ft_memset(path_buf, 0x0, sizeof(path_buf));
 	if ((dir = opendir (path)) == NULL) 
 	{
-		ft_putstr("Cannot open .\n");
-		exit (1);
+		ft_printf("%sCannot open: access rights.\n%s", RED, RESET);
+		exit(1);
 	}
 	while ((dp = readdir (dir)) != NULL) 
 	{
