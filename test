@@ -1,3 +1,7 @@
 unsetenv PWD
 unsetenv PWD
 env
+unsetenv OLDPWD
+unsetenv HOME
+unsetenv PWD
+env
