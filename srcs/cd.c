@@ -6,11 +6,9 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 18:26:57 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 18:53:30 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// if pwd, oldpwd is
 
 #include "../includes/minishell.h"
 

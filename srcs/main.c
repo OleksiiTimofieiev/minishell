@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 18:52:21 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 18:54:27 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 // TODO: add var if $ or ~ to the line, rethink the funcs;
 
 // TODO: quotes "" ''
+
+// TODO: HOME
+
+// TODO: $...$...
 
 int detect_del_var_main(char *env, char **haystack)
 {
