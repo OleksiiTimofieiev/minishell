@@ -51,8 +51,13 @@ void	minishell(char **envp_buf)
 
 int		main(int argc, char **argv, char **envp)
 {
-	(void)argc;
+	if (argc != 1)
+	{
+		ft_printf("%s%s%s", RED, "No params are acceptable.\n", RESET);
+		exit (0);
+	}
 	(void)argv;
+
 	char **envp_buf;
 
 	envp_buf = init_envp_buf(envp);
