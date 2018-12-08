@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 21:01:30 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 21:02:16 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 // TODO: norminette (rename funcs to static) & leaks
 
-// TODO: add var if $ or ~ to the line, rethink the funcs;
 // TODO: $...$... -> echo, setenv, cd;
 
 // TODO: quotes "" ''
