@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 19:09:41 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 20:25:00 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,16 @@ void	path_handler(char **command_line, char *pwd_old, char **envp)
 	path[1] = detect_del_var_cd("OLDPWD", envp);
 
 	path_v = get_global_var(envp, command_line[1]);
+	ft_putstr(path_v);
 	if (chdir(path_v) == 0)
 	{
 		ft_clean(envp);
-		envp[path[0]] = ft_strdup(path_v);
+		envp[path[0]] = ft_strdup("PWD=");
+		envp[path[0]] = ft_strjoin(envp[path[0]], path_v);
 		envp[path[1]] = ft_strdup(pwd_old);
 	}
 	if (path_v)
 		free(path_v);
-	ft_clean_2d_char(command_line);
 }
 
 short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
@@ -118,18 +119,20 @@ short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 		ft_clean(envp);
 		envp[path[0]] = ft_strdup("PWD=/Users/otimofie");
 		envp[path[1]] = ft_strdup(pwd_old);
-		ft_clean_2d_char(command_line);
+		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
 		return (0);
 	}
 	else if (len_char_2d_array(command_line) != 2)
 	{
 		ft_printf("%s%s%s\n", RED, "error: too many arguments", RESET);
-		ft_clean_2d_char(command_line);
+		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
 		return (0);
 	}
 	else if (command_line[1][0] == '$')
 	{
 		path_handler(command_line, pwd_old, envp);
+		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
+
 		return (0);
 	}
 	else if ((command_line[1][0] == '-' && command_line[1][1] == '-' 
@@ -139,27 +142,40 @@ short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 		ft_clean(envp);
 		envp[path[0]] = ft_strdup("PWD=/Users/otimofie");
 		envp[path[1]] = ft_strdup(pwd_old);
-		ft_clean_2d_char(command_line);
+		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
 		return (0);
 	}
-	else if ((command_line[1][0] == '-' && ft_strlen(command_line[1]) == 1))
+	else if (command_line[1][0] == '-' && ft_strlen(command_line[1]) == 1)
 	{
-		// ft_putstr("work2\n");
+		ft_putstr("work1\n");
 		
 		char *path_v;
 
 		path_v = get_global_var(envp, "$OLDPWD");
+		ft_putstr("work2\n");
 
-		// ft_putstr(path_v);
+		ft_printf("path_v ->%s\n",path_v);
 
 		chdir(path_v);
+		ft_putstr("work3\n");
+
 		ft_clean(envp);
+		ft_putstr("work4\n");
+
 		envp[path[0]] = ft_strdup("PWD=");
-		ft_strcat(envp[6], path_v);
+
+		ft_putstr("work5\n");
+
+		envp[path[0]] = ft_strcat(envp[path[0]], path_v);
+
+		ft_putstr("work6\n");
+
 		envp[path[1]] = ft_strdup(pwd_old);
 
-		free(path_v);
-		ft_clean_2d_char(command_line);
+		ft_putstr("work7\n");
+
+		(path_v != NULL) ? free(path_v) : 0;
+		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
 
 		return (0);
 	}

@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 12:52:03 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 18:16:19 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 20:14:57 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ char	*get_global_var(char **envp, char *command)
 	result = NULL;
 	while (envp[i])
 	{
-		if (!ft_strncmp(envp[i], &command[1], ft_strlen(&command[1])))
+		if (ft_strncmp(envp[i], &command[1], ft_strlen(&command[1])) == 0 
+			&& envp[i][ft_strlen(&command[1])] == '=')
 		{
 			buf = ft_strdup(envp[i]);
 			break ;
@@ -64,9 +65,9 @@ void	ft_clean(char **envp)
 	path[0] = detect_del_var_cd_del("PWD", envp);
 	path[1] = detect_del_var_cd_del("OLDPWD", envp);
 
-	if (envp[path[0]])
+	if (envp[path[0]] != NULL)
 		free(envp[path[0]]);
-	if (envp[path[1]])
+	if (envp[path[1]] != NULL)
 		free(envp[path[1]]);
 }
 

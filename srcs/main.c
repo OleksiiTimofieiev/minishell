@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 19:23:17 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 20:23:05 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ char	**check(char **envp_buf)
 		ft_putstr("No home\n");
 		envp_buf = setenv_minishell("setenv HOME /Users/otimofie 1", envp_buf);
 	}
-
-		return (envp_buf);
+	return (envp_buf);
 	
 }
 
@@ -72,12 +71,13 @@ void 	minishell(char **envp_in)
 
 	while (1)
 	{
-		len_env_vars = ft_2d_arr_size(envp_buf) - 1;
+
+		// len_env_vars = ft_2d_arr_size(envp_buf) - 1;
 
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
 		if (!(get_next_line(0, &line)))
 			exit (0);
-		len_env_vars = ft_2d_arr_size(envp_buf) - 1;
+		// len_env_vars = ft_2d_arr_size(envp_buf) - 1;
 
 
 		if (!ft_strncmp(line, "cd", 2))
@@ -99,7 +99,8 @@ void 	minishell(char **envp_in)
 			// ft_printf("%s%s%s", CYAN, "5\n", RESET);
 		}
 		(line) ? free(line) : 0;
-		envp_buf = check(envp_buf);
+		envp_buf = check(envp_buf);	
+		
 
 		// system("leaks -q minishell");
 	}
