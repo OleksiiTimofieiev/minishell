@@ -13,7 +13,7 @@
 #include "../includes/minishell.h"
 
 // TODO: if not ./ <-> current minishell;
-// TODO: memory cleaner;
+// TODO: error func with memory cleaning;
 
 int		find_env_path(char **env_array)
 {
