@@ -113,10 +113,14 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 
 void	run_buitin_cmd(char *line, char **env_array) // binary name = first | flags = all with - prefix and remaining
 {
-	char **argument = ft_strsplit(line, 32);
-	char *binary = find_binary_path(argument[0], env_array);
-	// char **params;
+	char **argument;
+	char *binary;
+	pid_t pid;
+	pid_t wpid;
+	int status;
 
+	argument = ft_strsplit(line, 32);
+	binary = find_binary_path(argument[0], env_array);
 	if (binary == NULL)
 	{
 		free(binary);
@@ -124,14 +128,10 @@ void	run_buitin_cmd(char *line, char **env_array) // binary name = first | flags
 		ft_printf("%s%s%s", RED, "No such binary.\n", RESET);
 		return ;
 	}
-	
-	pid_t pid, wpid;
-	int status;
 	pid = fork();
-	char* argv[] = { binary, argument[1], NULL };
 	if (pid == 0) // Child process
 	{
-		if (execve(binary, argv, env_array) == -1) 
+		if (execve(binary, argument, env_array) == -1) 
 		{
 	   		ft_printf("%s%s%s", RED, "execve() error.\n", RESET);
 			ft_clean_2d_char(argument);
@@ -140,16 +140,14 @@ void	run_buitin_cmd(char *line, char **env_array) // binary name = first | flags
 		}
    } 
    else if (pid < 0) 	 // Error forking
-   {
 		ft_printf("%s%s%s", RED, "Error with fork func.\n", RESET); // change to the error func
-   } 
    else 	  // Parent process
    {
 		// do
 		// {
 	   		wpid = waitpid(pid, &status, WUNTRACED);
 			free(binary);
-		ft_clean_2d_char(argument);
+			ft_clean_2d_char(argument);
 
 		// } 
 	 // 	while (!WIFEXITED(status) && !WIFSIGNALED(status));
