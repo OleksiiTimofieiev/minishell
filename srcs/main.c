@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 20:23:05 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 20:26:44 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void 	minishell(char **envp_in)
 		envp_buf = check(envp_buf);	
 		
 
-		// system("leaks -q minishell");
+		system("leaks -q minishell");
 	}
 }
 

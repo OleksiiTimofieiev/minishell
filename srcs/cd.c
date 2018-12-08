@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 20:25:00 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 20:28:18 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	path_handler(char **command_line, char *pwd_old, char **envp)
 	{
 		ft_clean(envp);
 		envp[path[0]] = ft_strdup("PWD=");
-		envp[path[0]] = ft_strjoin(envp[path[0]], path_v);
+		/*envp[path[0]] = */ft_strcat(envp[path[0]], path_v);
 		envp[path[1]] = ft_strdup(pwd_old);
 	}
 	if (path_v)
