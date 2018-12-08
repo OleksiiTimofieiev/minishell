@@ -6,25 +6,25 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 15:36:19 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 19:07:23 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		get_index_envp(char **envp_finde, char *name)
+int		get_index_envp(char **envp_find, char *name)
 {
 	int i;
 	int	len;
 
 	i = 0;
 	len = ft_strlen(name);
-	while (envp_finde[i])
+	while (envp_find[i])
 	{
-		if (ft_strncmp(envp_finde[i], name, len) == 0)
+		if (ft_strncmp(envp_find[i], name, len) == 0)
 		{
-			
-			return (i);
+			if (envp_find[i][len] == '=')
+				return (i);
 		}
 		i++;
 	}
