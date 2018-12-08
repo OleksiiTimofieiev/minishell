@@ -101,7 +101,11 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 	free(path_list[0]);
 	path_list[0] = ft_strdup(&buf[5]);
 	if (!(full_binary = find_dir_path(binary_name, path_list)))
+	{
+		ft_clean_2d_char(path_list);
+		free(buf);
 		return (full_binary);
+	}
 	ft_strcat(full_binary, "/");
 	ft_strcat(full_binary, binary_name);
 	ft_clean_2d_char(path_list);
@@ -109,12 +113,16 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 	return (full_binary);
 }
 
-void run_buitin_cmd(char **env_array) // binary name = first | flags = all with - prefix and remaining
+void	run_buitin_cmd(char **env_array) // binary name = first | flags = all with - prefix and remaining
 {
 	char *binary = find_binary_path("ls", env_array);
 
 	if (binary == NULL)
-		ft_printf("No such file\n");
+	{
+		free(binary);
+		ft_printf("%s%s%s", RED, "No such binary\n", RESET);
+		return ;
+	}
 	
 	pid_t pid, wpid;
 	int status;
