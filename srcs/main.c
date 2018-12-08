@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 21:18:36 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 21:40:09 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@
 
 // TODO: quotes "" ''
 
-int detect_del_var_main(char *env, char **haystack)
+// TODO: In cases where the executable cannot be found, it has to show an error message and
+// display the prompt again.
+
+	int
+	detect_del_var_main(char *env, char **haystack)
 {
 	int i;
 	int len_of_env;
@@ -46,7 +50,7 @@ char	**check(char **envp_buf)
 		envp_buf = setenv_minishell("setenv PWD /Users/otimofie 1", envp_buf);
 	else if (detect_del_var_main("HOME", envp_buf) == 'x') // wtf ?
 	{
-		ft_putstr("No home\n");
+		// ft_putstr("No home\n");
 		envp_buf = setenv_minishell("setenv HOME /Users/otimofie 1", envp_buf);
 	}
 	return (envp_buf);
@@ -63,7 +67,6 @@ void 	minishell(char **envp_in)
 	// ft_printf("%s%s%s", CYAN , "1\n", RESET);
 	envp_buf = init_envp_buf(envp_in);
 	// ft_printf("%s%s%s", CYAN, "2\n", RESET);
-
 	len_env_vars = ft_2d_arr_size(envp_buf) - 1;
 	// ft_printf("%s%s%s", CYAN, "3\n", RESET);
 

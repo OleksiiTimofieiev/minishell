@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:34:52 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 20:58:25 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 21:42:04 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	run_buitin_cmd(char *line, char **env_array)
 	{
 		free(binary);
 		ft_clean_2d_char(argument);
-		// ft_printf("%s%s%s", RED, "No such binary.\n", RESET);
+		ft_printf("%s%s%s", RED, "Can not be executed\n", RESET);
 		return ;
 	}
 	pid = fork();
