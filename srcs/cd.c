@@ -6,12 +6,10 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 18:13:22 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 18:25:24 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-// var index, not fixed one;
 // if pwd, oldpwd is
 
 #include "../includes/minishell.h"
@@ -29,7 +27,7 @@ int		detect_del_var_cd(char *env, char **haystack)
 			return (i);
 		i++;
 	}
-	return (0);
+	return ('x');
 }
 
 char *get_cool_path(char *pwd_new)
