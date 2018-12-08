@@ -17,8 +17,6 @@
 
 // TODO: add var if $ or ~ to the line, rethink the funcs;
 
-// bonus: Management of execution rights in the PATH, ; stuff;
-
 void	minishell(char **envp_in)
 {
 	char	*line;
