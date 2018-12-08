@@ -12,6 +12,10 @@
 
 #include "../includes/minishell.h"
 
+// TODO: validation -> no path / no such binary;
+// TODO: if not ./ <-> current minishell;
+// TODO: mod the main func to the possible input params;
+
 int		find_env_path(char **env_array)
 {
 	int i;
@@ -32,22 +36,23 @@ int		check_dir_for_binary(char *path, char *binary_name)
 	struct dirent *dp;
 	struct stat buf;
 	char   path_buf[1024];
-	ft_memset(path_buf, 0x0, sizeof(path_buf));
 
+	ft_memset(path_buf, 0x0, sizeof(path_buf));
 	if ((dir = opendir (path)) == NULL) 
-	 {
+	{
 		ft_putstr("Cannot open .\n");
 		exit (1);
 	}
-
 	while ((dp = readdir (dir)) != NULL) 
 	{
-		if (ft_strequ(dp->d_name, binary_name)) ///  && (dp->st_mode & S_IXUSR)
+		if (ft_strequ(dp->d_name, binary_name))
 		{
 			ft_strcat(path_buf, path);
 			ft_strcat(path_buf, "/");
 			ft_strcat(path_buf, dp->d_name);
 
+			if (access(path_buf, F_OK) == -1)
+				return (0);
 			lstat(path_buf, &buf);
 			if (buf.st_mode & S_IXUSR)
 			{
@@ -56,7 +61,6 @@ int		check_dir_for_binary(char *path, char *binary_name)
 				return (1);
 			}
 		}
-		
 	}
 	closedir(dir);
 	return (0);
