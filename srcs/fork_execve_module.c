@@ -129,11 +129,11 @@ void	run_buitin_cmd(char **env_array) // binary name = first | flags = all with 
 	char* argv[] = { binary, "-laG", NULL };
 	if (pid == 0) // Child process
 	{
-		if (execve(argv[0], argv, env_array) == -1) 
+		if (execve(binary, argv, env_array) == -1) 
 		{
 	   		perror("lsh"); // change to the error func
 	 	exit(EXIT_FAILURE);
-	   		
+
 		}
    } 
    else if (pid < 0) 	 // Error forking
