@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/01 15:35:07 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 14:26:26 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@
 // TODO: norminette (rename funcs to static) & leaks
 
 // TODO: add var if $ or ~ to the line, rethink the funcs;
+
+void	prompt()
+{
+	char buf[1024];
+
+	ft_memset(buf, 0x0, sizeof(buf));
+
+	// getcwd(buf, sizeof(buf));
+	ft_printf("%s$(%s)>%s", GREEN, buf, RESET);
+}
 
 void	minishell(char **envp_in)
 {
@@ -28,7 +38,7 @@ void	minishell(char **envp_in)
 	len_env_vars = ft_2d_arr_size(envp_buf) - 1;
 	while (1)
 	{
-		ft_printf("%s%s%s", GREEN, "$> ", RESET);
+		prompt();
 		get_next_line(0, &line);
 		if (!ft_strncmp(line, "cd", 2))
 			cd(line, envp_buf);
@@ -41,7 +51,7 @@ void	minishell(char **envp_in)
 		else if (!ft_strncmp(line, "setenv", 6))
 			envp_buf = setenv_minishell(line, envp_buf);
 		else if (!ft_strncmp(line, "unsetenv", 8))
-			envp_buf = unsetenv_minishell(line, envp_buf, len_env_vars);
+			envp_buf = unsetenv_minishell(line, envp_buf /*, len_env_vars */);
 		else
 			run_buitin_cmd(line, envp_buf);
 		(line) ? free(line) : 0;
