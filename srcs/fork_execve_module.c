@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:34:52 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 15:50:53 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 16:09:27 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 
 void	run_buitin_cmd(char *line, char **env_array) // binary name = first | flags = all with - prefix and remaining
 {
-	ft_printf("%s%s%s", CYAN, "6\n", RESET);
+	// ft_printf("%s%s%s", CYAN, "6\n", RESET);
 
 	char **argument;
 	char *binary = NULL;
@@ -118,7 +118,7 @@ void	run_buitin_cmd(char *line, char **env_array) // binary name = first | flags
 	int status;
 
 	argument = ft_strsplit(line, 32);
-	ft_printf("%s%s%s", CYAN, "7\n", RESET);
+	// ft_printf("%s%s%s", CYAN, "7\n", RESET);
 
 	if (!env_array[0])
 	{
@@ -126,7 +126,7 @@ void	run_buitin_cmd(char *line, char **env_array) // binary name = first | flags
 		exit(0);
 	}
 	binary = find_binary_path(argument[0], env_array);
-	ft_printf("%s%s%s", CYAN, "8\n", RESET);
+	// ft_printf("%s%s%s", CYAN, "8\n", RESET);
 
 	if (binary == NULL)
 	{

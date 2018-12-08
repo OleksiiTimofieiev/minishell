@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 15:47:23 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 16:08:35 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	minishell(char **envp_in)
 	int		len_env_vars;
 
 	line = NULL;
-	ft_printf("%s%s%s", CYAN , "1\n", RESET);
+	// ft_printf("%s%s%s", CYAN , "1\n", RESET);
 	envp_buf = init_envp_buf(envp_in);
-	ft_printf("%s%s%s", CYAN, "2\n", RESET);
+	// ft_printf("%s%s%s", CYAN, "2\n", RESET);
 
 	len_env_vars = ft_2d_arr_size(envp_buf) - 1;
-	ft_printf("%s%s%s", CYAN, "3\n", RESET);
+	// ft_printf("%s%s%s", CYAN, "3\n", RESET);
 
 	while (1)
 	{
@@ -54,12 +54,12 @@ void	minishell(char **envp_in)
 			envp_buf = unsetenv_minishell(line, envp_buf /*, len_env_vars */);
 		else
 		{
-			ft_printf("%s%s%s", CYAN, "4\n", RESET);
+			// ft_printf("%s%s%s", CYAN, "4\n", RESET);
 
 				if (!envp_buf)
 					exit(0);
 				run_buitin_cmd(line, envp_buf);
-			ft_printf("%s%s%s", CYAN, "5\n", RESET);
+			// ft_printf("%s%s%s", CYAN, "5\n", RESET);
 		}
 		(line) ? free(line) : 0;
 		// system("leaks -q minishell");
