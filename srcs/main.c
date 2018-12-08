@@ -49,8 +49,11 @@ void	minishell(char **envp_buf)
 			envp_buf = unsetenv_minishell(line, envp_buf, len_env_vars);
 		else
 			run_buitin_cmd(line, envp_buf);
-		free(line);
-		line = NULL;
+		if (line)
+		{
+			free(line);
+			line = NULL;
+		}
 		
 		system("leaks -q minishell");
 	}

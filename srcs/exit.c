@@ -14,8 +14,10 @@
 
 void	exit_minishell(char **envp)
 {
-	if (envp)
+	if (**envp)
 		ft_clean_2d_char(envp);
+	// ft_printf("%s%s%s\n", CYAN, "WTF?2", RESET);
+
 	system("leaks -q minishell");
 	exit(0);
 }
