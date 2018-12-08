@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 19:34:27 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 21:28:19 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,22 @@ char	**get_buf_envp(char **arguments, char **envp_init)
 	char	**buf;
 
 	i = 0;
-	len = len_char_2d_array(envp_init) + 2;
-	buf = (char **)malloc(sizeof(char *) * (len));
+	len = len_char_2d_array(envp_init);
+	buf = (char **)malloc(sizeof(char *) * (len + 2));
 	while (envp_init[i])
 	{
 		buf[i] = ft_strdup(envp_init[i]);
 		i++;
 	}
-	buf[i] = ft_strdup(arguments[1]);
+	buf[i] = ft_strnew(ft_strlen(arguments[1]) + 1 + ft_strlen(arguments[2]));
+
+	ft_memset(buf[i], 0x0, ft_strlen(arguments[1]) + 1 + ft_strlen(arguments[2]));
+	ft_strcat(buf[i], arguments[1]);
 	ft_strcat(buf[i], "=");
 	ft_strcat(buf[i], arguments[2]);
-	buf[len] = NULL;
+
+	buf[++i] = NULL;
+
 	return (buf);
 }
 
@@ -90,9 +95,8 @@ char	**setenv_minishell(char *str, char **envp_init)
 	else
 	{
 		envp_res = get_buf_envp(arguments, envp_init);
-		
 	}
-	ft_clean_2d_char(arguments);
-	ft_clean_2d_char(envp_init);
+	(arguments) ? ft_clean_2d_char(arguments) : 0;
+	(envp_init) ? ft_clean_2d_char(envp_init) : 0;
 	return (envp_res);
 }

@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 21:02:16 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 21:18:36 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void 	minishell(char **envp_in)
 
 	while (1)
 	{
+		envp_buf = check(envp_buf);	
 
 		// len_env_vars = ft_2d_arr_size(envp_buf) - 1;
 
@@ -97,7 +98,6 @@ void 	minishell(char **envp_in)
 			// ft_printf("%s%s%s", CYAN, "5\n", RESET);
 		}
 		(line) ? free(line) : 0;
-		envp_buf = check(envp_buf);	
 		
 
 		system("leaks -q minishell");
