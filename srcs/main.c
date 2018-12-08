@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 16:08:35 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 16:44:51 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,11 @@ void	minishell(char **envp_in)
 		else if (!ft_strncmp(line, "setenv", 6))
 			envp_buf = setenv_minishell(line, envp_buf);
 		else if (!ft_strncmp(line, "unsetenv", 8))
-			envp_buf = unsetenv_minishell(line, envp_buf /*, len_env_vars */);
+			envp_buf = unsetenv_minishell(line, envp_buf);
 		else
 		{
 			// ft_printf("%s%s%s", CYAN, "4\n", RESET);
-
-				if (!envp_buf)
-					exit(0);
-				run_buitin_cmd(line, envp_buf);
+			run_buitin_cmd(line, envp_buf);
 			// ft_printf("%s%s%s", CYAN, "5\n", RESET);
 		}
 		(line) ? free(line) : 0;
