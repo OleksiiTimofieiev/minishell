@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 16:44:51 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 16:54:30 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ int		main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 
-	// if (envp)
-		// ft_putstr("qwer\n");
 	minishell(envp);
 	return (0);
 }
