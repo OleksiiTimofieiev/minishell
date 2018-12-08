@@ -26,7 +26,7 @@ int		detect_del_var(char *env, char **haystack)
 			return (i);
 		i++;
 	}
-	return (i);
+	return (0);
 }
 
 char	**delete_var(char *env_var, char **envp_init, int len_env_vars)
@@ -41,7 +41,7 @@ char	**delete_var(char *env_var, char **envp_init, int len_env_vars)
 	j = 0;
 	len = len_char_2d_array(envp_init) - 1;
 	skip = detect_del_var(env_var, envp_init);
-	if (skip < len_env_vars)
+	if (skip <= len_env_vars)
 		return (NULL);
 	deleted = (char **)malloc(sizeof(char *) * len + 1);
 	deleted[len] = NULL;
