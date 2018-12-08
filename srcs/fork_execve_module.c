@@ -13,7 +13,7 @@
 #include "../includes/minishell.h"
 
 // TODO: if not ./ <-> current minishell;
-// TODO: mod the main func to the possible input params;
+// TODO: memory cleaner;
 
 int		find_env_path(char **env_array)
 {
@@ -111,16 +111,16 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 	return (full_binary);
 }
 
-void	run_buitin_cmd(char *str, char **env_array) // binary name = first | flags = all with - prefix and remaining
+void	run_buitin_cmd(char *line, char **env_array) // binary name = first | flags = all with - prefix and remaining
 {
-	char **argument = ft_strsplit(str, 32);
+	char **argument = ft_strsplit(line, 32);
 	char *binary = find_binary_path(argument[0], env_array);
 
 	if (binary == NULL)
 	{
 		free(binary);
 		ft_clean_2d_char(argument);
-		ft_printf("%s%s%s", RED, "No such binary\n", RESET);
+		ft_printf("%s%s%s", RED, "No such binary.\n", RESET);
 		return ;
 	}
 	
@@ -132,14 +132,15 @@ void	run_buitin_cmd(char *str, char **env_array) // binary name = first | flags 
 	{
 		if (execve(binary, argv, env_array) == -1) 
 		{
-	   		ft_printf("%s%s%s", RED, "execve error\n", RESET);
-	 	exit(EXIT_FAILURE);
-
+	   		ft_printf("%s%s%s", RED, "execve() error.\n", RESET);
+			ft_clean_2d_char(argument);
+			free(binary);
+	 		exit(EXIT_FAILURE);
 		}
    } 
    else if (pid < 0) 	 // Error forking
    {
-		ft_printf("%s%s%s", RED, "Error with fork func\n", RESET); // change to the error func
+		ft_printf("%s%s%s", RED, "Error with fork func.\n", RESET); // change to the error func
    } 
    else 	  // Parent process
    {
@@ -148,7 +149,7 @@ void	run_buitin_cmd(char *str, char **env_array) // binary name = first | flags 
 	   		wpid = waitpid(pid, &status, WUNTRACED);
 			free(binary);
 		ft_clean_2d_char(argument);
-			
+
 		// } 
 	 // 	while (!WIFEXITED(status) && !WIFSIGNALED(status));
    }
