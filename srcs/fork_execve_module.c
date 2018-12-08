@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:34:52 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 20:55:34 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 20:57:45 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 	char	**path_list;
 	char 	*buf;
 	char 	*full_binary;
+	char *result;
 
-	full_binary = NULL;
 	index = find_env_path(env_array);
 	path_list = ft_strsplit(env_array[index], ':');
 	buf = ft_strdup(path_list[0]);
@@ -100,9 +100,7 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 		free(buf);
 		return (full_binary);
 	}
-	char *result;
 	result = ft_strnew(ft_strlen(full_binary) + 1 + ft_strlen(binary_name));
-
 	ft_strcat(result, full_binary);
 	ft_strcat(result, "/");
 	ft_strcat(result, binary_name);
