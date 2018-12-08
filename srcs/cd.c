@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 20:37:40 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 20:42:54 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,9 @@ void	path_handler(char **command_line, char *pwd_old, char **envp)
 		ft_clean(envp);
 		envp[path[0]] = ft_strnew(4 + ft_strlen(path_v));
 		ft_strcpy(envp[path[0]], "PWD=");
-			// envp[path[0]] = ft_strdup("PWD=");
+		// envp[path[0]] = ft_strdup("PWD=");
 		ft_strcpy(&envp[path[0]][4], path_v);
-
 		// envp[path[0]] = ft_strjoin(envp[path[0]], path_v);
-
 		envp[path[1]] = ft_strdup(pwd_old);
 	}
 	if (path_v)
@@ -154,32 +152,36 @@ short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 	}
 	else if (command_line[1][0] == '-' && ft_strlen(command_line[1]) == 1)
 	{
-		ft_putstr("work1\n");
+		// ft_putstr("work1\n");
 		
 		char *path_v;
 
 		path_v = get_global_var(envp, "$OLDPWD");
-		ft_putstr("work2\n");
+		// ft_putstr("work2\n");
 
-		ft_printf("path_v ->%s\n",path_v);
+		// ft_printf("path_v ->%s\n",path_v);
 
 		chdir(path_v);
-		ft_putstr("work3\n");
+		// ft_putstr("work3\n");
 
 		ft_clean(envp);
-		ft_putstr("work4\n");
+		// ft_putstr("work4\n");
 
-		envp[path[0]] = ft_strdup("PWD=");
+		// envp[path[0]] = ft_strdup("PWD=");
 
-		ft_putstr("work5\n");
+		// ft_putstr("work5\n");
 
-		envp[path[0]] = ft_strcat(envp[path[0]], path_v);
+		// envp[path[0]] = ft_strcat(envp[path[0]], path_v);
+		envp[path[0]] = ft_strnew(4 + ft_strlen(path_v));
+		ft_strcpy(envp[path[0]], "PWD=");
+		// envp[path[0]] = ft_strdup("PWD=");
+		ft_strcpy(&envp[path[0]][4], path_v);
 
-		ft_putstr("work6\n");
+		// ft_putstr("work6\n");
 
 		envp[path[1]] = ft_strdup(pwd_old);
 
-		ft_putstr("work7\n");
+		// ft_putstr("work7\n");
 
 		(path_v != NULL) ? free(path_v) : 0;
 		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
@@ -206,7 +208,7 @@ void	cd(char *str, char **envp)
 	len = (command_line[1][0] == '~') ? len += ft_strlen("/Users/otimofie") : 0;
 	pwd_new = (char *)malloc(sizeof(char) * (ft_strlen(str) + 4 + 1 + len));
 	ft_memset(pwd_new, 0x0, sizeof(pwd_new));
-	ft_strcat(pwd_new, "PWD=");
+	ft_strcpy(pwd_new, "PWD="); // was strcat
 	tilda(command_line, pwd_new);
 	if (!cd_main(pwd_new, pwd_old, envp, command_line))
 	{

@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:34:52 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 16:09:27 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/08 20:52:00 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 		free(buf);
 		return (full_binary);
 	}
+	
 	ft_strcat(full_binary, "/");
 	ft_strcat(full_binary, binary_name);
 	ft_clean_2d_char(path_list);
