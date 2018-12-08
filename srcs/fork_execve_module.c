@@ -12,7 +12,6 @@
 
 #include "../includes/minishell.h"
 
-// TODO: validation -> no path / no such binary;
 // TODO: if not ./ <-> current minishell;
 // TODO: mod the main func to the possible input params;
 
