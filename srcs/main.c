@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
+// echo $PWD ; unsetenv PWD ; echo $PWD ; cd ../
 
 // TODO: norminette (rename funcs to static) & leaks
 
@@ -79,12 +79,27 @@ void	change_to_spaces(char *str, char find, char required)
 	}
 }
 
+int 	detect_not_space(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != 32)
+			return (i);
+		i++;
+	}
+	return (i);
+}
+
 void 	minishell(char **envp_in)
 {
 	char	*line;
 	char	**envp_buf;
 	int		len_env_vars;
 	char 	**cmd_array;
+	int 	j;
 
 	line = NULL;
 	cmd_array = NULL;
@@ -96,7 +111,6 @@ void 	minishell(char **envp_in)
 
 	while (1)
 	{
-		envp_buf = check(envp_buf);	
 
 		// len_env_vars = ft_2d_arr_size(envp_buf) - 1;
 
@@ -128,10 +142,21 @@ void 	minishell(char **envp_in)
 
 		while (cmd_array[i])
 		{
-			if (!ft_strncmp(cmd_array[i], "cd", 2))
+			envp_buf = check(envp_buf);	
+
+			j = detect_not_space(cmd_array[i]);
+
+			if (!ft_strncmp(&cmd_array[i][j], "cd", 2))
+			{
+				ft_putstr("cd\n");
+
 				cd(cmd_array[i], envp_buf);
+			}
 			else if (!ft_strncmp(cmd_array[i], "echo", 4))
+			{
+				ft_putstr("echo\n");
 				echo(cmd_array[i], envp_buf);
+			}
 			else if (ft_strequ(cmd_array[i], "env"))
 				env_minishell(envp_buf);
 			else if (!ft_strncmp(cmd_array[i], "exit", 4))
@@ -139,7 +164,9 @@ void 	minishell(char **envp_in)
 			else if (!ft_strncmp(cmd_array[i], "setenv", 6))
 				envp_buf = setenv_minishell(cmd_array[i], envp_buf);
 			else if (!ft_strncmp(cmd_array[i], "unsetenv", 8))
+			{
 				envp_buf = unsetenv_minishell(cmd_array[i], envp_buf);
+			}
 			else
 			{
 				// ft_printf("%s%s%s", CYAN, "4\n", RESET);
@@ -148,6 +175,7 @@ void 	minishell(char **envp_in)
 			}
 			i++;
 		}
+
 		(line) ? free(line) : 0;
 		
 		(cmd_array != NULL) ? ft_clean_2d_char(cmd_array) : 0;
