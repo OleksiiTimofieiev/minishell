@@ -17,6 +17,8 @@
 
 // TODO: $...$... -> echo, setenv, cd;
 
+// test all test from the intra;
+
 int detect_del_var_main(char *env, char **haystack)
 {
 	int i;
