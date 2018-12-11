@@ -96,7 +96,7 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 	char	**path_list;
 	char 	*buf;
 	char 	*full_binary;
-	char *result;
+	char 	*result;
 
 	index = find_env_path(env_array);
 	path_list = ft_strsplit(env_array[index], ':');
