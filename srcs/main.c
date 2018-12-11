@@ -167,8 +167,8 @@ void 	minishell(char **envp_in)
 
 int		main(int argc, char **argv, char **envp)
 {
-		signal(SIGINT, signal_handler);
-	
+	signal(SIGINT, signal_handler);
+
 	(void)argc;
 	(void)argv;
 

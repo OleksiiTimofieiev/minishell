@@ -144,13 +144,14 @@ void	run_buitin_cmd(char *line, char **env_array)
 	{
 		free(binary);
 		ft_clean_2d_char(argument);
-		ft_printf("%sexecution error: %s.\n%s", RED, line, RESET);
+		ft_printf("%sNot executed.\n%s", RED, RESET);
 		return ;
 	}
 	pid = fork();
+		signal(SIGINT, signal_handler);
+
 	if (pid == 0) // Child process
 	{
-		signal(SIGINT, signal_handler);
 		if (execve(binary, argument, env_array) == -1) 
 		{
 	   		ft_printf("%s%s%s", RED, "execve() error.\n", RESET);
