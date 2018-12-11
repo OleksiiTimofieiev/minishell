@@ -77,12 +77,12 @@ int		ft_quantity_of_chars(char *line, char c)
 	return (quantity);
 }
 
-void	change_to_spaces(char *str)
+void	change_to_spaces(char *str, char find, char required)
 {
 	while (*str)
 	{
-		if (*str == '\t')
-			*str = ' ';
+		if (*str == find)
+			*str = required;
 		str++;
 	}
 }
@@ -112,7 +112,7 @@ void 	minishell(char **envp_in)
 		if (!(get_next_line(0, &line)))
 			exit (0);
 
-		change_to_spaces(line);
+		change_to_spaces(line, '\t', ' ');
 
 		if (ft_quantity_of_chars(line,';'))
 		{
