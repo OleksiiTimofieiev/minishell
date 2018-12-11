@@ -22,6 +22,15 @@
 // TODO: In cases where the executable cannot be found, it has to show an error message and
 // display the prompt again.
 
+// Signal
+// Nous allons évaluer dans cette section la gestion des signaux, et en particulier de Ctrl-C.
+// Effectuez les 3 tests suivants. Si l'un au moins de ces tests échoue, alors toute la section est échouée, passez à la suivante :
+// - Au lieu de taper une commande à l'invite du minishell, appuyez sur Ctrl-C. Le minishell doit réafficher le prompt.
+// - Entrez une commande quelconque. Au lieu de la valider avec la touche entrée, appuyez sur Ctrl-C. Le minishell doit réafficher le prompt sans réafficher la commande incomplète.
+// - Lancez la commande "$> cat", puis pendant que cat attend de lire sur l'entrée standard, appuyez sur Ctrl-C. Le minishell
+// doit tuer le processus de cat, puis réafficher le prompt.
+
+
 	int
 	detect_del_var_main(char *env, char **haystack)
 {

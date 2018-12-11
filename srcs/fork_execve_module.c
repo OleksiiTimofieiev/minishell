@@ -58,7 +58,7 @@ int		check_dir_for_binary(char *path, char *binary_name)
 			}
 			else
 			{
-				ft_printf("%s%s%s\n", RED, "No execution rights", RESET);
+				ft_printf("%s%s%s", RED, "No execution rights.\n", RESET);
 				closedir(dir);
 				return (0);
 
@@ -144,7 +144,7 @@ void	run_buitin_cmd(char *line, char **env_array)
 	{
 		free(binary);
 		ft_clean_2d_char(argument);
-		ft_printf("%sNo such binary: %s.\n%s", RED, line, RESET);
+		ft_printf("%sexecution error: %s.\n%s", RED, line, RESET);
 		return ;
 	}
 	pid = fork();
