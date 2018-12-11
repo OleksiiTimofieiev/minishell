@@ -50,6 +50,8 @@ char	**check(char **envp_buf)
 		envp_buf = setenv_minishell("setenv OLDPWD /Users/otimofie 1", envp_buf);
 	else if (detect_del_var_main("PWD", envp_buf) == 'x')
 		envp_buf = setenv_minishell("setenv PWD /Users/otimofie 1", envp_buf);
+	else if (detect_del_var_main("PATH", envp_buf) == 'x')
+		envp_buf = setenv_minishell("setenv PATH /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin", envp_buf);
 	else if (detect_del_var_main("HOME", envp_buf) == 'x') // wtf ?
 	{
 		// ft_putstr("No home\n");
