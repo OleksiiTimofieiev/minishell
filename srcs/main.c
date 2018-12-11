@@ -17,15 +17,7 @@
 
 // TODO: $...$... -> echo, setenv, cd;
 
-// TODO: quotes "" ''
-
-// TODO: In cases where the executable cannot be found, it has to show an error message and
-// display the prompt again.
-
-
-
-	int
-	detect_del_var_main(char *env, char **haystack)
+int detect_del_var_main(char *env, char **haystack)
 {
 	int i;
 	int len_of_env;
@@ -118,6 +110,10 @@ void 	minishell(char **envp_in)
 		{
 			ft_printf("We have some multiple instructions\r\n");
 			cmd_array = ft_strsplit(line, ';');
+
+			int j = 0;
+			while (cmd_array[j])
+				ft_printf("%s\n", cmd_array[j++]);
 		}
 		else
 		{
@@ -125,7 +121,6 @@ void 	minishell(char **envp_in)
 			cmd_array[0] = ft_strdup(line);
 			cmd_array[1] = NULL;
 		}
-		// len_env_vars = ft_2d_arr_size(envp_buf) - 1;
 
 		int i;
 
