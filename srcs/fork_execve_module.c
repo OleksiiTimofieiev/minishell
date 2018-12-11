@@ -135,7 +135,7 @@ void	run_buitin_cmd(char *line, char **env_array)
 	{
 		free(binary);
 		ft_clean_2d_char(argument);
-		ft_printf("%s%s%s", RED, "Can not be executed\n", RESET);
+		ft_printf("%s%s%s", RED, "No such binary.\n", RESET);
 		return ;
 	}
 	pid = fork();
@@ -160,6 +160,6 @@ void	run_buitin_cmd(char *line, char **env_array)
 			ft_clean_2d_char(argument);
 
 		// } 
-	 // 	while (!WIFEXITED(status) && !WIFSIGNALED(status));
+	 	// while (!WIFEXITED(status) && !WIFSIGNALED(status));
    }
 }

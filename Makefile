@@ -21,6 +21,7 @@ CORE		= main.c \
 			env_infrastructure.c \
 			unsetenv.c \
 			fork_execve_module.c \
+			signal.c \
 
 SRCS        = $(addprefix srcs/, $(CORE))
 

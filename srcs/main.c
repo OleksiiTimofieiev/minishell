@@ -73,6 +73,16 @@ int		ft_quantity_of_chars(char *line, char c)
 	return (quantity);
 }
 
+void	change_to_spaces(char *str)
+{
+	while (*str)
+	{
+		if (*str == '\t')
+			*str = ' ';
+		str++;
+	}
+}
+
 void 	minishell(char **envp_in)
 {
 	char	*line;
@@ -97,6 +107,8 @@ void 	minishell(char **envp_in)
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
 		if (!(get_next_line(0, &line)))
 			exit (0);
+
+		change_to_spaces(line);
 
 		if (ft_quantity_of_chars(line,';') >= 2)
 		{

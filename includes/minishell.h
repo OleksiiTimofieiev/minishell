@@ -5,6 +5,7 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 # include <dirent.h>
+# include <signal.h>
 
 void	echo(char *str, char **envp);
 void	cd(char *str, char **envp);
