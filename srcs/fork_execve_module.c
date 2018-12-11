@@ -47,12 +47,21 @@ int		check_dir_for_binary(char *path, char *binary_name)
 			ft_strcat(path_buf, dp->d_name);
 
 			if (access(path_buf, F_OK) == -1)
+			{
 				return (0);
+			}
 			lstat(path_buf, &buf);
 			if (buf.st_mode & S_IXUSR)
 			{
 				closedir(dir);
 				return (1);
+			}
+			else
+			{
+				ft_printf("%s%s%s\n", RED, "No execution rights", RESET);
+				closedir(dir);
+				return (0);
+
 			}
 		}
 	}
@@ -135,7 +144,7 @@ void	run_buitin_cmd(char *line, char **env_array)
 	{
 		free(binary);
 		ft_clean_2d_char(argument);
-		ft_printf("%s%s%s", RED, "No such binary.\n", RESET);
+		ft_printf("%sNo such binary: %s.\n%s", RED, line, RESET);
 		return ;
 	}
 	pid = fork();
