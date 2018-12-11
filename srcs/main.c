@@ -103,26 +103,36 @@ void 	minishell(char **envp_in)
 			ft_printf("We have some multiple instructions\r\n");
 			cmd_array = ft_strsplit(line, ';');
 		}
+		// else
+		// {
+		// 	cmd_array[0] ="";
+		// }
 		// len_env_vars = ft_2d_arr_size(envp_buf) - 1;
 
+		int i;
 
-		if (!ft_strncmp(line, "cd", 2))
-			cd(line, envp_buf);
-		else if (!ft_strncmp(line, "echo", 4))
-			echo(line, envp_buf);
-		else if (ft_strequ(line, "env"))
-			env_minishell(envp_buf);
-		else if (!ft_strncmp(line, "exit", 4))
-			exit_minishell(envp_buf);
-		else if (!ft_strncmp(line, "setenv", 6))
-			envp_buf = setenv_minishell(line, envp_buf);
-		else if (!ft_strncmp(line, "unsetenv", 8))
-			envp_buf = unsetenv_minishell(line, envp_buf);
-		else
+		i = 0;
+		while(cmd_array[i])
 		{
-			// ft_printf("%s%s%s", CYAN, "4\n", RESET);
-			run_buitin_cmd(line, envp_buf);
-			// ft_printf("%s%s%s", CYAN, "5\n", RESET);
+			if (!ft_strncmp(cmd_array[i], "cd", 2))
+				cd(cmd_array[i], envp_buf);
+			else if (!ft_strncmp(cmd_array[i], "echo", 4))
+				echo(cmd_array[i], envp_buf);
+			else if (ft_strequ(cmd_array[i], "env"))
+				env_minishell(envp_buf);
+			else if (!ft_strncmp(cmd_array[i], "exit", 4))
+				exit_minishell(envp_buf);
+			else if (!ft_strncmp(cmd_array[i], "setenv", 6))
+				envp_buf = setenv_minishell(cmd_array[i], envp_buf);
+			else if (!ft_strncmp(cmd_array[i], "unsetenv", 8))
+				envp_buf = unsetenv_minishell(cmd_array[i], envp_buf);
+			else
+			{
+				// ft_printf("%s%s%s", CYAN, "4\n", RESET);
+				run_buitin_cmd(cmd_array[i], envp_buf);
+				// ft_printf("%s%s%s", CYAN, "5\n", RESET);
+			}
+			i++;
 		}
 		(line) ? free(line) : 0;
 		
