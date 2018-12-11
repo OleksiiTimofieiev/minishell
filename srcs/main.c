@@ -112,6 +112,7 @@ void 	minishell(char **envp_in)
 		int i;
 
 		i = 0;
+		
 		while(cmd_array[i])
 		{
 			if (!ft_strncmp(cmd_array[i], "cd", 2))
