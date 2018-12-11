@@ -110,7 +110,7 @@ void 	minishell(char **envp_in)
 
 		change_to_spaces(line);
 
-		if (ft_quantity_of_chars(line,';') >= 2)
+		if (ft_quantity_of_chars(line,';'))
 		{
 			ft_printf("We have some multiple instructions\r\n");
 			cmd_array = ft_strsplit(line, ';');
@@ -118,8 +118,8 @@ void 	minishell(char **envp_in)
 		else
 		{
 			cmd_array = (char **)malloc(sizeof(char *) * 2);
-			cmd_array[1] = NULL;
 			cmd_array[0] = ft_strdup(line);
+			cmd_array[1] = NULL;
 		}
 		// len_env_vars = ft_2d_arr_size(envp_buf) - 1;
 
