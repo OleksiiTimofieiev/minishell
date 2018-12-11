@@ -144,7 +144,6 @@ void 	minishell(char **envp_in)
 
 		while (cmd_array[i])
 		{
-			envp_buf = check(envp_buf);	
 
 			j = detect_not_space(cmd_array[i]);
 
@@ -154,25 +153,27 @@ void 	minishell(char **envp_in)
 
 				cd(cmd_array[i], envp_buf);
 			}
-			else if (!ft_strncmp(cmd_array[i], "echo", 4))
+			else if (!ft_strncmp(&cmd_array[i][j], "echo", 4))
 			{
 				ft_putstr("echo\n");
 				echo(cmd_array[i], envp_buf);
 			}
-			else if (ft_strequ(cmd_array[i], "env"))
+			else if (ft_strequ(&cmd_array[i][j], "env"))
 				env_minishell(envp_buf);
-			else if (!ft_strncmp(cmd_array[i], "exit", 4))
+			else if (!ft_strncmp(&cmd_array[i][j], "exit", 4))
 				exit_minishell(envp_buf);
-			else if (!ft_strncmp(cmd_array[i], "setenv", 6))
+			else if (!ft_strncmp(&cmd_array[i][j], "setenv", 6))
 				envp_buf = setenv_minishell(cmd_array[i], envp_buf);
-			else if (!ft_strncmp(cmd_array[i], "unsetenv", 8))
+			else if (!ft_strncmp(&cmd_array[i][j], "unsetenv", 8))
 			{
 				envp_buf = unsetenv_minishell(cmd_array[i], envp_buf);
+				envp_buf = check(envp_buf);	
+
 			}
 			else
 			{
 				// ft_printf("%s%s%s", CYAN, "4\n", RESET);
-				run_buitin_cmd(cmd_array[i], envp_buf);
+				run_buitin_cmd(&cmd_array[i][j], envp_buf);
 				// ft_printf("%s%s%s", CYAN, "5\n", RESET);
 			}
 			i++;
