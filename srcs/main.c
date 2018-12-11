@@ -103,17 +103,19 @@ void 	minishell(char **envp_in)
 			ft_printf("We have some multiple instructions\r\n");
 			cmd_array = ft_strsplit(line, ';');
 		}
-		// else
-		// {
-		// 	cmd_array[0] ="";
-		// }
+		else
+		{
+			cmd_array = (char **)malloc(sizeof(char *) * 2);
+			cmd_array[1] = NULL;
+			cmd_array[0] = ft_strdup(line);
+		}
 		// len_env_vars = ft_2d_arr_size(envp_buf) - 1;
 
 		int i;
 
 		i = 0;
-		
-		while(cmd_array[i])
+
+		while (cmd_array[i])
 		{
 			if (!ft_strncmp(cmd_array[i], "cd", 2))
 				cd(cmd_array[i], envp_buf);
