@@ -57,13 +57,31 @@ char	**check(char **envp_buf)
 	
 }
 
+int		ft_quantity_of_chars(char *line, char c)
+{
+	int i;
+	int quantity;
+
+	i = 0;
+	quantity = 0;
+	while (line[i])
+	{
+		if (line[i] == c)
+			quantity++;
+		i++;
+	}
+	return (quantity);
+}
+
 void 	minishell(char **envp_in)
 {
 	char	*line;
 	char	**envp_buf;
 	int		len_env_vars;
+	char 	**cmd_array;
 
 	line = NULL;
+	cmd_array = NULL;
 	// ft_printf("%s%s%s", CYAN , "1\n", RESET);
 	envp_buf = init_envp_buf(envp_in);
 	// ft_printf("%s%s%s", CYAN, "2\n", RESET);
@@ -79,6 +97,12 @@ void 	minishell(char **envp_in)
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
 		if (!(get_next_line(0, &line)))
 			exit (0);
+
+		if (ft_quantity_of_chars(line,';') >= 2)
+		{
+			ft_printf("We have some multiple instructions\r\n");
+			cmd_array = ft_strsplit(line, ';');
+		}
 		// len_env_vars = ft_2d_arr_size(envp_buf) - 1;
 
 
@@ -102,7 +126,7 @@ void 	minishell(char **envp_in)
 		}
 		(line) ? free(line) : 0;
 		
-
+		(cmd_array != NULL) ? ft_clean_2d_char(cmd_array) : 0;
 		system("leaks -q minishell");
 	}
 }
