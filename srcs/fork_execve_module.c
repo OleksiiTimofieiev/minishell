@@ -150,6 +150,7 @@ void	run_buitin_cmd(char *line, char **env_array)
 	pid = fork();
 	if (pid == 0) // Child process
 	{
+		signal(SIGINT, signal_handler);
 		if (execve(binary, argument, env_array) == -1) 
 		{
 	   		ft_printf("%s%s%s", RED, "execve() error.\n", RESET);
@@ -164,7 +165,7 @@ void	run_buitin_cmd(char *line, char **env_array)
    {
 		// do
 		// {
-	   		wpid = waitpid(pid, &status, WUNTRACED);
+	   		wpid = waitpid(pid, &status, 0);
 			free(binary);
 			ft_clean_2d_char(argument);
 

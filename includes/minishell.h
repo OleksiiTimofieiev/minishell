@@ -17,5 +17,6 @@ void	run_buitin_cmd(char *line, char **env_array);
 char	*get_global_var(char **envp, char *command);
 char	**init_envp_buf(char **envp);
 void	ft_clean(char **envp);
+void	signal_handler(int sig_num);
 
 #endif
