@@ -19,6 +19,8 @@
 
 // test all test from the intra;
 
+// TODO: resolve path to be always alive;
+
 int detect_del_var_main(char *env, char **haystack)
 {
 	int i;
