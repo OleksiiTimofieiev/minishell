@@ -11,15 +11,13 @@
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-// echo $PWD ; unsetenv PWD ; echo $PWD ; cd ../
 
 // TODO: norminette (rename funcs to static) & leaks
 
 // TODO: $...$... -> echo, setenv, cd;
 
-// test all test from the intra;
-
-// TODO: resolve path to be always alive;
+// TODO: resolve path to be always alive -> maybe use a separate variable;
+// TODO: check correction form for the PATH tests;
 
 int detect_del_var_main(char *env, char **haystack)
 {
