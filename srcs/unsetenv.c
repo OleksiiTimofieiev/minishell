@@ -22,7 +22,10 @@ int		detect_del_var(char *env, char **haystack)
 	while (haystack[i])
 	{
 		if (ft_strncmp(env, haystack[i], len_of_env) == 0) //
+        {
+            if (haystack[i][len_of_env] == '=')
 			return (i);
+        }
 		i++;
 	}
 	return (0);
