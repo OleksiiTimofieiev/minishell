@@ -21,6 +21,8 @@
     
 // TODO: check all functions in the spect of the ft_strdup;
 
+// TODO: detect del var main integrate in one funs;
+
 int detect_del_var_main(char *env, char **haystack)
 {
 	int i;
