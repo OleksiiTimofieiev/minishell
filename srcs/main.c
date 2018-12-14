@@ -18,6 +18,7 @@
 
 // TODO: resolve path to be always alive -> maybe use a separate variable;
 // TODO: check correction form for the PATH tests;
+    
 // TODO: check all functions in the spect of the ft_strdup;
 
 int detect_del_var_main(char *env, char **haystack)
