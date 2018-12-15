@@ -15,14 +15,13 @@
 // TODO: norminette (+rename funcs to static) & leaks
 
 // TODO: $...$... -> echo (split with '$' maybe), setenv (substitute with value of the env variable);
+// TODO: work out with tilda in echo;
 
 // TODO: check correction form for the PATH tests -> UNIT PATH var;
     
-// TODO: check all functions in the aspect of the ft_strdup;
+// TODO: check setenv in the aspect of the ft_strdup;
 
 // TODO: detect_del_var_main integrate in one funs;
-
-// TODO: work out with tilda;
 
 int detect_del_var_main(char *env, char **haystack)
 {
