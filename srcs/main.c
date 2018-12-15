@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/15 17:56:03 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/15 19:44:32 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 // TODO: norminette (+rename funcs to static) & leaks
 
-// TODO: $...$... -> echo (split with '$' maybe), setenv (substitute with value of the env variable);
+// TODO: $...$... -> echo (split with '$' maybe);
 // TODO: work out with tilda in echo;
+// TODO: setenv (substitute with value of the env variable);
 
 // TODO: check all correction form;
 
