@@ -14,14 +14,14 @@
 
 // TODO: norminette (rename funcs to static) & leaks
 
-// TODO: $...$... -> echo, setenv, cd;
+// TODO: $...$... -> echo (split with '$' maybe), setenv (substitute with value of the env variable);
 
 // TODO: resolve path to be always alive -> maybe use a separate variable;
 // TODO: check correction form for the PATH tests;
     
-// TODO: check all functions in the spect of the ft_strdup;
+// TODO: check all functions in the aspect of the ft_strdup;
 
-// TODO: detect del var main integrate in one funs;
+// TODO: detect_del_var_main integrate in one funs;
 
 int detect_del_var_main(char *env, char **haystack)
 {
@@ -109,11 +109,8 @@ void 	minishell(char **envp_in)
 
 	line = NULL;
 	cmd_array = NULL;
-	// ft_printf("%s%s%s", CYAN , "1\n", RESET);
 	envp_buf = init_envp_buf(envp_in);
-	// ft_printf("%s%s%s", CYAN, "2\n", RESET);
 	len_env_vars = ft_2d_arr_size(envp_buf) - 1;
-	// ft_printf("%s%s%s", CYAN, "3\n", RESET);
 
 	while (1)
 	{
@@ -130,10 +127,10 @@ void 	minishell(char **envp_in)
 		{
 			ft_printf("We have some multiple instructions\r\n");
 			cmd_array = ft_strsplit(line, ';');
-
-			int j = 0;
-			while (cmd_array[j])
-				ft_printf("%s\n", cmd_array[j++]);
+//
+//            int j = 0;
+//            while (cmd_array[j])
+//                ft_printf("%s\n", cmd_array[j++]);
 		}
 		else
 		{
@@ -153,13 +150,13 @@ void 	minishell(char **envp_in)
 
 			if (!ft_strncmp(&cmd_array[i][j], "cd", 2))
 			{
-				ft_putstr("cd\n");
+//                ft_putstr("cd\n");
 
 				cd(cmd_array[i], envp_buf);
 			}
 			else if (!ft_strncmp(&cmd_array[i][j], "echo", 4))
 			{
-				ft_putstr("echo\n");
+//                ft_putstr("echo\n");
 				echo(cmd_array[i], envp_buf);
 			}
 			else if (ft_strequ(&cmd_array[i][j], "env"))
@@ -198,5 +195,6 @@ int		main(int argc, char **argv, char **envp)
 	(void)argv;
 
 	minishell(envp);
+    
 	return (0);
 }
