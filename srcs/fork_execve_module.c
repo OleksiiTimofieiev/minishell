@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:34:52 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 21:42:04 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/15 17:23:03 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 	path_list[0] = ft_strdup(&buf[5]);
 	if (!(full_binary = find_dir_path(binary_name, path_list)))
 	{
+		ft_printf("%s\n", "here");
 		ft_clean_2d_char(path_list);
 		free(buf);
 		return (full_binary);
@@ -147,14 +148,14 @@ void	run_buitin_cmd(char *line, char **env_array)
 
 	if (binary == NULL)
 	{
-		free(binary);
-		ft_clean_2d_char(argument);
-		ft_printf("%sNot executed.\n%s", RED, RESET);
+		// free(binary);
+		// ft_clean_2d_char(argument);
+		// ft_printf("%sNot executed.\n%s", RED, RESET);
 		
 		// /bin/ls; case;
 		// test it;
 
-		return ;
+		binary = ft_strdup(line);
 	}
 
 	pid = fork();
@@ -165,7 +166,7 @@ void	run_buitin_cmd(char *line, char **env_array)
 	{
 		if (execve(binary, argument, env_array) == -1) 
 		{
-	   		ft_printf("%s%s%s", RED, "execve() error.\n", RESET);
+	   		ft_printf("%s%s%s", RED, "No such binary\n", RESET);
 			ft_clean_2d_char(argument);
 			free(binary);
 	 		exit(EXIT_FAILURE);

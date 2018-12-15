@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 21:40:09 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/15 17:15:15 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 // TODO: work out with tilda in echo;
 
 // TODO: when the path var is deleted, find the path according to the input var; /bin/ls; vs ls;
-
-// TODO: detect_del_var_main integrate in one funs;
 
 // TODO: check all correction form;
 
