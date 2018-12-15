@@ -17,11 +17,11 @@
 // TODO: $...$... -> echo (split with '$' maybe), setenv (substitute with value of the env variable);
 // TODO: work out with tilda in echo;
 
-// TODO: check correction form for the PATH tests -> UNIT PATH var;
-    
-// TODO: check setenv in the aspect of the ft_strdup;
+// TODO: when the path var is deleted, find the path according to the input var; /bin/ls; vs ls;
 
 // TODO: detect_del_var_main integrate in one funs;
+
+// TODO: check all correction form;
 
 int detect_del_var_main(char *env, char **haystack)
 {

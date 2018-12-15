@@ -145,10 +145,16 @@ void	run_buitin_cmd(char *line, char **env_array)
 		free(binary);
 		ft_clean_2d_char(argument);
 		ft_printf("%sNot executed.\n%s", RED, RESET);
+		
+		// /bin/ls; case;
+		// test it;
+
 		return ;
 	}
+
 	pid = fork();
-		signal(SIGINT, signal_handler);
+	
+	signal(SIGINT, signal_handler);
 
 	if (pid == 0) // Child process
 	{
