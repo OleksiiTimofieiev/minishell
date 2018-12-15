@@ -6,13 +6,13 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 11:52:16 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 21:23:32 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/15 17:59:01 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		detect_del_var(char *env, char **haystack)
+int		detect_del_var_un(char *env, char **haystack)
 {
 	int i;
 	int len_of_env;
@@ -43,7 +43,7 @@ char	**delete_var(char *env_var, char **envp_init)
 	j = 0;
 
 	len = len_char_2d_array(envp_init);
-	skip = detect_del_var(env_var, envp_init);
+	skip = detect_del_var_un(env_var, envp_init);
 	deleted = (char **)malloc(sizeof(char *) * (len));
 	while (j < len)
 	{

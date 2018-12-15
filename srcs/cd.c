@@ -6,30 +6,11 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 13:28:48 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 20:42:54 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/15 17:57:21 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int		detect_del_var_cd(char *env, char **haystack)
-{
-	int i;
-	int len_of_env;
-
-	i = 0;
-	len_of_env = ft_strlen(env);
-	while (haystack[i])
-	{
-		if (ft_strncmp(env, haystack[i], len_of_env) == 0) //
-		{
-			if (haystack[i][len_of_env] == '=')
-				return (i);
-		}
-		i++;
-	}
-	return ('x');
-}
 
 char *get_cool_path(char *pwd_new)
 {
@@ -45,8 +26,8 @@ short	cd_main(char *pwd_new, char *pwd_old, char **envp, char **command_line)
 {
 	int path[2];
 
-	path[0] = detect_del_var_cd("PWD", envp);
-	path[1] = detect_del_var_cd("OLDPWD", envp);
+	path[0] = detect_del_var("PWD", envp);
+	path[1] = detect_del_var("OLDPWD", envp);
 
 	if (chdir(&pwd_new[4]) == 0)
 	{
@@ -92,8 +73,8 @@ void	path_handler(char **command_line, char *pwd_old, char **envp)
 	// char *buf;
 
 	// buf = NULL;
-	path[0] = detect_del_var_cd("PWD", envp);
-	path[1] = detect_del_var_cd("OLDPWD", envp);
+	path[0] = detect_del_var("PWD", envp);
+	path[1] = detect_del_var("OLDPWD", envp);
 
 	path_v = get_global_var(envp, command_line[1]);
 	ft_putstr(path_v);
@@ -115,8 +96,8 @@ short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp)
 {
 	int path[2];
 
-	path[0] = detect_del_var_cd("PWD", envp);
-	path[1] = detect_del_var_cd("OLDPWD", envp);
+	path[0] = detect_del_var("PWD", envp);
+	path[1] = detect_del_var("OLDPWD", envp);
 
 	if (len_char_2d_array(command_line) == 1)
 	{

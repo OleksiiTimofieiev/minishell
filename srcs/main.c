@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/15 17:37:28 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/15 17:56:03 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,40 +19,20 @@
 
 // TODO: check all correction form;
 
-int detect_del_var_main(char *env, char **haystack)
-{
-	int i;
-	int len_of_env;
-
-	i = 0;
-	len_of_env = ft_strlen(env);
-	while (haystack[i])
-	{
-		if (ft_strncmp(env, haystack[i], len_of_env) == 0)
-		{
-			if (haystack[i][len_of_env] == '=')
-				return (i);
-		}
-		i++;
-	}
-	return ('x');
-}
-
 char	**check(char **envp_buf)
 {
-	if (detect_del_var_main("OLDPWD", envp_buf) == 'x')
+	if (detect_del_var("OLDPWD", envp_buf) == 'x')
 		envp_buf = setenv_minishell("setenv OLDPWD /Users/otimofie 1", envp_buf);
-	else if (detect_del_var_main("PWD", envp_buf) == 'x')
+	else if (detect_del_var("PWD", envp_buf) == 'x')
 		envp_buf = setenv_minishell("setenv PWD /Users/otimofie 1", envp_buf);
-	// else if (detect_del_var_main("PATH", envp_buf) == 'x')
+	// else if (detect_del_var("PATH", envp_buf) == 'x')
 	// 	envp_buf = setenv_minishell("setenv PATH /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin", envp_buf);
-	else if (detect_del_var_main("HOME", envp_buf) == 'x') // wtf ?
+	else if (detect_del_var("HOME", envp_buf) == 'x') // wtf ?
 	{
 		// ft_putstr("No home\n");
 		envp_buf = setenv_minishell("setenv HOME /Users/otimofie 1", envp_buf);
 	}
 	return (envp_buf);
-	
 }
 
 int		ft_quantity_of_chars(char *line, char c)

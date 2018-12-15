@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 12:52:03 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 20:14:57 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/15 17:57:44 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,23 @@ char	**init_envp_buf(char **envp)
 	}
 	envp_buf[i] = NULL;
 	return (envp_buf);
+}
+
+int		detect_del_var(char *env, char **haystack)
+{
+	int i;
+	int len_of_env;
+
+	i = 0;
+	len_of_env = ft_strlen(env);
+	while (haystack[i])
+	{
+		if (ft_strncmp(env, haystack[i], len_of_env) == 0)
+		{
+			if (haystack[i][len_of_env] == '=')
+				return (i);
+		}
+		i++;
+	}
+	return ('x');
 }
