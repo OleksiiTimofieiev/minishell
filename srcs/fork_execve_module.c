@@ -137,6 +137,11 @@ void	run_buitin_cmd(char *line, char **env_array)
 		ft_printf("%s%s%s", RED, "No env variables.\n", RESET);
 		exit(0);
 	}
+
+	// if path var exists, else -> get path;
+	// else
+	// ...
+
 	binary = find_binary_path(argument[0], env_array);
 	// ft_printf("%s%s%s", CYAN, "8\n", RESET);
 
