@@ -32,7 +32,7 @@ int detect_del_var_main(char *env, char **haystack)
 	len_of_env = ft_strlen(env);
 	while (haystack[i])
 	{
-		if (ft_strncmp(env, haystack[i], len_of_env) == 0) //
+		if (ft_strncmp(env, haystack[i], len_of_env) == 0)
 		{
 			if (haystack[i][len_of_env] == '=')
 				return (i);
