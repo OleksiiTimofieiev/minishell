@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/15 17:15:15 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/15 17:24:05 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 
 // TODO: $...$... -> echo (split with '$' maybe), setenv (substitute with value of the env variable);
 // TODO: work out with tilda in echo;
-
-// TODO: when the path var is deleted, find the path according to the input var; /bin/ls; vs ls;
 
 // TODO: check all correction form;
 
