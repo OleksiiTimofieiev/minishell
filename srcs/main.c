@@ -23,6 +23,8 @@
 
 // TODO: detect_del_var_main integrate in one funs;
 
+// TODO: work out with tilda;
+
 int detect_del_var_main(char *env, char **haystack)
 {
 	int i;
