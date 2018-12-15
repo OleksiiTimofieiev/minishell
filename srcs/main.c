@@ -16,7 +16,6 @@
 
 // TODO: $...$... -> echo (split with '$' maybe), setenv (substitute with value of the env variable);
 
-// TODO: resolve path to be always alive -> maybe use a separate variable;
 // TODO: check correction form for the PATH tests -> UNIT PATH var;
     
 // TODO: check all functions in the aspect of the ft_strdup;
