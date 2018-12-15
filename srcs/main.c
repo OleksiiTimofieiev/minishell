@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-// TODO: norminette (rename funcs to static) & leaks
+// TODO: norminette (+rename funcs to static) & leaks
 
 // TODO: $...$... -> echo (split with '$' maybe), setenv (substitute with value of the env variable);
 
