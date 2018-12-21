@@ -56,8 +56,9 @@ void	display_arguments(char **arguments, char **envp, int n_flag)
 	spaces_iterator = 0;
 	while (arguments[start_index])
 	{
-		if (arguments[start_index][0] == '$'
-			&& ft_strlen(arguments[start_index]) != 1)
+		// detection of $...$... case;
+		// universal display global variable
+		if (arguments[start_index][0] == '$' && ft_strlen(arguments[start_index]) != 1)
 			display_global_variable(arguments[start_index++], envp);
 		else
 		{
@@ -72,6 +73,22 @@ void	display_arguments(char **arguments, char **envp, int n_flag)
 		if (spaces_iterator++ + 1 < spaces)
 			ft_printf(" ");
 	}
+}
+
+int		env_var_detection(char *str)
+{
+	int i;
+
+	i = 0;
+	while (*str)
+	{
+		if (*str == '$')
+			i++;
+		str++;
+	}
+	if (i >= 2)
+		return (1);
+	return (0);
 }
 
 void	echo(char *str, char **envp)

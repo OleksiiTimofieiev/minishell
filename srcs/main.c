@@ -16,6 +16,7 @@
 
 // TODO: $...$... -> echo (split with '$' maybe);
 // TODO: work out with tilda in echo;
+
 // TODO: setenv (substitute with value of the env variable);
 
 // TODO: check all in correction form;
