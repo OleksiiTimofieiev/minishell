@@ -18,7 +18,7 @@
 // TODO: work out with tilda in echo;
 // TODO: setenv (substitute with value of the env variable);
 
-// TODO: check all correction form;
+// TODO: check all in correction form;
 
 char	**check(char **envp_buf)
 {
