@@ -18,6 +18,7 @@ char	*get_global_var(char **envp, char *command);
 char	**init_envp_buf(char **envp);
 void	ft_clean(char **envp);
 void	signal_handler(int sig_num);
-int detect_del_var(char *env, char **haystack);
+int		detect_del_var(char *env, char **haystack);
+short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp);
 
 #endif
