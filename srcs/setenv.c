@@ -31,7 +31,7 @@ int		get_index_envp(char **envp_find, char *name)
 	return (0);
 }
 
-char **	get_buf_envp(char **arguments, char **envp_init)
+char **get_buf_envp(char **arguments, char **envp_init)
 {
 	int		i;
 	int		len;
@@ -90,15 +90,11 @@ char **	setenv_minishell(char *str, char **envp_init)
 	q_params = len_char_2d_array(arguments);
 	if (q_params < 3 || q_params > 4)
 		ft_clean_2d_char(arguments);
-
 	i = get_index_envp(envp_init, arguments[1]);
-
 	if (i)
 		result = envp_res_logic(arguments, envp_init, i);
 	else
 		result = get_buf_envp(arguments, envp_init);
-
 	(arguments) ? ft_clean_2d_char(arguments) : 0;
-	// (envp_init) ? ft_clean_2d_char(envp_init) : 0;
 	return (result);
 }

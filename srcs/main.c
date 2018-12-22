@@ -24,6 +24,8 @@
 // 	return (envp_buf);
 // }
 
+// remaster main, cd, echo, env, exit, fork;
+
 int		ft_quantity_of_chars(char *line, char c)
 {
 	int i;
@@ -64,15 +66,12 @@ int		detect_not_space(char *str)
 	return (i);
 }
 
-void	test(char *str, int j, char **envp_buf)
+char	**test_x(char *str, int j, char **envp_buf)
 {
-	// char **test;
+	char **test;
+	// char **buf = NULL;
 
-	// test = NULL;
-	// test = copy_2d_char(envp_buf);
-
-
-
+	test = envp_buf;
 	if (!ft_strncmp(&str[j], "cd", 2))
 		cd(str, envp_buf);
 	else if (!ft_strncmp(&str[j], "echo", 4))
@@ -83,16 +82,8 @@ void	test(char *str, int j, char **envp_buf)
 		exit_minishell(envp_buf);
 	else if (!ft_strncmp(&str[j], "setenv", 6))
 	{
-		// env_minishell(envp_buf);
-		char **tmp = envp_buf;
-
-			tmp = setenv_minishell(str, envp_buf);
-
-			ft_clean_2d_char(envp_buf);
-
-			envp_buf = tmp;
-			
-		env_minishell(envp_buf);
+			test = setenv_minishell(str, envp_buf);
+			// test = buf;
 	}
 	// else if (!ft_strncmp(&str[j], "unsetenv", 8))
 	// {
@@ -101,38 +92,59 @@ void	test(char *str, int j, char **envp_buf)
 	// }
 	else
 		run_buitin_cmd(&str[j], envp_buf);
+	return (test);
+}
 
-	// int i = 0;
-	// while (envp_buf[i])
-	// {
-	// 	ft_printf("---------> %s\n", envp_buf[i]);
-	// 	i++;
-	// }
+char	**ex(char	**cmd_array, char	**envp_buf)
+{
+	int i;
+	int		j;
 
-	system("leaks -q minishell");
+	char **test = envp_buf;
+	char **buf = NULL;
 
-	// return (test);
+		i = 0;
+
+		while (cmd_array[i])
+		{
+			j = detect_not_space(cmd_array[i]);
+
+			buf = test_x(cmd_array[i], j, envp_buf);
+
+			// (buf != envp_buf) ? ft_clean_2d_char(envp_buf) : 0;
+
+			test = buf;
+
+
+			i++;
+		}
+		return (test);
 }
 
 void	minishell(char **envp_in)
 {
 	char	*line;
 	char	**envp_buf;
-	int		len_env_vars;
+	// int		len_env_vars;
 	char	**cmd_array;
-	int		j;
+	char 	**env_copy= NULL;
+	
 
 	line = NULL;
 	cmd_array = NULL;
-	envp_buf = init_envp_buf(envp_in);
-	len_env_vars = ft_2d_arr_size(envp_buf) - 1;
+	envp_buf = copy_2d_char(envp_in);
+	// len_env_vars = ft_2d_arr_size(envp_buf) - 1;
+	char **buf = NULL;
+
 	while (1)
 	{
 		// envp_buf = check(envp_buf);
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
 		if (!(get_next_line(0, &line)))
 			exit(0);
+
 		change_to_spaces(line, '\t', ' ');
+
 		if (ft_quantity_of_chars(line, ';'))
 		{
 			ft_printf("We have some multiple instructions\r\n");
@@ -145,36 +157,25 @@ void	minishell(char **envp_in)
 			cmd_array[1] = NULL;
 		}
 
-		int i;
+		//
+		(buf != NULL) ? ft_clean_2d_char(buf) : 0;
+		(env_copy != NULL) ? ft_clean_2d_char(env_copy) : 0;
 
-		i = 0;
-		while (cmd_array[i])
-		{
-			j = detect_not_space(cmd_array[i]);
-			// if (!ft_strncmp(&cmd_array[i][j], "cd", 2))
-			// 	cd(cmd_array[i], envp_buf);
-			// else if (!ft_strncmp(&cmd_array[i][j], "echo", 4))
-			// 	echo(cmd_array[i], envp_buf);
-			// else if (ft_strequ(&cmd_array[i][j], "env"))
-			// 	env_minishell(envp_buf);
-			// else if (!ft_strncmp(&cmd_array[i][j], "exit", 4))
-			// 	exit_minishell(envp_buf);
-			// else if (!ft_strncmp(&cmd_array[i][j], "setenv", 6))
-			// 	envp_buf = setenv_minishell(cmd_array[i], envp_buf);
-			// else if (!ft_strncmp(&cmd_array[i][j], "unsetenv", 8))
-			// {
-			// 	envp_buf = unsetenv_minishell(cmd_array[i], envp_buf);
-			// 	envp_buf = check(envp_buf);
-			// }
-			// else
-			// 	run_buitin_cmd(&cmd_array[i][j], envp_buf);
+		ft_printf("%s%s\n%s", CYAN, "here", RESET);
 
-			test(cmd_array[i], j, envp_buf);
+		env_copy = copy_2d_char(envp_buf);
+		buf = ex(cmd_array, env_copy);
+		
+		
+		// if (envp_buf)
 
-			i++;
-		}
+		// ft_clean_2d_char(envp_buf);
+
+		envp_buf = copy_2d_char(buf);
+
 		(line) ? free(line) : 0;
 		(cmd_array != NULL) ? ft_clean_2d_char(cmd_array) : 0;
+		system("leaks -q minishell");
 	}
 }
 
