@@ -83,8 +83,15 @@ void	test(char *str, int j, char **envp_buf)
 		exit_minishell(envp_buf);
 	else if (!ft_strncmp(&str[j], "setenv", 6))
 	{
-		env_minishell(envp_buf);
-			setenv_minishell(str, envp_buf);
+		// env_minishell(envp_buf);
+		char **tmp = envp_buf;
+
+			tmp = setenv_minishell(str, envp_buf);
+
+			ft_clean_2d_char(envp_buf);
+
+			envp_buf = tmp;
+			
 		env_minishell(envp_buf);
 	}
 	// else if (!ft_strncmp(&str[j], "unsetenv", 8))

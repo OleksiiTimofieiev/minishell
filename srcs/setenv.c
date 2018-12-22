@@ -31,20 +31,19 @@ int		get_index_envp(char **envp_find, char *name)
 	return (0);
 }
 
-void	get_buf_envp(char **arguments, char **envp_init)
+char **	get_buf_envp(char **arguments, char **envp_init)
 {
 	int		i;
 	int		len;
 	char	**buf;
 	char **tmp;
-
 	i = 0;
 
 	len = len_char_2d_array(envp_init);
 
 	buf = copy_2d_char(envp_init);
 
-	// ft_clean_2d_char(envp_init);
+    // ft_clean_2d_char(envp_init);
 
 	tmp = (char **)malloc(sizeof(char *) * (len + 2));
 
@@ -61,19 +60,12 @@ void	get_buf_envp(char **arguments, char **envp_init)
 	ft_strcat(tmp[i], arguments[2]);
 
 	tmp[++i] = NULL;
+	
 
-	envp_init = tmp;
-
-	i= 0;
-	while (tmp[i])
-	{
-		ft_printf("---------> %s\n", tmp[i]);
-		i++;
-	}
-	// return (buf);
+ return (tmp);
 }
 
-void	envp_res_logic(char **arguments, char **envp_init, int i)
+char **	envp_res_logic(char **arguments, char **envp_init, int i)
 {
 	if (ft_strequ(arguments[3], "1"))
 	{
@@ -84,13 +76,15 @@ void	envp_res_logic(char **arguments, char **envp_init, int i)
 		ft_strcat(envp_init[i], "=");
 		ft_strcat(envp_init[i], arguments[2]);
 	}
+	return (envp_init);
 }
 
-void	setenv_minishell(char *str, char **envp_init)
+char **	setenv_minishell(char *str, char **envp_init)
 {
 	int		i;
 	char	**arguments;
 	int		q_params;
+	char 	**result = NULL;
 
 	arguments = ft_strsplit(str, 32);
 	q_params = len_char_2d_array(arguments);
@@ -100,11 +94,11 @@ void	setenv_minishell(char *str, char **envp_init)
 	i = get_index_envp(envp_init, arguments[1]);
 
 	if (i)
-		envp_res_logic(arguments, envp_init, i);
+		result = envp_res_logic(arguments, envp_init, i);
 	else
-		get_buf_envp(arguments, envp_init);
+		result = get_buf_envp(arguments, envp_init);
 
 	(arguments) ? ft_clean_2d_char(arguments) : 0;
 	// (envp_init) ? ft_clean_2d_char(envp_init) : 0;
-	// return (envp_res);
+	return (result);
 }
