@@ -53,6 +53,9 @@ void    test2(t_env **env)
     
     while (environ[i])
         push_back(env, environ[i++]);
+    t_env * x = find_elem(&env, "PWD");
+    
+    x->content = strdup("1111111111111");
     
 }
 
@@ -69,10 +72,7 @@ int     main(void)
     test1(&env);
     
     
-    t_env * x = find_elem(&env, "PWD");
     
-    x->content = strdup("1111111111111");
-   
     int i = 0;
     
     while (env)
