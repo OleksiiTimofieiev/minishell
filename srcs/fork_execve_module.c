@@ -6,13 +6,11 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:34:52 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 12:11:03 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/22 14:15:53 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-// TODO: error func with memory cleaning and norminette;
 
 int		find_env_path(char **env_array)
 {
@@ -28,41 +26,49 @@ int		find_env_path(char **env_array)
 	return (0);
 }
 
+int		check_modes(char *path_buf, DIR *dir)
+{
+	struct stat buf;
+
+	if (access(path_buf, F_OK) == -1)
+	{
+		return (0);
+	}
+	lstat(path_buf, &buf);
+	if (buf.st_mode & S_IXUSR)
+	{
+		closedir(dir);
+		return (1);
+	}
+	else
+	{
+		ft_printf("%s%s%s", RED, "No execution rights.\n", RESET);
+		closedir(dir);
+		return (0);
+	}
+	return (7);
+}
+
 int		check_dir_for_binary(char *path, char *binary_name)
 {
-	DIR		*dir;
-	struct	dirent *dp;
-	struct	stat buf;
-	char	path_buf[1024];
+	DIR				*dir;
+	struct dirent	*dp;
+	int				check;
+	char			path_buf[1024];
 
 	ft_memset(path_buf, 0x0, sizeof(path_buf));
-	if ((dir = opendir (path)) == NULL) 
+	if ((dir = opendir(path)) == NULL)
 		return (0);
-	while ((dp = readdir (dir)) != NULL) 
+	while ((dp = readdir(dir)) != NULL)
 	{
 		if (ft_strequ(dp->d_name, binary_name))
 		{
 			ft_strcat(path_buf, path);
 			ft_strcat(path_buf, "/");
 			ft_strcat(path_buf, dp->d_name);
-
-			if (access(path_buf, F_OK) == -1)
-			{
-				return (0);
-			}
-			lstat(path_buf, &buf);
-			if (buf.st_mode & S_IXUSR)
-			{
-				closedir(dir);
-				return (1);
-			}
-			else
-			{
-				ft_printf("%s%s%s", RED, "No execution rights.\n", RESET);
-				closedir(dir);
-				return (0);
-
-			}
+			check = check_modes(path_buf, dir);
+			if (check != 7)
+				return (check);
 		}
 	}
 	closedir(dir);
@@ -72,7 +78,7 @@ int		check_dir_for_binary(char *path, char *binary_name)
 char	*find_dir_path(char *binary_name, char **path_list)
 {
 	int		i;
-	char 	*path;
+	char	*path;
 
 	i = 0;
 	path = NULL;
@@ -80,9 +86,7 @@ char	*find_dir_path(char *binary_name, char **path_list)
 	{
 		if (check_dir_for_binary(path_list[i], binary_name))
 		{
-			// ft_printf("--------- yeah ----------- \n");
 			path = ft_strdup(path_list[i]);
-			// ft_printf("path -> %s\n", path);
 			return (path);
 		}
 		i++;
@@ -90,13 +94,13 @@ char	*find_dir_path(char *binary_name, char **path_list)
 	return (path);
 }
 
-char	*find_binary_path(char *binary_name,  char **env_array)
+char	*find_binary_path(char *binary_name, char **env_array)
 {
 	int		index;
 	char	**path_list;
-	char 	*buf;
-	char 	*full_binary;
-	char 	*result;
+	char	*buf;
+	char	*full_binary;
+	char	*result;
 
 	index = find_env_path(env_array);
 	path_list = ft_strsplit(env_array[index], ':');
@@ -105,7 +109,6 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 	path_list[0] = ft_strdup(&buf[5]);
 	if (!(full_binary = find_dir_path(binary_name, path_list)))
 	{
-		ft_printf("%s\n", "here");
 		ft_clean_2d_char(path_list);
 		free(buf);
 		return (full_binary);
@@ -122,68 +125,39 @@ char	*find_binary_path(char *binary_name,  char **env_array)
 
 void	run_buitin_cmd(char *line, char **env_array)
 {
-	// ft_printf("%s%s%s", CYAN, "6\n", RESET);
-
-	char **argument;
-	char *binary = NULL;
-	pid_t pid;
-	pid_t wpid;
-	int status;
+	char	**argument;
+	char	*binary;
+	pid_t	pid;
+	pid_t	wpid;
+	int		status;
 
 	argument = ft_strsplit(line, 32);
-	// ft_printf("%s%s%s", CYAN, "7\n", RESET);
-
 	if (!env_array[0])
 	{
 		ft_printf("%s%s%s", RED, "No env variables.\n", RESET);
 		exit(0);
 	}
-
-	// if path var exists, else -> get path;
-	// else
-	// ...
-
 	binary = find_binary_path(argument[0], env_array);
-	// ft_printf("%s%s%s", CYAN, "8\n", RESET);
-
 	if (binary == NULL)
-	{
-		// free(binary);
-		// ft_clean_2d_char(argument);
-		// ft_printf("%sNot executed.\n%s", RED, RESET);
-		
-		// /bin/ls; case;
-		// test it;
-
 		binary = ft_strdup(argument[0]);
-		// ft_putstr(line);
-	}
-
 	pid = fork();
-	
 	signal(SIGINT, signal_handler);
-
-	if (pid == 0) // Child process
+	if (pid == 0)
 	{
-		if (execve(binary, argument, env_array) == -1) 
+		if (execve(binary, argument, env_array) == -1)
 		{
-	   		ft_printf("%s%s%s", RED, "No such binary\n", RESET);
+			ft_printf("%s%s%s", RED, "No such binary\n", RESET);
 			ft_clean_2d_char(argument);
 			free(binary);
-	 		exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		}
-   } 
-   else if (pid < 0) 	 // Error forking
-		ft_printf("%s%s%s", RED, "Error with fork func.\n", RESET); // change to the error func
-   else 	  // Parent process
-   {
-		// do
-		// {
-	   		wpid = waitpid(pid, &status, 0);
-			free(binary);
-			ft_clean_2d_char(argument);
-
-		// } 
-	 	// while (!WIFEXITED(status) && !WIFSIGNALED(status));
-   }
+	}
+	else if (pid < 0)
+		ft_printf("%s%s%s", RED, "Error with fork func.\n", RESET);
+	else
+	{
+		wpid = waitpid(pid, &status, 0);
+		free(binary);
+		ft_clean_2d_char(argument);
+	}
 }

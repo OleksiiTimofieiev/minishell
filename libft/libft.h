@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 18:22:41 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 20:33:07 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/22 14:00:10 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -316,5 +316,6 @@ char				*ft_strnccpy(char *src, char c);
 int					ft_line_is_digit(char *str);
 int					len_char_2d_array(char **array);
 char				**copy_2d_char(char **src);
+int					ft_char_position(char *str, char c);
 
 #endif

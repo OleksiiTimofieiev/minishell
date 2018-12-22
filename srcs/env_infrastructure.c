@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 12:52:03 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/15 17:57:44 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/22 13:58:38 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_global_var(char **envp, char *command)
 	result = NULL;
 	while (envp[i])
 	{
-		if (ft_strncmp(envp[i], &command[1], ft_strlen(&command[1])) == 0 
+		if (ft_strncmp(envp[i], &command[1], ft_strlen(&command[1])) == 0
 			&& envp[i][ft_strlen(&command[1])] == '=')
 		{
 			buf = ft_strdup(envp[i]);
@@ -31,18 +31,16 @@ char	*get_global_var(char **envp, char *command)
 		}
 		i++;
 	}
-	i = 0;
 	if (buf)
 	{
-		while (buf[i] && buf[i] != '=')
-			i++;
+		i = ft_char_position(buf, '=');
 		result = ft_strdup(&buf[++i]);
 		free(buf);
 	}
 	return (result);
 }
 
-int detect_del_var_cd_del(char *env, char **haystack)
+int		detect_del_var_cd_del(char *env, char **haystack)
 {
 	int i;
 	int len_of_env;
@@ -51,7 +49,7 @@ int detect_del_var_cd_del(char *env, char **haystack)
 	len_of_env = ft_strlen(env);
 	while (haystack[i])
 	{
-		if (ft_strncmp(env, haystack[i], len_of_env) == 0) //
+		if (ft_strncmp(env, haystack[i], len_of_env) == 0)
 			return (i);
 		i++;
 	}
@@ -64,7 +62,6 @@ void	ft_clean(char **envp)
 
 	path[0] = detect_del_var_cd_del("PWD", envp);
 	path[1] = detect_del_var_cd_del("OLDPWD", envp);
-
 	if (envp[path[0]] != NULL)
 		free(envp[path[0]]);
 	if (envp[path[1]] != NULL)

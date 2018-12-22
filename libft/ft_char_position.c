@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   ft_char_position.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/25 12:57:36 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 14:02:45 by otimofie         ###   ########.fr       */
+/*   Created: 2018/12/22 13:59:05 by otimofie          #+#    #+#             */
+/*   Updated: 2018/12/22 13:59:32 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	exit_minishell(char **envp)
+int		ft_char_position(char *str, char c)
 {
-	if (**envp)
-		ft_clean_2d_char(envp);
-	exit(0);
+	int i;
+
+	i = 0;
+	while (*str)
+	{
+		if (*str == c)
+			return (i);
+		i++;
+	}
+	return (i);
 }
