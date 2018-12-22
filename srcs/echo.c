@@ -6,13 +6,32 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 13:40:09 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 21:01:03 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/22 11:48:03 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	display_global_variable(char *str, char **envp)
+int env_var_detection(char *str)
+{
+	int i;
+
+	i = 0;
+	while (*str)
+	{
+		if (*str == '$')
+			i++;
+		str++;
+	}
+	if (i >= 2)
+		return (1);
+	return (0);
+}
+
+// TODO: $...$... -> echo (split with '$' maybe);
+// TODO: work out with tilda in echo;
+
+void	display_global_variable(char *str, char **envp, int index)
 {
 	int i;
 	int j;
@@ -20,8 +39,8 @@ void	display_global_variable(char *str, char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		if (!ft_strequ(envp[i], "$") && ft_strncmp(envp[i], &str[1], ft_strlen(&str[1])) == 0 
-			&& (envp[i][ft_strlen(&str[1])] == '='))
+		if (!ft_strequ(envp[i], "$") && ft_strncmp(envp[i], &str[index], ft_strlen(&str[index])) == 0 
+			&& (envp[i][ft_strlen(&str[index])] == '='))
 		{
 			j = 0;
 			while (envp[i][j] != '=')
@@ -56,10 +75,22 @@ void	display_arguments(char **arguments, char **envp, int n_flag)
 	spaces_iterator = 0;
 	while (arguments[start_index])
 	{
-		// detection of $...$... case;
-		// universal display global variable
-		if (arguments[start_index][0] == '$' && ft_strlen(arguments[start_index]) != 1)
-			display_global_variable(arguments[start_index++], envp);
+		if (env_var_detection(arguments[start_index]))
+		{
+			int i = 0;
+			char **env_arguments = ft_strsplit(arguments[start_index], '$');
+
+			while (env_arguments[i])
+			{
+				// ft_printf("%s\n", env_arguments[i++]);
+				display_global_variable(env_arguments[i++], envp, 0);
+			}
+			ft_clean_2d_char(env_arguments);
+
+				start_index++;
+		}
+		else if (arguments[start_index][0] == '$' && ft_strlen(arguments[start_index]) != 1)
+				display_global_variable(arguments[start_index++], envp, 1);
 		else
 		{
 			if (arguments[start_index][0] == '~')
@@ -73,22 +104,6 @@ void	display_arguments(char **arguments, char **envp, int n_flag)
 		if (spaces_iterator++ + 1 < spaces)
 			ft_printf(" ");
 	}
-}
-
-int		env_var_detection(char *str)
-{
-	int i;
-
-	i = 0;
-	while (*str)
-	{
-		if (*str == '$')
-			i++;
-		str++;
-	}
-	if (i >= 2)
-		return (1);
-	return (0);
 }
 
 void	echo(char *str, char **envp)

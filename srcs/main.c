@@ -6,16 +6,13 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/15 19:44:32 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/22 11:35:51 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // TODO: norminette (+rename funcs to static) & leaks
-
-// TODO: $...$... -> echo (split with '$' maybe);
-// TODO: work out with tilda in echo;
 
 // TODO: setenv (substitute with value of the env variable);
 
