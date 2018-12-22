@@ -2,23 +2,28 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct  s_env
+typedef struct      s_env
 {
-    char        *name;
-    char        *content;
-    struct  s_env *next;
-}               t_env;
+    char            *name;
+    char            *content;
+    struct  s_env   *next;
+}                   t_env;
 
 extern  char **environ;
+
+char **    ft_strsplit(char *str, char c);
 
 void    push_back(t_env **head, char *str)
 {
     t_env   *new;
     t_env   *last;
+    char    **split;
     
+    split = ft_strsplit(str, '=');
     last = *head;
     new = (t_env *)malloc(sizeof(t_env));
-    new->name = strdup(str);
+    new->name = strdup(split[0]);
+    new->content = strdup(split[1]);
     new->next = NULL;
 
     if (!*head)
@@ -52,14 +57,12 @@ int     main(void)
     test1(&env);
     
     int i = 0;
+    
     while (env)
     {
-        printf("%s\n", env->name);
+        printf("%s=%s\n", env->name, env->content);
         env = env->next;
     }
-    
-    
-    
     
     return (0);
 }
