@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 11:53:06 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/22 11:54:27 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ char	**setenv_minishell(char *str, char **envp_init)
 	char	**envp_res;
 	int 	q_params;
 
-	// realloc funs;
+	// realloc func;
+	// get global var;
 
 	envp_res = NULL;
 	arguments = ft_strsplit(str, 32);
