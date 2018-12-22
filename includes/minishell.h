@@ -22,5 +22,6 @@ int		detect_del_var(char *env, char **haystack);
 short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp);
 int		env_var_detection(char *str);
 int		spaces_quantity(char **arguments, int start_index);
+char	*find_binary_path(char *binary_name, char **env_array);
 
 #endif

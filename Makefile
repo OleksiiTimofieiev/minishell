@@ -6,7 +6,7 @@
 #    By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 11:59:13 by otimofie          #+#    #+#              #
-#    Updated: 2018/12/22 12:49:30 by otimofie         ###   ########.fr        #
+#    Updated: 2018/12/22 15:44:48 by otimofie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ CORE		= main.c \
 			env_infrastructure.c \
 			unsetenv.c \
 			fork_execve_module.c \
+			fork_execve_module_2.c \
 			signal.c \
 
 SRCS        = $(addprefix srcs/, $(CORE))

@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 12:52:03 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 13:58:38 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/22 15:29:11 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ char	*get_global_var(char **envp, char *command)
 	char	*buf;
 	char	*result;
 
-	buf = NULL;
 	i = 0;
+	buf = NULL;
 	result = NULL;
 	while (envp[i])
 	{

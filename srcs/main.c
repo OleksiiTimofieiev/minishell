@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 11:51:42 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/22 15:34:33 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ char	**check(char **envp_buf)
 {
 	if (detect_del_var("OLDPWD", envp_buf) == 'x')
 		envp_buf = setenv_minishell("setenv OLDPWD /Users/otimofie 1", envp_buf);
-	else if (detect_del_var("PWD", envp_buf) == 'x')
+	 if (detect_del_var("PWD", envp_buf) == 'x')
 		envp_buf = setenv_minishell("setenv PWD /Users/otimofie 1", envp_buf);
 	// else if (detect_del_var("PATH", envp_buf) == 'x')
 	// 	envp_buf = setenv_minishell("setenv PATH /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin", envp_buf);
-	else if (detect_del_var("HOME", envp_buf) == 'x') // wtf ?
+	 if (detect_del_var("HOME", envp_buf) == 'x') // wtf ?
 	{
 		// ft_putstr("No home\n");
 		envp_buf = setenv_minishell("setenv HOME /Users/otimofie 1", envp_buf);
@@ -89,7 +89,7 @@ void 	minishell(char **envp_in)
 	{
 
 		// len_env_vars = ft_2d_arr_size(envp_buf) - 1;
-
+		envp_buf = check(envp_buf);
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
 		if (!(get_next_line(0, &line)))
 			exit (0);
@@ -118,6 +118,7 @@ void 	minishell(char **envp_in)
 
 		while (cmd_array[i])
 		{
+			ft_printf("%s%s%s\n", CYAN, "x\n", RESET);
 
 			j = detect_not_space(cmd_array[i]);
 
