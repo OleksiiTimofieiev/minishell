@@ -6,11 +6,13 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/08 21:35:38 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/22 11:53:06 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+// TODO: setenv (substitute with value of the env variable);
 
 int		get_index_envp(char **envp_find, char *name)
 {
@@ -87,6 +89,8 @@ char	**setenv_minishell(char *str, char **envp_init)
 	char	**arguments;
 	char	**envp_res;
 	int 	q_params;
+
+	// realloc funs;
 
 	envp_res = NULL;
 	arguments = ft_strsplit(str, 32);

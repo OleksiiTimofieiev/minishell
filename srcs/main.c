@@ -6,15 +6,13 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 11:35:51 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/22 11:51:42 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
 // TODO: norminette (+rename funcs to static) & leaks
-
-// TODO: setenv (substitute with value of the env variable);
 
 // TODO: check all in correction form;
 
