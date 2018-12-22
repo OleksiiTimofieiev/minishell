@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 13:40:09 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 12:40:39 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/22 12:42:55 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,17 @@ int		spaces_quantity(char **arguments, int start_index)
 	return (result);
 }
 
+void	display_arguments_help(char **arguments, char **envp, int n_flag, int *start_index)
+{
+	if (arguments[(*start_index)][0] == '~')
+	{
+		ft_printf("/Users/otimofie");
+		ft_putstr(&arguments[(*start_index)++][1]);
+	}
+	else
+		ft_putstr(arguments[(*start_index)++]);
+}
+
 void	display_arguments(char **arguments, char **envp, int n_flag)
 {
 	int		start_index;
@@ -87,15 +98,7 @@ void	display_arguments(char **arguments, char **envp, int n_flag)
 				&& ft_strlen(arguments[start_index]) != 1)
 			display_global_variable(arguments[start_index++], envp, 1);
 		else
-		{
-			if (arguments[start_index][0] == '~')
-			{
-				ft_printf("/Users/otimofie");
-				ft_putstr(&arguments[start_index++][1]);
-			}
-			else
-				ft_putstr(arguments[start_index++]);
-		}
+			display_arguments_help(arguments, envp, n_flag, &start_index);
 		if (spaces_iterator++ + 1 < spaces)
 			ft_printf(" ");
 	}
