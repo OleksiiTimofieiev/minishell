@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 11:54:27 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/22 12:04:09 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,6 @@ char	**setenv_minishell(char *str, char **envp_init)
 	char	**envp_res;
 	int 	q_params;
 
-	// realloc func;
-	// get global var;
-
 	envp_res = NULL;
 	arguments = ft_strsplit(str, 32);
 	q_params = len_char_2d_array(arguments);
@@ -105,9 +102,7 @@ char	**setenv_minishell(char *str, char **envp_init)
 	if (i)
 		envp_res = envp_res_logic(arguments, envp_init, i);
 	else
-	{
 		envp_res = get_buf_envp(arguments, envp_init);
-	}
 	(arguments) ? ft_clean_2d_char(arguments) : 0;
 	(envp_init) ? ft_clean_2d_char(envp_init) : 0;
 	return (envp_res);

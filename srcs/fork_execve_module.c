@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:34:52 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/15 17:23:03 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/22 12:11:03 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,8 @@ void	run_buitin_cmd(char *line, char **env_array)
 		// /bin/ls; case;
 		// test it;
 
-		binary = ft_strdup(line);
+		binary = ft_strdup(argument[0]);
+		// ft_putstr(line);
 	}
 
 	pid = fork();
