@@ -36,6 +36,17 @@ void    push_back(t_env **head, char *str)
     }
 }
 
+t_env   *find_elem(t_env **env, char *str)
+{
+    while (*env)
+    {
+        if (strcmp( (*env)->name, str) == 0)
+            return (*env);
+        *env = (*env)->next;
+    }
+    return (NULL);
+}
+
 void    test2(t_env **env)
 {
     int i = 0;
@@ -50,12 +61,18 @@ void    test1(t_env **env)
     test2(env);
 }
 
+
 int     main(void)
 {
     t_env *env = NULL;
     
     test1(&env);
     
+    
+    t_env * x = find_elem(&env, "PWD");
+    
+    x->content = strdup("1111111111111");
+   
     int i = 0;
     
     while (env)
@@ -63,6 +80,7 @@ int     main(void)
         printf("%s=%s\n", env->name, env->content);
         env = env->next;
     }
+    
     
     return (0);
 }
