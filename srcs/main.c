@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-// TODO: leaks and norminette;
+// TODO: leaks and norminette in all folders;
 // TODO: all tests from the form;
 
 // TODO: move from HOME var as static string;
