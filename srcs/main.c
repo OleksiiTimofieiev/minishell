@@ -19,6 +19,7 @@
 
 // TODO: handle of "" and '';
 // TODO: main infrastructure;
+// TODO: move from HOME var as static string;
 
 // char	**check(char **envp_buf)
 // {
@@ -116,7 +117,6 @@ void	minishell(void)
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
 		if (!(get_next_line(0, &line)))
 			exit(0);
-
 		change_to_spaces(line, '\t', ' ');
 
 		if (ft_quantity_of_chars(line, ';'))

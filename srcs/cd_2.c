@@ -102,11 +102,10 @@ int		one_and_too_many_argv_hel_help(char **command_line,
 {
 	t_env *path_x;
 	t_env *path_y;
+	char *path_v;
 
 	path_x = find_elem(env, "PWD");
 	path_y = find_elem(env, "OLDPWD");
-	char *path_v;
-
 	if (command_line[1][0] == '-' && ft_strlen(command_line[1]) == 1)
 	{
 		path_v = ft_strdup(path_y->content);
