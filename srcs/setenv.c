@@ -39,6 +39,22 @@ void	env_available(char **arguments, t_env *env)
 	}
 }
 
+void	tilda_setenv(char **arguments)
+{
+	char *result;
+
+	if (arguments[2][0] == '~' && arguments[2][1] = '/')
+	{
+		result = ft_strnew(ft_strlen("/Users/otimofie") + ft_strlen(&arguments[2][1]));
+		ft_strcat(result, "/Users/otimofie");
+		ft_strcat(result, &arguments[2][1]);
+
+		free(arguments[2]);
+		arguments[2] = ft_strdup(result);
+		free(result);
+	}
+}
+
 void	setenv_minishell(char *str, t_env *env)
 {
 	char	**arguments;
