@@ -26,6 +26,8 @@ CORE		= main.c \
 			setenv.c \
 			unsetenv.c \
 			special_char.c \
+			special_char_fork.c \
+
 			
 SRCS        = $(addprefix srcs/, $(CORE))
 

@@ -76,18 +76,28 @@ char 	**env_vars_array(t_env *env)
 	return(result);
 }
 
+void	mod_flags(char **arguments, t_env *env)
+{
+	int i;
+
+	i = 0;
+	while (arguments[i])
+		special_char_fork(&arguments[i++], env);
+}
+
 void	run_buitin_cmd(char *line, t_env *env)
 {
-	char	**argument;
+	char	**arguments;
 	char	*binary;
 	char 	**env_vars;
 
 	env_vars = env_vars_array(env);
-	argument = ft_strsplit(line, 32);
+	arguments = ft_strsplit(line, 32);
+	mod_flags(arguments, env);
 	// $pwd and tilda...
-	binary = find_binary_path(argument[0], &env);
-	if (binary == NULL && argument[0])
-		binary = ft_strdup(argument[0]);
-	run_buitin_cmd_helper(binary, argument, env_vars);
+	binary = find_binary_path(arguments[0], &env);
+	if (binary == NULL && arguments[0])
+		binary = ft_strdup(arguments[0]);
+	run_buitin_cmd_helper(binary, arguments, env_vars);
 	ft_clean_2d_char(env_vars);
 }
