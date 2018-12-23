@@ -65,7 +65,7 @@ char **get_buf_envp(char **arguments, char **envp_init)
  return (tmp);
 }
 
-char **	envp_res_logic(char **arguments, char **envp_init, int i)
+char **envp_res_logic(char **arguments, char **envp_init, int i)
 {
 	if (ft_strequ(arguments[3], "1"))
 	{
@@ -79,7 +79,7 @@ char **	envp_res_logic(char **arguments, char **envp_init, int i)
 	return (envp_init);
 }
 
-char **	setenv_minishell(char *str, char **envp_init)
+char **setenv_minishell(char *str, char **envp_init)
 {
 	int		i;
 	char	**arguments;
