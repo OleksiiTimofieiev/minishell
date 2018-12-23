@@ -107,11 +107,9 @@ void	minishell(void)
 	char	**cmd_array;
 	t_env	*env;
 	
-	signal(SIGINT, signal_handler);
-
 	env = NULL;
+	signal(SIGINT, signal_handler);
 	init_env(&env);
-
 	if (!env)
 	{
 		ft_printf("%s%s\n%s", RED, "no env vars.", RESET);
@@ -123,12 +121,8 @@ void	minishell(void)
 		if (!(get_next_line(0, &line)))
 			exit(0);
 		change_to_spaces(line, '\t', ' ');
-
 		if (ft_quantity_of_chars(line, ';'))
-		{
-			ft_printf("We have some multiple instructions\r\n");
 			cmd_array = ft_strsplit(line, ';');
-		}
 		else
 		{
 			cmd_array = (char **)malloc(sizeof(char *) * 2);
