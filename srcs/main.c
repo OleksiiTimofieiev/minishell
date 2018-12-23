@@ -13,9 +13,8 @@
 #include "../includes/minishell.h"
 
 // TODO: leaks and norminette in all folders;
-// TODO: all tests from the form;
 
-// TODO: handle of "" and '';
+// TODO: handle of "" and ''; noy 0 or % 0
 
 // TODO: main infrastructure;
 
