@@ -44,8 +44,6 @@ void	execution_cycle(t_env *env, char **cmd_array)
 	}
 }
 
-
-
 void	minishell(void)
 {
 	char	*line;
