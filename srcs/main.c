@@ -109,6 +109,7 @@ void	minishell(void)
 	char	**cmd_array;
 	t_env	*env;
 	
+	signal(SIGINT, signal_handler); // to minishell
 	env = NULL;
 	init_env(&env);
 
@@ -153,7 +154,7 @@ void	minishell(void)
 
 int		main(void)
 {
-	signal(SIGINT, signal_handler); // to minishell
+	
 
 	minishell();
 
