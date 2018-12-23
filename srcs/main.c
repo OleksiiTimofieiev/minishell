@@ -75,7 +75,7 @@ int		detect_not_space(char *str)
 	return (i);
 }
 
-void	execution_cycle(t_env **env, char **cmd_array)
+void	execution_cycle(t_env *env, char **cmd_array)
 {
 	int i;
 	int j;
@@ -86,22 +86,22 @@ void	execution_cycle(t_env **env, char **cmd_array)
 		j = detect_not_space(cmd_array[i]);
 
 		if (!ft_strncmp(&cmd_array[i][j], "cd", 2))
-			cd(cmd_array[i], env);
+			cd(cmd_array[i], &env);
 		else if (!ft_strncmp(&cmd_array[i][j], "echo", 4))
-			echo(cmd_array[i], env);
+			echo(cmd_array[i], &env);
 		else if (ft_strequ(&cmd_array[i][j], "env"))
-			env_minishell(*env);
+			env_minishell(env);
 		else if (!ft_strncmp(&cmd_array[i][j], "exit", 4))
-			exit_minishell(env);
-	// else if (!ft_strncmp(&cmd_array[i][j], "setenv", 6))
-	// 		setenv_minishell(str, env);
+			exit_minishell(&env);
+		else if (!ft_strncmp(&cmd_array[i][j], "setenv", 6))
+			setenv_minishell(cmd_array[i], env);
 	// // else if (!ft_strncmp(&cmd_array[i][j], "unsetenv", 8))
 	// // {
 	// // 	envp_buf = unsetenv_minishell(str, envp_buf);
 	// // 	envp_buf = check(envp_buf);
 	// // }
 		else
-			run_buitin_cmd(&cmd_array[i][j], env);
+			run_buitin_cmd(&cmd_array[i][j], &env);
 
 		i++;
 	}
@@ -146,7 +146,7 @@ void	minishell(void)
 			cmd_array[1] = NULL;
 		}
 // 
-		execution_cycle(&env, cmd_array);
+		execution_cycle(env, cmd_array);
 
 		(line) ? free(line) : 0;
 		(cmd_array != NULL) ? ft_clean_2d_char(cmd_array) : 0;
