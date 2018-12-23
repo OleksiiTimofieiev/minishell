@@ -93,27 +93,15 @@ int		one_and_too_many_argv_help(char **command_line,
 short	one_and_too_many_argv(char **command_line,
 								char *pwd_old, t_env **env)
 {
-	ft_printf("%s%s\n%s", CYAN, "3", RESET);
-
 	t_env *path_x;
 	t_env *path_y;
 
-
 	path_x = find_elem(env, "PWD");
 	path_y = find_elem(env, "OLDPWD");
-
-	ft_printf("%s%s\n%s", CYAN, "4", RESET);
-
 	if (len_char_2d_array(command_line) == 1)
 	{
 		chdir("/Users/otimofie");
-
-		ft_printf("%s%s\n%s", CYAN, "5", RESET);
-
 		ft_clean(env);
-		ft_printf("%s%s\n%s", CYAN, "7", RESET);
-		
-		
 		path_x->content = ft_strdup("/Users/otimofie");
 		path_y->content = ft_strdup(pwd_old);
 		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
