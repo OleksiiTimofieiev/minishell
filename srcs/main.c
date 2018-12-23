@@ -15,25 +15,24 @@
 // TODO: leaks and norminette in all folders;
 // TODO: all tests from the form;
 
-// TODO: move from HOME var as static string;
-
 // TODO: handle of "" and '';
 
 // TODO: main infrastructure;
 
-// char	**check(char **envp_buf)
-// {
-//		t_env;
-//
-// 	if (detect_del_var("OLDPWD", envp_buf) == 'x')
-// 		envp_buf = setenv_minishell("setenv OLDPWD /Users/otimofie 1",
-// 		envp_buf);
-// 	if (detect_del_var("PWD", envp_buf) == 'x')
-// 		envp_buf = setenv_minishell("setenv PWD /Users/otimofie 1", envp_buf);
-// 	if (detect_del_var("HOME", envp_buf) == 'x')
-// 		envp_buf = setenv_minishell("setenv HOME /Users/otimofie 1", envp_buf);
-// 	return (envp_buf);
-// }
+void	check(t_env *env)
+{
+	t_env *tests;
+
+	tests = find_elem(&env, "OLDPWD");
+	if (!tests)
+		setenv_minishell("setenv OLDPWD /Users/otimofie", env);
+	tests = find_elem(&env, "PWD");
+	if (!tests)
+		setenv_minishell("setenv PWD /Users/otimofie", env);
+	tests = find_elem(&env, "HOME");
+	if (!tests)
+		setenv_minishell("setenv HOME /Users/otimofie", env);
+}
 
 int		ft_quantity_of_chars(char *line, char c)
 {
@@ -83,6 +82,7 @@ void	execution_cycle(t_env *env, char **cmd_array)
 	i = 0;
 	while (cmd_array[i])
 	{
+		check(env);
 		j = detect_not_space(cmd_array[i]);
 		if (!ft_strncmp(&cmd_array[i][j], "cd", 2))
 			cd(cmd_array[i], &env);
@@ -112,6 +112,12 @@ void	minishell(void)
 
 	env = NULL;
 	init_env(&env);
+
+	if (!env)
+	{
+		ft_printf("%s%s\n%s", RED, "no env vars.", RESET);
+		exit(0);
+	}
 	while (1)
 	{
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
