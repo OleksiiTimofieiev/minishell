@@ -53,7 +53,7 @@ short	cd_main(char *pwd_new, char *pwd_old, t_env **env, char **command_line)
 
 void	tilda(char **command_line, char *pwd_new)
 {
-	if (command_line[1][0] == '~')
+	if (command_line[1][0] == '~' && command_line[1][1] == '/')
 	{
 		ft_strcat(pwd_new, "/Users/otimofie");
 		ft_strcat(pwd_new, &command_line[1][1]);

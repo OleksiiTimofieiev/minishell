@@ -12,6 +12,8 @@
 
 #include "../includes/minishell.h"
 
+// TODO: setenv ~/srcs and $PWD, $PWD/srcs
+
 void	not_available(char **arguments, t_env *head)
 {
 	t_env   *new;

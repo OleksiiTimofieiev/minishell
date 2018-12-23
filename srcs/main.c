@@ -14,7 +14,6 @@
 
 // TODO: leaks and norminette
 
-// TODO: setenv ~/srcs and $PWD, $PWD/srcs
 // TODO: ls -la $PWD and $PWD/srcs;
 // TODO: handle of "" and '';
 // TODO: main infrastructure;
