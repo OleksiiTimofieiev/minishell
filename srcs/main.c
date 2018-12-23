@@ -71,7 +71,6 @@ int		detect_not_space(char *str)
 	return (i);
 }
 
-
 void	delete_list(t_env** head_ref) 
 { 
    t_env *current = *head_ref; 
@@ -149,6 +148,7 @@ void    push_back(t_env **head, char *str)
             last = last->next;
         last->next = new;
     }
+    ft_clean_2d_char(split);
 }
 
 void	init_m(t_env **env)
@@ -169,6 +169,10 @@ void	minishell(void)
 	
 	env = NULL;
 	init_m(&env);
+
+	ft_printf("%s%s\n%s", CYAN, "1", RESET);
+	system("leaks -q minishell");
+
 
 	// ft_printf("%s%s\n%s", CYAN, "2", RESET);
 
