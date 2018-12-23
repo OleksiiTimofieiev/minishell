@@ -113,7 +113,14 @@ void	minishell(void)
 	env = NULL;
 	init_env(&env);
 
-	// ft_printf("%s%s\n%s", CYAN, "2", RESET);
+
+	if (!env)
+	{
+		ft_printf("%s%s%s", RED, "No env variables.\n", RESET);
+		system("leaks -q minishell");
+		// add 3 mandatory vars;
+		exit(0);
+	}
 
 	while (1)
 	{
