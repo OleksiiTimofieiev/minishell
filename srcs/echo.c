@@ -12,24 +12,16 @@
 
 #include "../includes/minishell.h"
 
-void	display_global_variable(char *str, char **envp, int index)
+void	display_global_variable(char *str, t_env *env, int index)
 {
-	int i;
-	int j;
-
-	i = 0;
-	while (envp[i])
+	while (env)
 	{
-		if (!ft_strequ(envp[i], "$") && ft_strncmp(envp[i],
-			&str[index], ft_strlen(&str[index])) == 0
-			&& (envp[i][ft_strlen(&str[index])] == '='))
+		if (!ft_strequ(env->name, "$") && ft_strncmp(env->name, &str[index], ft_strlen(&str[index])) == 0)
 		{
-			j = 0;
-			while (envp[i][j] != '=')
-				j++;
-			ft_printf("%s", &envp[i][j + 1]);
+			ft_printf("%s", env->content);
+			break;
 		}
-		i++;
+		env = env->next;
 	}
 }
 
@@ -45,7 +37,7 @@ void	display_arguments_help_2(char **arguments, int *start_index)
 }
 
 void	display_arguments_help_1(char **arguments,
-	int *start_index, char **envp)
+	int *start_index, t_env **env)
 {
 	int		i;
 	char	**env_arguments;
@@ -53,12 +45,12 @@ void	display_arguments_help_1(char **arguments,
 	env_arguments = ft_strsplit(arguments[*start_index], '$');
 	i = 0;
 	while (env_arguments[i])
-		display_global_variable(env_arguments[i++], envp, 0);
+		display_global_variable(env_arguments[i++], *env, 0);
 	ft_clean_2d_char(env_arguments);
 	(*start_index)++;
 }
 
-void	display_arguments(char **arguments, char **envp, int n_flag)
+void	display_arguments(char **arguments, t_env **env, int n_flag)
 {
 	int		start_index;
 	int		spaces;
@@ -70,10 +62,10 @@ void	display_arguments(char **arguments, char **envp, int n_flag)
 	while (arguments[start_index])
 	{
 		if (env_var_detection(arguments[start_index]))
-			display_arguments_help_1(arguments, &start_index, envp);
+			display_arguments_help_1(arguments, &start_index, env);
 		else if (arguments[start_index][0] == '$'
 				&& ft_strlen(arguments[start_index]) != 1)
-			display_global_variable(arguments[start_index++], envp, 1);
+			display_global_variable(arguments[start_index++], *env, 1);
 		else
 			display_arguments_help_2(arguments, &start_index);
 		if (spaces_iterator++ + 1 < spaces)
@@ -81,7 +73,7 @@ void	display_arguments(char **arguments, char **envp, int n_flag)
 	}
 }
 
-void	echo(char *str, char **envp)
+void	echo(char *str, t_env **env)
 {
 	char	**command_line;
 	int		n_flag;
@@ -90,7 +82,7 @@ void	echo(char *str, char **envp)
 	command_line = ft_strsplit(str, 32);
 	if (ft_strequ("-n", command_line[1]))
 		n_flag = 1;
-	display_arguments(command_line, envp, n_flag);
+	display_arguments(command_line, env, n_flag);
 	if (!n_flag)
 		ft_printf("\n");
 	ft_clean_2d_char(command_line);

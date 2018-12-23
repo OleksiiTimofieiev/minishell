@@ -12,6 +12,8 @@
 
 #include "../includes/minishell.h"
 
+// TODO: leaks and norminette
+
 // char	**check(char **envp_buf)
 // {
 // 	if (detect_del_var("OLDPWD", envp_buf) == 'x')
@@ -24,9 +26,8 @@
 // 	return (envp_buf);
 // }
 
-// remaster main, cd, echo, exit, fork;
+// TODO: remaster main, echo, env, exit, fork, setenv, unsetenv;
 
-// test cd .. and cd
 extern	char **environ;
 
 
@@ -82,8 +83,8 @@ void	execution_cycle(t_env **env, char **cmd_array)
 
 		if (!ft_strncmp(&cmd_array[i][j], "cd", 2))
 			cd(cmd_array[i], env);
-// else if (!ft_strncmp(&cmd_array[i][j], "echo", 4))
-// 	echo(str, envp_buf);
+		else if (!ft_strncmp(&cmd_array[i][j], "echo", 4))
+			echo(cmd_array[i], env);
 		else if (ft_strequ(&cmd_array[i][j], "env"))
 			env_minishell(*env);
 	// else if (!ft_strncmp(&cmd_array[i][j], "exit", 4))

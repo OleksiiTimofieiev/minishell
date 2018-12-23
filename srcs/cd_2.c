@@ -38,9 +38,8 @@ void	path_handler(char **command_line, char *pwd_old, t_env **env)
 int		one_and_too_many_argv_hel_help(char **command_line,
 										t_env **env, char *pwd_old)
 {
-		t_env *path_x;
+	t_env *path_x;
 	t_env *path_y;
-
 
 	path_x = find_elem(env, "PWD");
 	path_y = find_elem(env, "OLDPWD");

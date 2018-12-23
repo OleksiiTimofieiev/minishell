@@ -24,13 +24,11 @@ char	*get_cool_path(void)
 
 short	cd_main(char *pwd_new, char *pwd_old, t_env **env, char **command_line)
 {
-		t_env *path_x;
+	t_env *path_x;
 	t_env *path_y;
-
 
 	path_x = find_elem(env, "PWD");
 	path_y = find_elem(env, "OLDPWD");
-
 	if (chdir(pwd_new) == 0)
 	{
 		ft_clean(env);
