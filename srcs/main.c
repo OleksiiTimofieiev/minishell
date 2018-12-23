@@ -85,7 +85,6 @@ void	execution_cycle(t_env *env, char **cmd_array)
 	while (cmd_array[i])
 	{
 		j = detect_not_space(cmd_array[i]);
-
 		if (!ft_strncmp(&cmd_array[i][j], "cd", 2))
 			cd(cmd_array[i], &env);
 		else if (!ft_strncmp(&cmd_array[i][j], "echo", 4))
