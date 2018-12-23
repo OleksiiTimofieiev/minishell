@@ -21,7 +21,7 @@
 
 // TODO: env -i ./minishell
 
-// TODO: remaster main, fork + (setenv, unsetenv);
+// TODO: remaster main, fork + unsetenv;
 
 // char	**check(char **envp_buf)
 // {
@@ -145,7 +145,7 @@ void	minishell(void)
 			cmd_array[0] = ft_strdup(line);
 			cmd_array[1] = NULL;
 		}
-// 
+ 
 		execution_cycle(env, cmd_array);
 
 		(line) ? free(line) : 0;
