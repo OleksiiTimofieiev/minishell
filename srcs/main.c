@@ -16,15 +16,16 @@
 // TODO: all tests from the form;
 
 // TODO: ls -la $PWD and $PWD/srcs;
+
 // TODO: handle of "" and '';
 // TODO: main infrastructure;
 
 // TODO: env -i ./minishell
 
-// TODO: remaster main, fork + unsetenv;
-
 // char	**check(char **envp_buf)
 // {
+//		t_env;
+
 // 	if (detect_del_var("OLDPWD", envp_buf) == 'x')
 // 		envp_buf = setenv_minishell("setenv OLDPWD /Users/otimofie 1",
 // 		envp_buf);
@@ -95,14 +96,10 @@ void	execution_cycle(t_env *env, char **cmd_array)
 			exit_minishell(&env);
 		else if (!ft_strncmp(&cmd_array[i][j], "setenv", 6))
 			setenv_minishell(cmd_array[i], env);
-	// // else if (!ft_strncmp(&cmd_array[i][j], "unsetenv", 8))
-	// // {
-	// // 	envp_buf = unsetenv_minishell(str, envp_buf);
-	// // 	envp_buf = check(envp_buf);
-	// // }
+		else if (!ft_strncmp(&cmd_array[i][j], "unsetenv", 8))
+			unsetenv_minishell(cmd_array[i], env);
 		else
-			run_buitin_cmd(&cmd_array[i][j], &env);
-
+			run_buitin_cmd(&cmd_array[i][j], env);
 		i++;
 	}
 }
@@ -112,7 +109,6 @@ void	minishell(void)
 	char	*line;
 	char	**cmd_array;
 	t_env	*env;
-	// ft_printf("%s%s\n%s", CYAN, "1", RESET);
 	
 	env = NULL;
 	init_env(&env);

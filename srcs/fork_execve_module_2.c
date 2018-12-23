@@ -86,8 +86,12 @@ char	*find_binary_path(char *binary_name, t_env **env)
 	char	**path_list;
 	char	*full_binary;
 	char	*result;
+	t_env	*env_local;
 
-	path = ft_strdup(find_elem(env, "PATH")->content);
+	env_local = find_elem(env, "PATH");
+	if (!env_local)
+		return (NULL);
+	path = ft_strdup(env_local->content);
 	path_list = ft_strsplit(path, ':');
 	free(path);
 	if (!(full_binary = find_dir_path(binary_name, path_list)))

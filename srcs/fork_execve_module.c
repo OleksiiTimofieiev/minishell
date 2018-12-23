@@ -76,15 +76,15 @@ char 	**env_vars_array(t_env *env)
 	return(result);
 }
 
-void	run_buitin_cmd(char *line, t_env **env)
+void	run_buitin_cmd(char *line, t_env *env)
 {
 	char	**argument;
 	char	*binary;
 	char 	**env_vars;
 
-	env_vars = env_vars_array(*env);
+	env_vars = env_vars_array(env);
 	argument = ft_strsplit(line, 32);
-	binary = find_binary_path(argument[0], env);
+	binary = find_binary_path(argument[0], &env);
 	if (binary == NULL && argument[0])
 		binary = ft_strdup(argument[0]);
 	run_buitin_cmd_helper(binary, argument, env_vars);

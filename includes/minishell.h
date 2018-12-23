@@ -23,11 +23,9 @@ void	cd(char *str, t_env **env);
 void	exit_minishell(t_env **env);
 void 	env_minishell(t_env *env);
 void	signal_handler(int sig_num);
-void	run_buitin_cmd(char *line, t_env **env);
+void	run_buitin_cmd(char *line, t_env *env);
 void	setenv_minishell(char *str, t_env *env);
-// char	**unsetenv_minishell(char *str, char **envp_init);
-
-
+void	unsetenv_minishell(char *str, t_env *env);
 
 /*
 **************************** infrastructure ********************

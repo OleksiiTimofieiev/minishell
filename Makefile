@@ -24,7 +24,7 @@ CORE		= main.c \
 			echo_2.c \
 			exit.c \
 			setenv.c \
-			# unsetenv.c \
+			unsetenv.c \
 			
 SRCS        = $(addprefix srcs/, $(CORE))
 
