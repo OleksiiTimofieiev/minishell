@@ -15,7 +15,7 @@
 // TODO: leaks and norminette
 
 // TODO: cd $PWD/srcs
-// TODO: setenv tilda and $
+// TODO: setenv ~/srcs and $PWD, $PWD/srcs
 // TODO: env -i ./minishell
 // TODO: main infrastructure;
 // TODO: handle of "" and '';
