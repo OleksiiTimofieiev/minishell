@@ -15,12 +15,10 @@
 // TODO: leaks and norminette;
 // TODO: all tests from the form;
 
-// TODO: ls -la $PWD and $PWD/srcs for some flag;
+// TODO: ls -la $PWD and $PWD/srcs for some flag, what if no env vars;
 
 // TODO: handle of "" and '';
 // TODO: main infrastructure;
-
-// TODO: env -i ./minishell
 
 // char	**check(char **envp_buf)
 // {
@@ -141,9 +139,6 @@ void	minishell(void)
 
 int		main(void)
 {
-	
-
 	minishell();
-
 	return (0);
 }
