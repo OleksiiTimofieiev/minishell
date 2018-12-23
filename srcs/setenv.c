@@ -12,7 +12,40 @@
 
 #include "../includes/minishell.h"
 
-// TODO: setenv ~/srcs and $PWD, $PWD/srcs
+// TODO: setenv $PWD, $PWD/srcs
+
+int		find_char_setenv(char *str, char c)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+		{
+			j = i;
+			return (j);
+		}
+		i++;
+	}
+	return (j);
+}
+
+int		special_char_occurance(char *str)
+{
+	int i;
+
+	i = 0;
+	while (*str)
+	{
+		if (*str == '$')
+			i++;
+		str++;
+	}
+	return (i);
+}
 
 void	not_available(char **arguments, t_env *head)
 {
@@ -48,10 +81,27 @@ void	tilda_setenv(char **arguments)
 		result = ft_strnew(ft_strlen("/Users/otimofie") + ft_strlen(&arguments[2][1]));
 		ft_strcat(result, "/Users/otimofie");
 		ft_strcat(result, &arguments[2][1]);
-
 		free(arguments[2]);
 		arguments[2] = ft_strdup(result);
 		free(result);
+	}
+}
+
+void	special_char(char **arguments, t_env *env)
+{
+	t_env	*env_local;
+
+	if (arguments[2][0] == '$' && special_char_occurance(arguments[2]) == 1)
+	{
+		if (!find_char_setenv(arguments[2], '/'))
+		{
+			env_local = find_elem(&env, &arguments[2][1]);
+			if (env_local)
+			{
+				free(arguments[2]);
+				arguments[2] = ft_strdup(env_local->content);
+			}
+		}
 	}
 }
 
@@ -69,6 +119,7 @@ void	setenv_minishell(char *str, t_env *env)
 		return ;
 	}
 	tilda_setenv(arguments);
+	special_char(arguments, env);
 
 	env_var = find_elem(&env, arguments[1]);
 

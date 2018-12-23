@@ -20,7 +20,7 @@
 
 // TODO: env -i ./minishell
 
-// TODO: remaster main, fork + setenv, unsetenv;
+// TODO: remaster main, fork + (setenv, unsetenv);
 
 // char	**check(char **envp_buf)
 // {
