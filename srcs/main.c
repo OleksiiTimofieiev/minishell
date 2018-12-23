@@ -24,7 +24,11 @@
 // 	return (envp_buf);
 // }
 
-// remaster main, cd, echo, env, exit, fork;
+// remaster main, cd, echo, exit, fork;
+
+// test cd .. and cd
+extern	char **environ;
+
 
 int		ft_quantity_of_chars(char *line, char c)
 {
@@ -66,79 +70,83 @@ int		detect_not_space(char *str)
 	return (i);
 }
 
-char	**test_x(char *str, int j, char **envp_buf)
-{
-	char **test;
-	// char **buf = NULL;
-
-	test = envp_buf;
-	if (!ft_strncmp(&str[j], "cd", 2))
-		cd(str, envp_buf);
-	else if (!ft_strncmp(&str[j], "echo", 4))
-		echo(str, envp_buf);
-	else if (ft_strequ(&str[j], "env"))
-		env_minishell(envp_buf);
-	else if (!ft_strncmp(&str[j], "exit", 4))
-		exit_minishell(envp_buf);
-	else if (!ft_strncmp(&str[j], "setenv", 6))
-	{
-			test = setenv_minishell(str, envp_buf);
-			// test = buf;
-	}
-	// else if (!ft_strncmp(&str[j], "unsetenv", 8))
-	// {
-	// 	envp_buf = unsetenv_minishell(str, envp_buf);
-	// 	envp_buf = check(envp_buf);
-	// }
-	else
-		run_buitin_cmd(&str[j], envp_buf);
-	return (test);
-}
-
-char	**ex(char	**cmd_array, char	**envp_buf)
+void	execution_cycle(t_env **env, char **cmd_array)
 {
 	int i;
-	int		j;
+	int j;
 
-	char **test = envp_buf;
-	char **buf = NULL;
+	i = 0;
+	while (cmd_array[i])
+	{
+		j = detect_not_space(cmd_array[i]);
 
-		i = 0;
+		if (!ft_strncmp(&cmd_array[i][j], "cd", 2))
+			cd(cmd_array[i], env);
+// else if (!ft_strncmp(&cmd_array[i][j], "echo", 4))
+// 	echo(str, envp_buf);
+		else if (ft_strequ(&cmd_array[i][j], "env"))
+			env_minishell(*env);
+	// else if (!ft_strncmp(&cmd_array[i][j], "exit", 4))
+	// 	exit_minishell(envp_buf);
+	// else if (!ft_strncmp(&cmd_array[i][j], "setenv", 6))
+	// {
+	// 		test = setenv_minishell(str, envp_buf);
+	// 		// test = buf;
+	// }
+	// // else if (!ft_strncmp(&cmd_array[i][j], "unsetenv", 8))
+	// // {
+	// // 	envp_buf = unsetenv_minishell(str, envp_buf);
+	// // 	envp_buf = check(envp_buf);
+	// // }
+	// else
+	// 	run_buitin_cmd(&cmd_array[i][j], envp_buf);
 
-		while (cmd_array[i])
-		{
-			j = detect_not_space(cmd_array[i]);
-
-			buf = test_x(cmd_array[i], j, envp_buf);
-
-			// (buf != envp_buf) ? ft_clean_2d_char(envp_buf) : 0;
-
-			test = buf;
-
-
-			i++;
-		}
-		return (test);
+		i++;
+	}
 }
 
-void	minishell(char **envp_in)
+void    push_back(t_env **head, char *str)
+{
+    t_env   *new;
+    t_env   *last;
+    char    **split;
+    
+    split = ft_strsplit(str, '=');
+    last = *head;
+
+    new = (t_env *)malloc(sizeof(t_env));
+    new->name = strdup(split[0]);
+    new->content = strdup(split[1]);
+    new->next = NULL;
+
+    if (!*head)
+        *head = new;
+    else
+    {
+        while (last->next)
+            last = last->next;
+        last->next = new;
+    }
+}
+
+void	init_m(t_env **env)
+{
+	int i;
+
+	i = 0;
+	while (environ[i])
+		push_back(env, environ[i++]);
+}
+
+void	minishell(t_env **env)
 {
 	char	*line;
-	char	**envp_buf;
-	// int		len_env_vars;
 	char	**cmd_array;
-	char 	**env_copy= NULL;
-	
 
-	line = NULL;
-	cmd_array = NULL;
-	envp_buf = copy_2d_char(envp_in);
-	// len_env_vars = ft_2d_arr_size(envp_buf) - 1;
-	char **buf = NULL;
+	ft_printf("%s%s\n%s", CYAN, "2", RESET);
 
 	while (1)
 	{
-		// envp_buf = check(envp_buf);
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
 		if (!(get_next_line(0, &line)))
 			exit(0);
@@ -156,22 +164,8 @@ void	minishell(char **envp_in)
 			cmd_array[0] = ft_strdup(line);
 			cmd_array[1] = NULL;
 		}
-
-		//
-		(buf != NULL) ? ft_clean_2d_char(buf) : 0;
-		(env_copy != NULL) ? ft_clean_2d_char(env_copy) : 0;
-
-		ft_printf("%s%s\n%s", CYAN, "here", RESET);
-
-		env_copy = copy_2d_char(envp_buf);
-		buf = ex(cmd_array, env_copy);
-		
-		
-		// if (envp_buf)
-
-		// ft_clean_2d_char(envp_buf);
-
-		envp_buf = copy_2d_char(buf);
+// 
+		execution_cycle(env, cmd_array);
 
 		(line) ? free(line) : 0;
 		(cmd_array != NULL) ? ft_clean_2d_char(cmd_array) : 0;
@@ -179,11 +173,15 @@ void	minishell(char **envp_in)
 	}
 }
 
-int		main(int argc, char **argv, char **envp)
+int		main(void)
 {
-	signal(SIGINT, signal_handler);
-	(void)argc;
-	(void)argv;
-	minishell(envp);
+	signal(SIGINT, signal_handler); // to minishell
+	t_env	*env;
+	ft_printf("%s%s\n%s", CYAN, "1", RESET);
+	
+	env = NULL;
+	init_m(&env);
+
+	minishell(&env);
 	return (0);
 }

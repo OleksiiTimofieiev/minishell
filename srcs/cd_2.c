@@ -12,40 +12,47 @@
 
 #include "../includes/minishell.h"
 
-void	path_handler(char **command_line, char *pwd_old, char **envp)
+void	path_handler(char **command_line, char *pwd_old, t_env **env)
 {
 	char	*path_v;
-	int		path[2];
+	t_env	*find_env;
+	t_env 	*path_x;
+	t_env 	*path_y;
 
-	path[0] = detect_del_var("PWD", envp);
-	path[1] = detect_del_var("OLDPWD", envp);
-	path_v = get_global_var(envp, command_line[1]);
+
+	path_x = find_elem(env, "PWD");
+	path_y = find_elem(env, "OLDPWD");
+	find_env = find_elem(env, &command_line[1][1]);
+	path_v = ft_strdup(find_env->content);
+
 	if (chdir(path_v) == 0)
 	{
-		ft_clean(envp);
-		envp[path[0]] = ft_strnew(4 + ft_strlen(path_v));
-		ft_strcpy(envp[path[0]], "PWD=");
-		ft_strcpy(&envp[path[0]][4], path_v);
-		envp[path[1]] = ft_strdup(pwd_old);
+		ft_clean(env);
+		path_x->content = ft_strdup(path_v);
+		path_y->content = ft_strdup(pwd_old);
 	}
-	if (path_v)
+	if (path_v != NULL)
 		free(path_v);
 }
 
 int		one_and_too_many_argv_hel_help(char **command_line,
-										char **envp, char *pwd_old, int *path)
+										t_env **env, char *pwd_old)
 {
+		t_env *path_x;
+	t_env *path_y;
+
+
+	path_x = find_elem(env, "PWD");
+	path_y = find_elem(env, "OLDPWD");
 	char *path_v;
 
 	if (command_line[1][0] == '-' && ft_strlen(command_line[1]) == 1)
 	{
-		path_v = get_global_var(envp, "$OLDPWD");
+		path_v = ft_strdup(path_y->content);
 		chdir(path_v);
-		ft_clean(envp);
-		envp[path[0]] = ft_strnew(4 + ft_strlen(path_v));
-		ft_strcpy(envp[path[0]], "PWD=");
-		ft_strcpy(&envp[path[0]][4], path_v);
-		envp[path[1]] = ft_strdup(pwd_old);
+		ft_clean(env);
+		path_x->content = ft_strdup(path_v);
+		path_y->content = ft_strdup(pwd_old);
 		(path_v != NULL) ? free(path_v) : 0;
 		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
 		return (1);
@@ -54,11 +61,17 @@ int		one_and_too_many_argv_hel_help(char **command_line,
 }
 
 int		one_and_too_many_argv_help(char **command_line,
-									char **envp, char *pwd_old, int *path)
+									t_env **env, char *pwd_old)
 {
+	t_env *path_x;
+	t_env *path_y;
+
+
+	path_x = find_elem(env, "PWD");
+	path_y = find_elem(env, "OLDPWD");
 	if (command_line[1][0] == '$')
 	{
-		path_handler(command_line, pwd_old, envp);
+		path_handler(command_line, pwd_old, env);
 		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
 		return (1);
 	}
@@ -66,31 +79,45 @@ int		one_and_too_many_argv_help(char **command_line,
 				&& ft_strlen(command_line[1]) == 2))
 	{
 		chdir("/Users/otimofie");
-		ft_clean(envp);
-		envp[path[0]] = ft_strdup("PWD=/Users/otimofie");
-		envp[path[1]] = ft_strdup(pwd_old);
+		ft_clean(env);
+		path_x->content = ft_strdup("PWD=/Users/otimofie");
+		path_y->content = ft_strdup(pwd_old);
 		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
 		return (1);
 	}
-	else if (one_and_too_many_argv_hel_help(command_line, envp, pwd_old, path))
+	else if (one_and_too_many_argv_hel_help(command_line, env, pwd_old))
 		return (1);
 	return (0);
 }
 
 short	one_and_too_many_argv(char **command_line,
-								char *pwd_old, char **envp)
+								char *pwd_old, t_env **env)
 {
-	int path[2];
+	ft_printf("%s%s\n%s", CYAN, "3", RESET);
 
-	path[0] = detect_del_var("PWD", envp);
-	path[1] = detect_del_var("OLDPWD", envp);
+	t_env *path_x;
+	t_env *path_y;
+
+
+	path_x = find_elem(env, "PWD");
+	path_y = find_elem(env, "OLDPWD");
+
+	ft_printf("%s%s\n%s", CYAN, "4", RESET);
+
 	if (len_char_2d_array(command_line) == 1)
 	{
 		chdir("/Users/otimofie");
-		ft_clean(envp);
-		envp[path[0]] = ft_strdup("PWD=/Users/otimofie");
-		envp[path[1]] = ft_strdup(pwd_old);
+
+		ft_printf("%s%s\n%s", CYAN, "5", RESET);
+
+		ft_clean(env);
+		ft_printf("%s%s\n%s", CYAN, "7", RESET);
+		
+		
+		path_x->content = ft_strdup("/Users/otimofie");
+		path_y->content = ft_strdup(pwd_old);
 		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
+
 		return (0);
 	}
 	else if (len_char_2d_array(command_line) != 2)
@@ -99,7 +126,7 @@ short	one_and_too_many_argv(char **command_line,
 		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
 		return (0);
 	}
-	else if (one_and_too_many_argv_help(command_line, envp, pwd_old, path))
+	else if (one_and_too_many_argv_help(command_line, env, pwd_old))
 		return (0);
 	return (1);
 }

@@ -7,16 +7,20 @@
 # include <dirent.h>
 # include <signal.h>
 
-typedef	struct	s_env
+
+
+typedef struct      s_env
 {
-	char		*name;
-	char		*content;
-}				t_env;
+    char            *name;
+    char            *content;
+    struct  s_env   *next;
+}                   t_env;
 
 // void	echo(char *str, char **envp);
-// void	cd(char *str, char **envp);
+void	cd(char *str, t_env **env);
 // void	exit_minishell(char **envp);
-// void 	env_minishell(char **envp);
+void 	env_minishell(t_env *env);
+void	signal_handler(int sig_num);
 
 // char 	**setenv_minishell(char *str, char **envp);
 
@@ -24,10 +28,10 @@ typedef	struct	s_env
 // void	run_buitin_cmd(char *line, char **env_array);
 // char	*get_global_var(char **envp, char *command);
 // char	**init_envp_buf(char **envp);
-// void	ft_clean(char **envp);
-// void	signal_handler(int sig_num);
-// int		detect_del_var(char *env, char **haystack);
-// short	one_and_too_many_argv(char **command_line, char *pwd_old, char **envp);
+void	ft_clean(t_env **env);
+int		detect_del_var(char *env, char **haystack);
+short	one_and_too_many_argv(char **command_line, char *pwd_old, t_env **env);
+t_env   *find_elem(t_env **env, char *str);
 // int		env_var_detection(char *str);
 // int		spaces_quantity(char **arguments, int start_index);
 // char	*find_binary_path(char *binary_name, char **env_array);

@@ -12,79 +12,47 @@
 
 #include "../includes/minishell.h"
 
-char	*get_global_var(char **envp, char *command)
+t_env   *find_elem(t_env **head, char *str)
 {
-	int		i;
-	char	*buf;
-	char	*result;
-
-	i = 0;
-	buf = NULL;
-	result = NULL;
-	while (envp[i])
-	{
-		if (ft_strncmp(envp[i], &command[1], ft_strlen(&command[1])) == 0
-			&& envp[i][ft_strlen(&command[1])] == '=')
-		{
-			buf = ft_strdup(envp[i]);
-			break ;
-		}
-		i++;
-	}
-	if (buf)
-	{
-		i = ft_char_position(buf, '=');
-		result = ft_strdup(&buf[++i]);
-		free(buf);
-	}
-	return (result);
+	t_env *current = *head;
+    while (current)
+    {
+        if (ft_strcmp( (current)->name, str) == 0)
+        {
+        	// ft_putstr("asdf\n");
+            return (current);
+        }
+        current = (current)->next;
+    }
+    return (NULL);
 }
 
-int		detect_del_var_cd_del(char *env, char **haystack)
+void	ft_clean(t_env **env)
 {
-	int i;
-	int len_of_env;
+	// t_env **path =(t_env **)malloc(sizeof(t_env *) * 2);
 
-	i = 0;
-	len_of_env = ft_strlen(env);
-	while (haystack[i])
+	t_env *path_x;
+	t_env *path_y;
+
+
+	path_x = find_elem(env, "PWD");
+	path_y = find_elem(env, "OLDPWD");
+
+			ft_printf("%s%s\n%s", CYAN, path_x->content, RESET);
+
+
+
+
+	if (path_x->content != NULL)
 	{
-		if (ft_strncmp(env, haystack[i], len_of_env) == 0)
-			return (i);
-		i++;
+		free(path_x->content);
 	}
-	return (0);
+	if (path_y->content != NULL)
+		free(path_y->content);
+	
+	ft_printf("%s%s\n%s", CYAN, "6", RESET);
 }
 
-void	ft_clean(char **envp)
-{
-	int path[2];
-
-	path[0] = detect_del_var_cd_del("PWD", envp);
-	path[1] = detect_del_var_cd_del("OLDPWD", envp);
-	if (envp[path[0]] != NULL)
-		free(envp[path[0]]);
-	if (envp[path[1]] != NULL)
-		free(envp[path[1]]);
-}
-
-char	**init_envp_buf(char **envp)
-{
-	int		i;
-	int		len;
-	char	**envp_buf;
-
-	i = 0;
-	len = len_char_2d_array(envp) + 1;
-	envp_buf = (char **)malloc(sizeof(char *) * (len));
-	while (envp[i])
-	{
-		envp_buf[i] = ft_strdup(envp[i]);
-		i++;
-	}
-	envp_buf[i] = NULL;
-	return (envp_buf);
-}
 
 int		detect_del_var(char *env, char **haystack)
 {

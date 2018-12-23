@@ -12,11 +12,11 @@
 
 #include "../includes/minishell.h"
 
-void	env_minishell(char **envp)
+void	env_minishell(t_env *env)
 {
-	int	i;
-
-	i = 0;
-	while (envp[i])
-		ft_printf("%s\n", envp[i++]);
+    while (env)
+    {
+        ft_printf("%s=%s\n", env->name, env->content);
+        env = env->next;
+    }  
 }

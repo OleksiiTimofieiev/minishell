@@ -13,18 +13,18 @@
 NAME		= minishell
 
 CORE		= main.c \
-			echo.c \
-			echo_2.c \
 			cd.c \
 			cd_2.c \
 			env.c \
-			setenv.c \
-			exit.c \
 			env_infrastructure.c \
-			unsetenv.c \
-			fork_execve_module.c \
-			fork_execve_module_2.c \
 			signal.c \
+						# echo.c \
+			# echo_2.c \
+						# setenv.c \
+			# exit.c \
+			# unsetenv.c \
+			# fork_execve_module.c \
+			# fork_execve_module_2.c \
 
 SRCS        = $(addprefix srcs/, $(CORE))
 
