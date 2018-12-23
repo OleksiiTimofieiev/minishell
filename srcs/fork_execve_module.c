@@ -40,7 +40,7 @@ void	run_buitin_cmd_helper(char *binary, char **argument, char **env_vars)
 	}
 }
 
-int		len_of_ll(t_env *env)
+int		len_of_list(t_env *env)
 {
 	int i;
 
@@ -60,7 +60,7 @@ char 	**env_vars_array(t_env *env)
 	char 	**result;
 
 	i= 0;
-	len = len_of_ll(env);
+	len = len_of_list(env);
 	result = (char **)malloc(sizeof(char *) * (len + 1));
 
 	while (env)

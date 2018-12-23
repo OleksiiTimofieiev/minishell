@@ -82,22 +82,17 @@ char	*find_dir_path(char *binary_name, char **path_list)
 
 char	*find_binary_path(char *binary_name, t_env **env)
 {
-	// int		index;
 	char 	*path;
 	char	**path_list;
-	// char	*buf;
 	char	*full_binary;
 	char	*result;
 
 	path = ft_strdup(find_elem(env, "PATH")->content);
 	path_list = ft_strsplit(path, ':');
-	// buf = ft_strdup(path_list[0]);
 	free(path);
-	// path_list[0] = ft_strdup(&buf[5]);
 	if (!(full_binary = find_dir_path(binary_name, path_list)))
 	{
 		ft_clean_2d_char(path_list);
-		// free(buf);
 		return (full_binary);
 	}
 	result = ft_strnew(ft_strlen(full_binary) + 1 + ft_strlen(binary_name));
@@ -105,8 +100,6 @@ char	*find_binary_path(char *binary_name, t_env **env)
 	ft_strcat(result, "/");
 	ft_strcat(result, binary_name);
 	ft_clean_2d_char(path_list);
-	
-	// free(buf);
 	free(full_binary);
 	return (result);
 }

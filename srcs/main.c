@@ -13,6 +13,11 @@
 #include "../includes/minishell.h"
 
 // TODO: leaks and norminette
+// TODO: cd $PWD/srcs
+// TODO: setenv tilda and $
+// TODO: handle of "" and '';
+
+// TODO: remaster main, fork + setenv, unsetenv;
 
 // char	**check(char **envp_buf)
 // {
@@ -26,7 +31,6 @@
 // 	return (envp_buf);
 // }
 
-// TODO: remaster main, fork + setenv, unsetenv;
 
 extern	char **environ;
 
@@ -90,10 +94,7 @@ void	execution_cycle(t_env **env, char **cmd_array)
 		else if (!ft_strncmp(&cmd_array[i][j], "exit", 4))
 			exit_minishell(env);
 	// else if (!ft_strncmp(&cmd_array[i][j], "setenv", 6))
-	// {
-	// 		test = setenv_minishell(str, envp_buf);
-	// 		// test = buf;
-	// }
+	// 		setenv_minishell(str, env);
 	// // else if (!ft_strncmp(&cmd_array[i][j], "unsetenv", 8))
 	// // {
 	// // 	envp_buf = unsetenv_minishell(str, envp_buf);

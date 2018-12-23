@@ -72,26 +72,19 @@ void	cd(char *str, t_env **env)
 	len = 0;
 	command_line = ft_strsplit(str, 32);
 	ft_memset(pwd_old, 0x0, sizeof(pwd_old));
-	// ft_strcat(pwd_old, "OLDPWD=");
 	getcwd(pwd_old, sizeof(pwd_old));
-
 	if (!one_and_too_many_argv(command_line, pwd_old, env))
 		return ;
-
 	len = (command_line[1][0] == '~') ? len += ft_strlen("/Users/otimofie") : 0;
 	pwd_new = ft_strnew((ft_strlen(command_line[1]) + 1 + len));
-
 	ft_memset(pwd_new, 0x0, sizeof(pwd_new));
-
 	tilda(command_line, pwd_new);
-
 	if (!cd_main(pwd_new, pwd_old, env, command_line))
 	{
 		(pwd_new) ? free(pwd_new) : 0;
 		ft_clean_2d_char(command_line);
 		return ;
 	}
-
 	free(pwd_new);
 	ft_clean_2d_char(command_line);
 }

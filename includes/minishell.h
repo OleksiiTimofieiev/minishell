@@ -7,8 +7,6 @@
 # include <dirent.h>
 # include <signal.h>
 
-
-
 typedef struct      s_env
 {
     char            *name;
@@ -16,18 +14,26 @@ typedef struct      s_env
     struct  s_env   *next;
 }                   t_env;
 
+/*
+**************************** core ******************************
+*/
+
 void	echo(char *str, t_env **env);
 void	cd(char *str, t_env **env);
 void	exit_minishell(t_env **env);
 void 	env_minishell(t_env *env);
 void	signal_handler(int sig_num);
+void	run_buitin_cmd(char *line, t_env **env);
 
 // char 	**setenv_minishell(char *str, char **envp);
-
 // char	**unsetenv_minishell(char *str, char **envp_init);
-void	run_buitin_cmd(char *line, t_env **env);
 // char	*get_global_var(char **envp, char *command);
 // char	**init_envp_buf(char **envp);
+
+/*
+**************************** infrastructure ******************************
+*/
+
 void	ft_clean(t_env **env);
 int		detect_del_var(char *env, char **haystack);
 short	one_and_too_many_argv(char **command_line, char *pwd_old, t_env **env);
