@@ -15,8 +15,6 @@
 // TODO: leaks and norminette;
 // TODO: all tests from the form;
 
-// TODO: ls -la $PWD and $PWD/srcs for some flag, what if no env vars;
-
 // TODO: move from HOME var as static string;
 
 // TODO: handle of "" and '';

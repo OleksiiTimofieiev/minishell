@@ -62,7 +62,6 @@ char 	**env_vars_array(t_env *env)
 	i= 0;
 	len = len_of_list(env);
 	result = (char **)malloc(sizeof(char *) * (len + 1));
-
 	while (env)
 	{
 		result[i] = ft_strnew(ft_strlen(env->name)+ 1+ ft_strlen(env->content));
@@ -82,7 +81,11 @@ void	mod_flags(char **arguments, t_env *env)
 
 	i = 0;
 	while (arguments[i])
-		special_char_fork(&arguments[i++], env);
+	{
+		special_char_fork(&arguments[i], env);
+		tilda_fork(&arguments[i]);
+		i++;
+	}
 }
 
 void	run_buitin_cmd(char *line, t_env *env)
@@ -94,7 +97,6 @@ void	run_buitin_cmd(char *line, t_env *env)
 	env_vars = env_vars_array(env);
 	arguments = ft_strsplit(line, 32);
 	mod_flags(arguments, env);
-	// $pwd and tilda...
 	binary = find_binary_path(arguments[0], &env);
 	if (binary == NULL && arguments[0])
 		binary = ft_strdup(arguments[0]);
