@@ -27,13 +27,14 @@ void	run_buitin_cmd(char *line, t_env **env);
 
 // char 	**setenv_minishell(char *str, char **envp);
 // char	**unsetenv_minishell(char *str, char **envp_init);
-// char	*get_global_var(char **envp, char *command);
-// char	**init_envp_buf(char **envp);
+
+
 
 /*
-**************************** infrastructure ******************************
+**************************** infrastructure ********************
 */
 
+void	init_env(t_env **env);
 void	ft_clean(t_env **env);
 int		detect_del_var(char *env, char **haystack);
 short	one_and_too_many_argv(char **command_line, char *pwd_old, t_env **env);

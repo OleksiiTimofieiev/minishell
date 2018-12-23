@@ -12,6 +12,8 @@
 
 #include "../includes/minishell.h"
 
+extern	char **environ;
+
 t_env   *find_elem(t_env **head, char *str)
 {
 	t_env *current = *head;
@@ -37,4 +39,38 @@ void	ft_clean(t_env **env)
 	}
 	if (path_y->content != NULL)
 		free(path_y->content);
+}
+
+
+void    push_back(t_env **head, char *str)
+{
+    t_env   *new;
+    t_env   *last;
+    char    **split;
+    
+    split = ft_strsplit(str, '=');
+    last = *head;
+
+    new = (t_env *)malloc(sizeof(t_env));
+    new->name = strdup(split[0]);
+    new->content = strdup(split[1]);
+    new->next = NULL;
+    if (!*head)
+        *head = new;
+    else
+    {
+        while (last->next)
+            last = last->next;
+        last->next = new;
+    }
+    ft_clean_2d_char(split);
+}
+
+void	init_env(t_env **env)
+{
+	int i;
+
+	i = 0;
+	while (environ[i])
+		push_back(env, environ[i++]);
 }

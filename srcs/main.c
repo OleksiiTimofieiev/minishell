@@ -31,10 +31,6 @@
 // 	return (envp_buf);
 // }
 
-
-extern	char **environ;
-
-
 int		ft_quantity_of_chars(char *line, char c)
 {
 	int i;
@@ -107,40 +103,6 @@ void	execution_cycle(t_env **env, char **cmd_array)
 	}
 }
 
-void    push_back(t_env **head, char *str)
-{
-    t_env   *new;
-    t_env   *last;
-    char    **split;
-    
-    split = ft_strsplit(str, '=');
-    last = *head;
-
-    new = (t_env *)malloc(sizeof(t_env));
-    new->name = strdup(split[0]);
-    new->content = strdup(split[1]);
-    new->next = NULL;
-
-    if (!*head)
-        *head = new;
-    else
-    {
-        while (last->next)
-            last = last->next;
-        last->next = new;
-    }
-    ft_clean_2d_char(split);
-}
-
-void	init_m(t_env **env)
-{
-	int i;
-
-	i = 0;
-	while (environ[i])
-		push_back(env, environ[i++]);
-}
-
 void	minishell(void)
 {
 	char	*line;
@@ -149,7 +111,7 @@ void	minishell(void)
 	// ft_printf("%s%s\n%s", CYAN, "1", RESET);
 	
 	env = NULL;
-	init_m(&env);
+	init_env(&env);
 
 	// ft_printf("%s%s\n%s", CYAN, "2", RESET);
 
