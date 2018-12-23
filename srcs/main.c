@@ -109,19 +109,10 @@ void	minishell(void)
 	char	**cmd_array;
 	t_env	*env;
 	
-	signal(SIGINT, signal_handler); // to minishell
+	signal(SIGINT, signal_handler);
+
 	env = NULL;
 	init_env(&env);
-
-
-	if (!env)
-	{
-		ft_printf("%s%s%s", RED, "No env variables.\n", RESET);
-		system("leaks -q minishell");
-		// add 3 mandatory vars;
-		exit(0);
-	}
-
 	while (1)
 	{
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
@@ -141,14 +132,10 @@ void	minishell(void)
 			cmd_array[0] = ft_strdup(line);
 			cmd_array[1] = NULL;
 		}
- 
 		execution_cycle(env, cmd_array);
-
 		(line) ? free(line) : 0;
 		(cmd_array != NULL) ? ft_clean_2d_char(cmd_array) : 0;
-
 		system("leaks -q minishell");
-
 	}
 }
 
