@@ -84,6 +84,7 @@ void	run_buitin_cmd(char *line, t_env *env)
 
 	env_vars = env_vars_array(env);
 	argument = ft_strsplit(line, 32);
+	// $pwd and tilda...
 	binary = find_binary_path(argument[0], &env);
 	if (binary == NULL && argument[0])
 		binary = ft_strdup(argument[0]);

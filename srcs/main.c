@@ -15,7 +15,7 @@
 // TODO: leaks and norminette;
 // TODO: all tests from the form;
 
-// TODO: ls -la $PWD and $PWD/srcs;
+// TODO: ls -la $PWD and $PWD/srcs for some flag;
 
 // TODO: handle of "" and '';
 // TODO: main infrastructure;
@@ -25,7 +25,7 @@
 // char	**check(char **envp_buf)
 // {
 //		t_env;
-
+//
 // 	if (detect_del_var("OLDPWD", envp_buf) == 'x')
 // 		envp_buf = setenv_minishell("setenv OLDPWD /Users/otimofie 1",
 // 		envp_buf);
