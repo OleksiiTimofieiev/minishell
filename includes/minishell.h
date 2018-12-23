@@ -40,5 +40,6 @@ t_env				*find_elem(t_env **env, char *str);
 int					env_var_detection(char *str);
 int					spaces_quantity(char **arguments, int start_index);
 char				*find_binary_path(char *binary_name, t_env **env_array);
+void				special_char(char **arguments, t_env *env);
 
 #endif

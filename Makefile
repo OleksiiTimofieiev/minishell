@@ -25,6 +25,7 @@ CORE		= main.c \
 			exit.c \
 			setenv.c \
 			unsetenv.c \
+			special_char.c \
 			
 SRCS        = $(addprefix srcs/, $(CORE))
 

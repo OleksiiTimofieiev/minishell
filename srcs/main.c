@@ -17,9 +17,11 @@
 
 // TODO: ls -la $PWD and $PWD/srcs for some flag, what if no env vars;
 
-// TODO: handle of "" and '';
-// TODO: main infrastructure;
 // TODO: move from HOME var as static string;
+
+// TODO: handle of "" and '';
+
+// TODO: main infrastructure;
 
 // char	**check(char **envp_buf)
 // {
