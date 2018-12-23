@@ -12,6 +12,57 @@
 
 #include "../includes/minishell.h"
 
+int		find_char(char *str, char c)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+		{
+			j = i;
+			return (j);
+		}
+		i++;
+	}
+	return (j);
+}
+
+char 	*woohoo(char *str, t_env **env)
+{
+	int		j;
+	char	*path;
+	char	*env_value;
+	char	*buf;
+	t_env	*test;
+
+	path = NULL;
+	env_value = NULL;
+	buf = NULL;
+	j = find_char(str, '/');
+	if (j)
+	{
+		str[j] = '\0';
+		buf = ft_strdup(&str[1]);
+		test = find_elem(env, buf);
+		if (test)
+			env_value = ft_strdup(find_elem(env, buf)->content);
+		if (env_value)
+		{
+			path = ft_strnew(ft_strlen(env_value) + 1 + ft_strlen(&str[j + 1]));
+			ft_strcat(path, env_value);
+			ft_strcat(path, "/");
+			ft_strcat(path, &str[j + 1]);
+		}
+	}
+	(env_value) ? free(env_value) : 0;
+	(buf) ? free(buf) : 0;
+	return (path);
+}
+
 void	path_handler(char **command_line, char *pwd_old, t_env **env)
 {
 	char	*path_v;
@@ -19,17 +70,24 @@ void	path_handler(char **command_line, char *pwd_old, t_env **env)
 	t_env 	*path_x;
 	t_env 	*path_y;
 
+	path_v = NULL;
+	find_env = NULL;
 	path_x = find_elem(env, "PWD");
 	path_y = find_elem(env, "OLDPWD");
-	find_env = find_elem(env, &command_line[1][1]);
-	path_v = ft_strdup(find_env->content);
-
+	path_v = woohoo(command_line[1], env);
+	if (!path_v)
+	{
+		find_env = find_elem(env, &command_line[1][1]);
+		if (find_env)
+			path_v = ft_strdup(find_env->content);	
+	}
 	if (chdir(path_v) == 0)
 	{
 		ft_clean(env);
 		path_x->content = ft_strdup(path_v);
 		path_y->content = ft_strdup(pwd_old);
 	}
+
 	if (path_v != NULL)
 		free(path_v);
 }
@@ -67,6 +125,9 @@ int		one_and_too_many_argv_help(char **command_line,
 
 	path_x = find_elem(env, "PWD");
 	path_y = find_elem(env, "OLDPWD");
+
+	// TODO: cd $PWD and $PWD/srcs
+
 	if (command_line[1][0] == '$')
 	{
 		path_handler(command_line, pwd_old, env);
