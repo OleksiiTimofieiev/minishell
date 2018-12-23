@@ -12,7 +12,8 @@
 
 #include "../includes/minishell.h"
 
-// TODO: leaks and norminette
+// TODO: leaks and norminette;
+// TODO: all tests from the form;
 
 // TODO: ls -la $PWD and $PWD/srcs;
 // TODO: handle of "" and '';
