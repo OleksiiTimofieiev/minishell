@@ -74,3 +74,19 @@ void	init_env(t_env **env)
 	while (environ[i])
 		push_back(env, environ[i++]);
 }
+
+void    check_special_env(t_env *env)
+{
+    t_env *tests;
+
+    tests = find_elem(&env, "OLDPWD");
+    if (!tests)
+        setenv_minishell("setenv OLDPWD /Users/otimofie", env);
+    tests = find_elem(&env, "PWD");
+    if (!tests)
+        setenv_minishell("setenv PWD /Users/otimofie", env);
+    tests = find_elem(&env, "HOME");
+    if (!tests)
+        setenv_minishell("setenv HOME /Users/otimofie", env);
+}
+

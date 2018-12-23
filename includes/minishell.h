@@ -43,6 +43,7 @@ char				*find_binary_path(char *binary_name, t_env **env_array);
 void				special_char(char **arguments, t_env *env);
 void				special_char_fork(char **arguments, t_env *env);
 void				tilda_fork(char **arguments);
+void				check_special_env(t_env *env);
 
 
 #endif

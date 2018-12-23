@@ -18,21 +18,6 @@
 
 // TODO: main infrastructure;
 
-void	check(t_env *env)
-{
-	t_env *tests;
-
-	tests = find_elem(&env, "OLDPWD");
-	if (!tests)
-		setenv_minishell("setenv OLDPWD /Users/otimofie", env);
-	tests = find_elem(&env, "PWD");
-	if (!tests)
-		setenv_minishell("setenv PWD /Users/otimofie", env);
-	tests = find_elem(&env, "HOME");
-	if (!tests)
-		setenv_minishell("setenv HOME /Users/otimofie", env);
-}
-
 int		ft_quantity_of_chars(char *line, char c)
 {
 	int i;
@@ -81,7 +66,7 @@ void	execution_cycle(t_env *env, char **cmd_array)
 	i = 0;
 	while (cmd_array[i])
 	{
-		check(env);
+		check_special_env(env);
 		j = detect_not_space(cmd_array[i]);
 		if (!ft_strncmp(&cmd_array[i][j], "cd", 2))
 			cd(cmd_array[i], &env);
@@ -101,6 +86,23 @@ void	execution_cycle(t_env *env, char **cmd_array)
 	}
 }
 
+char	**cmd_array_constructor(char *line)
+{
+		char **cmd_array;
+
+		change_to_spaces(line, '\t', ' ');
+
+		if (ft_quantity_of_chars(line, ';'))
+			cmd_array = ft_strsplit(line, ';');
+		else
+		{
+			cmd_array = (char **)malloc(sizeof(char *) * 2);
+			cmd_array[0] = ft_strdup(line);
+			cmd_array[1] = NULL;
+		}
+		return (cmd_array);
+}
+
 void	minishell(void)
 {
 	char	*line;
@@ -108,6 +110,7 @@ void	minishell(void)
 	t_env	*env;
 	
 	env = NULL;
+	cmd_array = NULL;
 	signal(SIGINT, signal_handler);
 	init_env(&env);
 	if (!env)
@@ -120,15 +123,7 @@ void	minishell(void)
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
 		if (!(get_next_line(0, &line)))
 			exit(0);
-		change_to_spaces(line, '\t', ' ');
-		if (ft_quantity_of_chars(line, ';'))
-			cmd_array = ft_strsplit(line, ';');
-		else
-		{
-			cmd_array = (char **)malloc(sizeof(char *) * 2);
-			cmd_array[0] = ft_strdup(line);
-			cmd_array[1] = NULL;
-		}
+		cmd_array = cmd_array_constructor(line);
 		execution_cycle(env, cmd_array);
 		(line) ? free(line) : 0;
 		(cmd_array != NULL) ? ft_clean_2d_char(cmd_array) : 0;
