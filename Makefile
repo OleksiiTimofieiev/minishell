@@ -10,41 +10,41 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= minishell
+NAME		= 	minishell
 
-CORE		= main.c \
-			cd.c \
-			cd_2.c \
-			env.c \
-			env_infrastructure.c \
-			signal.c \
-			fork_execve_module.c \
-			fork_execve_module_2.c \
-			echo.c \
-			echo_2.c \
-			exit.c \
-			setenv.c \
-			unsetenv.c \
-			special_char.c \
-			special_char_fork.c \
-			tilda_fork.c \
+CORE		= 	main.c \
+				cd.c \
+				cd_2.c \
+				env.c \
+				env_infrastructure.c \
+				signal.c \
+				fork_execve_module.c \
+				fork_execve_module_2.c \
+				echo.c \
+				echo_2.c \
+				exit.c \
+				setenv.c \
+				unsetenv.c \
+				special_char.c \
+				special_char_fork.c \
+				tilda_fork.c \
 			
-SRCS        = $(addprefix srcs/, $(CORE))
+SRCS        	= $(addprefix srcs/, $(CORE))
 
-CFLAGS		= -Wall -Wextra -Werror
-OBJECTS 	= $(SRCS:.c=.o)
-LIB			= ./libft.a
-INC			= ./includes/minishell.h
+CFLAGS			= -Wall -Wextra -Werror
+OBJECTS 		= $(SRCS:.c=.o)
+LIB				= ./libft.a
+INC				= ./includes/minishell.h
 
 #colors
-RESET		= \033[m
-RED         = \033[1;31m
-GREEN       = \033[01;38;05;46m
-YELLOW      = \033[01;38;05;226m
-BLUE        = \033[03;38;05;21m
-VIOLET      = \033[01;38;05;201m
-CYAN        = \033[1;36m
-WHITE       = \033[01;38;05;15m
+RESET			= \033[m
+RED         	= \033[1;31m
+GREEN       	= \033[01;38;05;46m
+YELLOW      	= \033[01;38;05;226m
+BLUE        	= \033[03;38;05;21m
+VIOLET      	= \033[01;38;05;201m
+CYAN        	= \033[1;36m
+WHITE       	= \033[01;38;05;15m
 
 all: $(NAME)
 
