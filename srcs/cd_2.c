@@ -31,6 +31,14 @@ int		find_char(char *str, char c)
 	return (j);
 }
 
+void	woohoo_help(char **path, char *env_value, char *str, int j)
+{
+	*path = ft_strnew(ft_strlen(env_value) + 1 + ft_strlen(&str[j + 1]));
+	ft_strcat(*path, env_value);
+	ft_strcat(*path, "/");
+	ft_strcat(*path, &str[j + 1]);
+}
+
 char 	*woohoo(char *str, t_env **env)
 {
 	int		j;
@@ -52,10 +60,7 @@ char 	*woohoo(char *str, t_env **env)
 			env_value = ft_strdup(find_elem(env, buf)->content);
 		if (env_value)
 		{
-			path = ft_strnew(ft_strlen(env_value) + 1 + ft_strlen(&str[j + 1]));
-			ft_strcat(path, env_value);
-			ft_strcat(path, "/");
-			ft_strcat(path, &str[j + 1]);
+			woohoo_help(&path, env_value, str, j);
 		}
 	}
 	(env_value) ? free(env_value) : 0;
