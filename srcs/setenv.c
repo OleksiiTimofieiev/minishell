@@ -31,7 +31,7 @@ int		get_index_envp(char **envp_find, char *name)
 	return (0);
 }
 
-char **get_buf_envp(char **arguments, char **envp_init)
+char  **get_buf_envp(char **arguments, char **envp_init)
 {
 	int		i;
 	int		len;
@@ -62,7 +62,7 @@ char **get_buf_envp(char **arguments, char **envp_init)
 	tmp[++i] = NULL;
 	
 
- return (tmp);
+	return (tmp);
 }
 
 char **envp_res_logic(char **arguments, char **envp_init, int i)
@@ -79,7 +79,7 @@ char **envp_res_logic(char **arguments, char **envp_init, int i)
 	return (envp_init);
 }
 
-char **setenv_minishell(char *str, char **envp_init)
+char **setenv_minishell(char *str, t_env **env)
 {
 	int		i;
 	char	**arguments;

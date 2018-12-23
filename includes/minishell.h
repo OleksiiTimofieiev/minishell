@@ -34,6 +34,7 @@ void	run_buitin_cmd(char *line, t_env **env);
 **************************** infrastructure ********************
 */
 
+void    push_back(t_env **head, char *str);
 void	init_env(t_env **env);
 void	ft_clean(t_env **env);
 int		detect_del_var(char *env, char **haystack);

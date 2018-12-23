@@ -19,6 +19,7 @@
 // TODO: env -i ./minishell
 // TODO: main infrastructure;
 // TODO: handle of "" and '';
+// TODO: ls -la $PWD and $PWD/srcs;
 
 // TODO: remaster main, fork + setenv, unsetenv;
 
