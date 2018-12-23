@@ -43,7 +43,7 @@ void	tilda_setenv(char **arguments)
 {
 	char *result;
 
-	if (arguments[2][0] == '~' && arguments[2][1] = '/')
+	if (arguments[2][0] == '~' && arguments[2][1] == '/')
 	{
 		result = ft_strnew(ft_strlen("/Users/otimofie") + ft_strlen(&arguments[2][1]));
 		ft_strcat(result, "/Users/otimofie");
@@ -68,6 +68,7 @@ void	setenv_minishell(char *str, t_env *env)
 		ft_clean_2d_char(arguments);
 		return ;
 	}
+	tilda_setenv(arguments);
 
 	env_var = find_elem(&env, arguments[1]);
 
