@@ -14,7 +14,7 @@
 
 // TODO: leaks and norminette in all folders;
 
-// TODO: handle of "" and ''; noy 0 or % 0
+// TODO: handle of "" and ''; 0 or % 0
 
 void	execution_cycle(t_env *env, char **cmd_array)
 {
