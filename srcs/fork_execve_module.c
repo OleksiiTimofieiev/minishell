@@ -93,4 +93,5 @@ void	run_buitin_cmd(char *line, t_env **env)
 	if (binary == NULL && argument[0])
 		binary = ft_strdup(argument[0]);
 	run_buitin_cmd_helper(binary, argument, env_vars);
+	ft_clean_2d_char(env_vars);
 }

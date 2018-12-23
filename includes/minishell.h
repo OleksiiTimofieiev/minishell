@@ -18,7 +18,7 @@ typedef struct      s_env
 
 void	echo(char *str, t_env **env);
 void	cd(char *str, t_env **env);
-// void	exit_minishell(char **envp);
+void	exit_minishell(t_env **env);
 void 	env_minishell(t_env *env);
 void	signal_handler(int sig_num);
 

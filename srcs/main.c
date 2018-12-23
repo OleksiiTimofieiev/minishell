@@ -26,7 +26,7 @@
 // 	return (envp_buf);
 // }
 
-// TODO: remaster main, echo, env, exit, fork, setenv, unsetenv;
+// TODO: remaster main, fork + setenv, unsetenv;
 
 extern	char **environ;
 
@@ -87,8 +87,8 @@ void	execution_cycle(t_env **env, char **cmd_array)
 			echo(cmd_array[i], env);
 		else if (ft_strequ(&cmd_array[i][j], "env"))
 			env_minishell(*env);
-	// else if (!ft_strncmp(&cmd_array[i][j], "exit", 4))
-	// 	exit_minishell(envp_buf);
+		else if (!ft_strncmp(&cmd_array[i][j], "exit", 4))
+			exit_minishell(env);
 	// else if (!ft_strncmp(&cmd_array[i][j], "setenv", 6))
 	// {
 	// 		test = setenv_minishell(str, envp_buf);
@@ -139,12 +139,17 @@ void	init_m(t_env **env)
 		push_back(env, environ[i++]);
 }
 
-void	minishell(t_env **env)
+void	minishell(void)
 {
 	char	*line;
 	char	**cmd_array;
+	t_env	*env;
+	// ft_printf("%s%s\n%s", CYAN, "1", RESET);
+	
+	env = NULL;
+	init_m(&env);
 
-	ft_printf("%s%s\n%s", CYAN, "2", RESET);
+	// ft_printf("%s%s\n%s", CYAN, "2", RESET);
 
 	while (1)
 	{
@@ -166,24 +171,21 @@ void	minishell(t_env **env)
 			cmd_array[1] = NULL;
 		}
 // 
-		execution_cycle(env, cmd_array);
+		execution_cycle(&env, cmd_array);
 
 		(line) ? free(line) : 0;
 		(cmd_array != NULL) ? ft_clean_2d_char(cmd_array) : 0;
+
+		system("leaks -q minishell");
+
 	}
 }
 
 int		main(void)
 {
 	signal(SIGINT, signal_handler); // to minishell
-	t_env	*env;
-	ft_printf("%s%s\n%s", CYAN, "1", RESET);
-	
-	env = NULL;
-	init_m(&env);
 
-	minishell(&env);
-		system("leaks -q minishell");
+	minishell();
 
 	return (0);
 }

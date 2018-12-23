@@ -12,10 +12,27 @@
 
 #include "../includes/minishell.h"
 
-void	exit_minishell(char **envp)
+void	delete_list(t_env** head_ref) 
+{ 
+   t_env *current = *head_ref; 
+   t_env *next; 
+  
+   while (current != NULL)  
+   { 
+       next = current->next;
+       free(current->name);
+       free(current->content);
+       free(current); 
+       current = next; 
+   } 
+   *head_ref = NULL; 
+} 
+
+
+void	exit_minishell(t_env **env)
 {
-	(envp) ? ft_clean_2d_char(envp) : 0;
-			system("leaks -q minishell");
-	
+	if (env)
+		delete_list(env);
+	system("leaks -q minishell");
 	exit(0);
 }

@@ -17,12 +17,12 @@ t_env   *find_elem(t_env **head, char *str)
 	t_env *current = *head;
     while (current)
     {
-        if (ft_strcmp( (current)->name, str) == 0)
+        if (ft_strcmp( current->name, str) == 0)
         {
         	// ft_putstr("asdf\n");
             return (current);
         }
-        current = (current)->next;
+        current = current->next;
     }
     return (NULL);
 }

@@ -22,8 +22,9 @@ CORE		= main.c \
 			fork_execve_module_2.c \
 			echo.c \
 			echo_2.c \
+			exit.c \
+			
 						# setenv.c \
-			# exit.c \
 			# unsetenv.c \
 			
 SRCS        = $(addprefix srcs/, $(CORE))
