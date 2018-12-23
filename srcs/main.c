@@ -18,45 +18,7 @@
 
 // TODO: main infrastructure;
 
-int		ft_quantity_of_chars(char *line, char c)
-{
-	int i;
-	int quantity;
 
-	i = 0;
-	quantity = 0;
-	while (line[i])
-	{
-		if (line[i] == c)
-			quantity++;
-		i++;
-	}
-	return (quantity);
-}
-
-void	change_to_spaces(char *str, char find, char required)
-{
-	while (*str)
-	{
-		if (*str == find)
-			*str = required;
-		str++;
-	}
-}
-
-int		detect_not_space(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != 32)
-			return (i);
-		i++;
-	}
-	return (i);
-}
 
 void	execution_cycle(t_env *env, char **cmd_array)
 {
@@ -86,22 +48,7 @@ void	execution_cycle(t_env *env, char **cmd_array)
 	}
 }
 
-char	**cmd_array_constructor(char *line)
-{
-		char **cmd_array;
 
-		change_to_spaces(line, '\t', ' ');
-
-		if (ft_quantity_of_chars(line, ';'))
-			cmd_array = ft_strsplit(line, ';');
-		else
-		{
-			cmd_array = (char **)malloc(sizeof(char *) * 2);
-			cmd_array[0] = ft_strdup(line);
-			cmd_array[1] = NULL;
-		}
-		return (cmd_array);
-}
 
 void	minishell(void)
 {

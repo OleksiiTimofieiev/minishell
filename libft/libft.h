@@ -317,5 +317,6 @@ int					ft_line_is_digit(char *str);
 int					len_char_2d_array(char **array);
 char				**copy_2d_char(char **src);
 int					ft_char_position(char *str, char c);
+int					ft_quantity_of_chars(char *line, char c);
 
 #endif

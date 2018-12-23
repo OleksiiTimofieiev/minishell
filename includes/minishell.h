@@ -44,6 +44,9 @@ void				special_char(char **arguments, t_env *env);
 void				special_char_fork(char **arguments, t_env *env);
 void				tilda_fork(char **arguments);
 void				check_special_env(t_env *env);
+void				change_to_spaces(char *str, char find, char required);
+int					detect_not_space(char *str);
+char				**cmd_array_constructor(char *line);
 
 
 #endif

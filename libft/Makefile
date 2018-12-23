@@ -117,6 +117,7 @@ SRCS =  ft_printf.c \
 		len_char_2d_array.c \
 		copy_2d_char.c \
 		ft_char_position.c \
+		ft_quantity_of_chars.c \
 
 		#colors
 		RESET		= \033[m
