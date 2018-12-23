@@ -169,7 +169,6 @@ void	minishell(t_env **env)
 
 		(line) ? free(line) : 0;
 		(cmd_array != NULL) ? ft_clean_2d_char(cmd_array) : 0;
-		system("leaks -q minishell");
 	}
 }
 
@@ -183,5 +182,7 @@ int		main(void)
 	init_m(&env);
 
 	minishell(&env);
+		system("leaks -q minishell");
+	
 	return (0);
 }

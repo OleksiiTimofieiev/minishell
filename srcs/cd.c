@@ -81,7 +81,7 @@ void	cd(char *str, t_env **env)
 		return ;
 
 	len = (command_line[1][0] == '~') ? len += ft_strlen("/Users/otimofie") : 0;
-	pwd_new = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1 + len));
+	pwd_new = ft_strnew((ft_strlen(command_line[1]) + 1 + len));
 
 	ft_memset(pwd_new, 0x0, sizeof(pwd_new));
 
