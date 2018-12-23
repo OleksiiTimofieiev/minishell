@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-void	delete_list(t_env** head_ref) 
+static void	delete_list(t_env** head_ref) 
 { 
    t_env *current = *head_ref; 
    t_env *next; 
@@ -34,5 +34,6 @@ void	exit_minishell(t_env **env)
 	if (env)
 		delete_list(env);
 	system("leaks -q minishell");
+	
 	exit(0);
 }
