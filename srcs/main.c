@@ -16,10 +16,6 @@
 
 // TODO: handle of "" and ''; noy 0 or % 0
 
-// TODO: main infrastructure;
-
-
-
 void	execution_cycle(t_env *env, char **cmd_array)
 {
 	int i;
