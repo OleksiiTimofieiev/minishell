@@ -71,22 +71,6 @@ int		detect_not_space(char *str)
 	return (i);
 }
 
-void	delete_list(t_env** head_ref) 
-{ 
-   t_env *current = *head_ref; 
-   t_env *next; 
-  
-   while (current != NULL)  
-   { 
-       next = current->next;
-       free(current->name);
-       free(current->content);
-       free(current); 
-       current = next; 
-   } 
-   *head_ref = NULL; 
-} 
-
 void	execution_cycle(t_env **env, char **cmd_array)
 {
 	int i;
@@ -104,11 +88,7 @@ void	execution_cycle(t_env **env, char **cmd_array)
 		else if (ft_strequ(&cmd_array[i][j], "env"))
 			env_minishell(*env);
 		else if (!ft_strncmp(&cmd_array[i][j], "exit", 4))
-		{
-			delete_list(env);
-			system("leaks -q minishell");
-			exit(0);
-		}
+			exit_minishell(env);
 	// else if (!ft_strncmp(&cmd_array[i][j], "setenv", 6))
 	// {
 	// 		test = setenv_minishell(str, envp_buf);
@@ -169,10 +149,6 @@ void	minishell(void)
 	
 	env = NULL;
 	init_m(&env);
-
-	ft_printf("%s%s\n%s", CYAN, "1", RESET);
-	system("leaks -q minishell");
-
 
 	// ft_printf("%s%s\n%s", CYAN, "2", RESET);
 
