@@ -19,7 +19,6 @@ void	path_handler(char **command_line, char *pwd_old, t_env **env)
 	t_env 	*path_x;
 	t_env 	*path_y;
 
-
 	path_x = find_elem(env, "PWD");
 	path_y = find_elem(env, "OLDPWD");
 	find_env = find_elem(env, &command_line[1][1]);

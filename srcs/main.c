@@ -16,10 +16,11 @@
 
 // TODO: cd $PWD/srcs
 // TODO: setenv ~/srcs and $PWD, $PWD/srcs
-// TODO: env -i ./minishell
-// TODO: main infrastructure;
-// TODO: handle of "" and '';
 // TODO: ls -la $PWD and $PWD/srcs;
+// TODO: handle of "" and '';
+// TODO: main infrastructure;
+
+// TODO: env -i ./minishell
 
 // TODO: remaster main, fork + setenv, unsetenv;
 
