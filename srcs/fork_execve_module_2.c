@@ -12,20 +12,6 @@
 
 #include "../includes/minishell.h"
 
-int		find_env_path(char **env_array)
-{
-	int i;
-
-	i = 0;
-	while (env_array[i])
-	{
-		if (ft_strncmp("PATH", env_array[i], 4) == 0)
-			return (i);
-		i++;
-	}
-	return (0);
-}
-
 int		check_modes(char *path_buf, DIR *dir)
 {
 	struct stat buf;
@@ -94,23 +80,24 @@ char	*find_dir_path(char *binary_name, char **path_list)
 	return (path);
 }
 
-char	*find_binary_path(char *binary_name, char **env_array)
+char	*find_binary_path(char *binary_name, t_env **env)
 {
-	int		index;
+	// int		index;
+	char 	*path;
 	char	**path_list;
-	char	*buf;
+	// char	*buf;
 	char	*full_binary;
 	char	*result;
 
-	index = find_env_path(env_array);
-	path_list = ft_strsplit(env_array[index], ':');
-	buf = ft_strdup(path_list[0]);
-	free(path_list[0]);
-	path_list[0] = ft_strdup(&buf[5]);
+	path = ft_strdup(find_elem(env, "PATH")->content);
+	path_list = ft_strsplit(path, ':');
+	// buf = ft_strdup(path_list[0]);
+	free(path);
+	// path_list[0] = ft_strdup(&buf[5]);
 	if (!(full_binary = find_dir_path(binary_name, path_list)))
 	{
 		ft_clean_2d_char(path_list);
-		free(buf);
+		// free(buf);
 		return (full_binary);
 	}
 	result = ft_strnew(ft_strlen(full_binary) + 1 + ft_strlen(binary_name));
@@ -118,7 +105,8 @@ char	*find_binary_path(char *binary_name, char **env_array)
 	ft_strcat(result, "/");
 	ft_strcat(result, binary_name);
 	ft_clean_2d_char(path_list);
-	free(buf);
+	
+	// free(buf);
 	free(full_binary);
 	return (result);
 }

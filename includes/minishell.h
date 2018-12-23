@@ -25,7 +25,7 @@ void	signal_handler(int sig_num);
 // char 	**setenv_minishell(char *str, char **envp);
 
 // char	**unsetenv_minishell(char *str, char **envp_init);
-// void	run_buitin_cmd(char *line, char **env_array);
+void	run_buitin_cmd(char *line, t_env **env);
 // char	*get_global_var(char **envp, char *command);
 // char	**init_envp_buf(char **envp);
 void	ft_clean(t_env **env);
@@ -34,6 +34,6 @@ short	one_and_too_many_argv(char **command_line, char *pwd_old, t_env **env);
 t_env   *find_elem(t_env **env, char *str);
 // int		env_var_detection(char *str);
 // int		spaces_quantity(char **arguments, int start_index);
-// char	*find_binary_path(char *binary_name, char **env_array);
+char	*find_binary_path(char *binary_name, t_env **env_array);
 
 #endif

@@ -18,14 +18,15 @@ CORE		= main.c \
 			env.c \
 			env_infrastructure.c \
 			signal.c \
+			fork_execve_module.c \
+			fork_execve_module_2.c \
+
 						# echo.c \
 			# echo_2.c \
 						# setenv.c \
 			# exit.c \
 			# unsetenv.c \
-			# fork_execve_module.c \
-			# fork_execve_module_2.c \
-
+			
 SRCS        = $(addprefix srcs/, $(CORE))
 
 CFLAGS		= -Wall -Wextra -Werror

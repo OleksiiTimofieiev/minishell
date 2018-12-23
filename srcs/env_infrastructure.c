@@ -54,21 +54,21 @@ void	ft_clean(t_env **env)
 }
 
 
-int		detect_del_var(char *env, char **haystack)
-{
-	int i;
-	int len_of_env;
+// int		detect_del_var(char *env, char **haystack)
+// {
+// 	int i;
+// 	int len_of_env;
 
-	i = 0;
-	len_of_env = ft_strlen(env);
-	while (haystack[i])
-	{
-		if (ft_strncmp(env, haystack[i], len_of_env) == 0)
-		{
-			if (haystack[i][len_of_env] == '=')
-				return (i);
-		}
-		i++;
-	}
-	return ('x');
-}
+// 	i = 0;
+// 	len_of_env = ft_strlen(env);
+// 	while (haystack[i])
+// 	{
+// 		if (ft_strncmp(env, haystack[i], len_of_env) == 0)
+// 		{
+// 			if (haystack[i][len_of_env] == '=')
+// 				return (i);
+// 		}
+// 		i++;
+// 	}
+// 	return ('x');
+// }

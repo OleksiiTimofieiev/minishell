@@ -98,8 +98,8 @@ void	execution_cycle(t_env **env, char **cmd_array)
 	// // 	envp_buf = unsetenv_minishell(str, envp_buf);
 	// // 	envp_buf = check(envp_buf);
 	// // }
-	// else
-	// 	run_buitin_cmd(&cmd_array[i][j], envp_buf);
+	else
+		run_buitin_cmd(&cmd_array[i][j], env);
 
 		i++;
 	}
@@ -183,6 +183,6 @@ int		main(void)
 
 	minishell(&env);
 		system("leaks -q minishell");
-	
+
 	return (0);
 }

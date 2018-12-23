@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-void	run_buitin_cmd_helper(char *binary, char **argument, char **env_array)
+void	run_buitin_cmd_helper(char *binary, char **argument, char **env_vars)
 {
 	pid_t	pid;
 	pid_t	wpid;
@@ -22,7 +22,7 @@ void	run_buitin_cmd_helper(char *binary, char **argument, char **env_array)
 	signal(SIGINT, signal_handler);
 	if (pid == 0)
 	{
-		if (execve(binary, argument, env_array) == -1)
+		if (execve(binary, argument, env_vars) == -1)
 		{
 			ft_printf("%s%s%s", RED, "No such binary\n", RESET);
 			ft_clean_2d_char(argument);
@@ -40,19 +40,57 @@ void	run_buitin_cmd_helper(char *binary, char **argument, char **env_array)
 	}
 }
 
-void	run_buitin_cmd(char *line, char **env_array)
+int		len_of_ll(t_env *env)
+{
+	int i;
+
+	i = 0;
+	while (env)
+	{
+		i++;
+		env = env->next;
+	}
+	return (i);
+}
+
+char 	**env_vars_array(t_env *env)
+{
+	int		i;
+	int		len;
+	char 	**result;
+
+	i= 0;
+	len = len_of_ll(env);
+	result = (char **)malloc(sizeof(char *) * (len + 1));
+
+	while (env)
+	{
+		result[i] = ft_strnew(ft_strlen(env->name)+ 1+ ft_strlen(env->content));
+		ft_strcat(result[i], env->name);
+		ft_strcat(result[i], "=");
+		ft_strcat(result[i], env->content);
+		i++;
+		env = env->next;
+	}
+	result[i] = NULL;
+	return(result);
+}
+
+void	run_buitin_cmd(char *line, t_env **env)
 {
 	char	**argument;
 	char	*binary;
+	char 	**env_vars;
 
+	env_vars = env_vars_array(*env);
 	argument = ft_strsplit(line, 32);
-	if (!env_array[0])
+	if (!env) //test it
 	{
 		ft_printf("%s%s%s", RED, "No env variables.\n", RESET);
 		exit(0);
 	}
-	binary = find_binary_path(argument[0], env_array);
+	binary = find_binary_path(argument[0], env);
 	if (binary == NULL && argument[0])
 		binary = ft_strdup(argument[0]);
-	run_buitin_cmd_helper(binary, argument, env_array);
+	run_buitin_cmd_helper(binary, argument, env_vars);
 }

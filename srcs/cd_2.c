@@ -80,7 +80,7 @@ int		one_and_too_many_argv_help(char **command_line,
 	{
 		chdir("/Users/otimofie");
 		ft_clean(env);
-		path_x->content = ft_strdup("PWD=/Users/otimofie");
+		path_x->content = ft_strdup("/Users/otimofie");
 		path_y->content = ft_strdup(pwd_old);
 		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
 		return (1);
