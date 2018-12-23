@@ -13,8 +13,11 @@
 #include "../includes/minishell.h"
 
 // TODO: leaks and norminette
+
 // TODO: cd $PWD/srcs
 // TODO: setenv tilda and $
+// TODO: env -i ./minishell
+// TODO: main infrastructure;
 // TODO: handle of "" and '';
 
 // TODO: remaster main, fork + setenv, unsetenv;
