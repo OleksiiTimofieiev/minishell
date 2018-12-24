@@ -29,6 +29,7 @@ CORE		= 	main.c \
 				special_char_fork.c \
 				tilda_fork.c \
 				main_infrastructure.c \
+				main_infrastructure_2.c \
 			
 SRCS        	= $(addprefix srcs/, $(CORE))
 

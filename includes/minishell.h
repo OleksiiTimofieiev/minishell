@@ -47,6 +47,6 @@ void				check_special_env(t_env *env);
 void				change_to_spaces(char *str, char find, char required);
 int					detect_not_space(char *str);
 char				**cmd_array_constructor(char *line);
-
+int					quotes_validation(char **str);
 
 #endif

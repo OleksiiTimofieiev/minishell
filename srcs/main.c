@@ -66,7 +66,7 @@ void	minishell(void)
 		ft_printf("%s%s%s", GREEN, "$> ", RESET);
 		if (!(get_next_line(0, &line)))
 			exit(0);
-		cmd_array = cmd_array_constructor(line);
+		if ((cmd_array = cmd_array_constructor(line)))
 		execution_cycle(env, cmd_array);
 		(line) ? free(line) : 0;
 		(cmd_array != NULL) ? ft_clean_2d_char(cmd_array) : 0;
