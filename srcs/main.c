@@ -16,6 +16,8 @@
 
 // TODO: handle of "" and ''; 0 or % 0
 
+// TODO: env -i ./minishell think about it;
+
 void	execution_cycle(t_env *env, char **cmd_array)
 {
 	int i;
