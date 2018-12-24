@@ -13,39 +13,31 @@
 #include "../includes/minishell.h"
 
 void	delete_node(t_env **head_ref, char *name) 
-{ 
-    // Store head node 
-    t_env* temp = *head_ref;
-    t_env *prev; 
-  
-    // If head node itself holds the key to be deleted 
-    if (temp != NULL && ft_strcmp(temp->name, name) == 0) 
-    { 
-        *head_ref = temp->next;   // Changed head 
-          	free(temp->name);
-  	free(temp->content);
-        free(temp);               // free old head 
-        return; 
-    } 
-  
-    // Search for the key to be deleted, keep track of the 
-    // previous node as we need to change 'prev->next' 
-    while (temp != NULL && ft_strcmp(temp->name, name) != 0) 
-    { 
-        prev = temp; 
-        temp = temp->next; 
-    } 
-  
-    // If key was not present in linked list 
-    if (temp == NULL) return; 
-  
-    // Unlink the node from linked list 
-    prev->next = temp->next; 
-  
-  	free(temp->name);
-  	free(temp->content);
-    free(temp);  // Free memory 
-} 
+{
+	t_env *temp;
+	t_env *prev;
+
+	temp = *head_ref;
+	if (temp != NULL && ft_strcmp(temp->name, name) == 0)
+	{
+		*head_ref = temp->next;
+		free(temp->name);
+		free(temp->content);
+		free(temp);
+		return;
+	}
+	while (temp != NULL && ft_strcmp(temp->name, name) != 0)
+	{
+		prev = temp;
+		temp = temp->next;
+	}
+	if (temp == NULL)
+		return;
+	prev->next = temp->next;
+	free(temp->name);
+	free(temp->content);
+	free(temp);
+}
 
 void	unsetenv_minishell(char *str, t_env *env)
 {
