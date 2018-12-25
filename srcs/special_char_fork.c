@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   special_char_fork.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/25 14:02:57 by otimofie          #+#    #+#             */
+/*   Updated: 2018/12/25 14:03:55 by otimofie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 int		special_char_occurance_fork(char *str)
@@ -41,7 +53,7 @@ void	woohoo_help_fork(char **path, char *env_value, char *str, int j)
 	ft_strcat(*path, &str[j + 1]);
 }
 
-char 	*woohoo_fork(char *str, t_env **env)
+char	*woohoo_fork(char *str, t_env **env)
 {
 	int		j;
 	char	*path;
@@ -73,8 +85,8 @@ char 	*woohoo_fork(char *str, t_env **env)
 void	special_char_help_fork(char **argument, t_env *env)
 {
 	char	*slash;
-	char 	*buf;
-	char    *copy;
+	char	*buf;
+	char	*copy;
 
 	slash = NULL;
 	buf = NULL;
@@ -86,36 +98,8 @@ void	special_char_help_fork(char **argument, t_env *env)
 	{
 		free(*argument);
 		*argument = ft_strdup(slash);
-	}	
+	}
 	(copy) ? free(copy) : 0;
 	(buf) ? free(buf) : 0;
 	(slash) ? free(slash) : 0;
-}
-
-void	special_char_fork(char **arguments, t_env *env)
-{
-	int		i;
-	t_env	*env_local;
-
-	i = 0;
-	while (arguments[i])
-	{
-		if (arguments[i][0] == '$' && special_char_occurance_fork(arguments[i]) == 1)
-		{
-			if (!find_char_fork(arguments[i], '/'))
-			{
-				env_local = find_elem(&env, &arguments[i][1]);
-				if (env_local)
-				{
-					free(arguments[i]);
-					arguments[i] = ft_strdup(env_local->content);
-				}
-			}
-			else
-			{
-				special_char_help_fork(arguments, env);
-			}
-		}
-		i++;
-	}
 }

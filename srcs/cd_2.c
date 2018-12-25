@@ -6,40 +6,13 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 12:34:12 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 15:32:02 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/25 13:51:17 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		find_char(char *str, char c)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-		{
-			j = i;
-			return (j);
-		}
-		i++;
-	}
-	return (j);
-}
-
-void	woohoo_help(char **path, char *env_value, char *str, int j)
-{
-	*path = ft_strnew(ft_strlen(env_value) + 1 + ft_strlen(&str[j + 1]));
-	ft_strcat(*path, env_value);
-	ft_strcat(*path, "/");
-	ft_strcat(*path, &str[j + 1]);
-}
-
-char 	*woohoo(char *str, t_env **env)
+char	*woohoo(char *str, t_env **env)
 {
 	int		j;
 	char	*path;
@@ -72,8 +45,8 @@ void	path_handler(char **command_line, char *pwd_old, t_env **env)
 {
 	char	*path_v;
 	t_env	*find_env;
-	t_env 	*path_x;
-	t_env 	*path_y;
+	t_env	*path_x;
+	t_env	*path_y;
 
 	path_v = NULL;
 	find_env = NULL;
@@ -84,7 +57,7 @@ void	path_handler(char **command_line, char *pwd_old, t_env **env)
 	{
 		find_env = find_elem(env, &command_line[1][1]);
 		if (find_env)
-			path_v = ft_strdup(find_env->content);	
+			path_v = ft_strdup(find_env->content);
 	}
 	if (chdir(path_v) == 0)
 	{
@@ -92,7 +65,6 @@ void	path_handler(char **command_line, char *pwd_old, t_env **env)
 		path_x->content = ft_strdup(path_v);
 		path_y->content = ft_strdup(pwd_old);
 	}
-
 	if (path_v != NULL)
 		free(path_v);
 }
@@ -100,9 +72,9 @@ void	path_handler(char **command_line, char *pwd_old, t_env **env)
 int		one_and_too_many_argv_hel_help(char **command_line,
 										t_env **env, char *pwd_old)
 {
-	t_env *path_x;
-	t_env *path_y;
-	char *path_v;
+	t_env	*path_x;
+	t_env	*path_y;
+	char	*path_v;
 
 	path_x = find_elem(env, "PWD");
 	path_y = find_elem(env, "OLDPWD");
@@ -164,7 +136,6 @@ short	one_and_too_many_argv(char **command_line,
 		path_x->content = ft_strdup("/Users/otimofie");
 		path_y->content = ft_strdup(pwd_old);
 		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;
-
 		return (0);
 	}
 	else if (len_char_2d_array(command_line) != 2)

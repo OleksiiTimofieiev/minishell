@@ -1,47 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_infrastructure_2.c                            :+:      :+:    :+:   */
+/*   special_char_fork_2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/25 14:00:22 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/25 14:00:23 by otimofie         ###   ########.fr       */
+/*   Created: 2018/12/25 14:04:09 by otimofie          #+#    #+#             */
+/*   Updated: 2018/12/25 14:06:55 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		quotes_check(char *str)
+void	special_char_fork(char **arguments, t_env *env)
 {
-	int	quotes_type_1;
-	int	quotes_type_2;
-
-	quotes_type_1 = 0;
-	quotes_type_2 = 0;
-	while (*str)
-	{
-		if (*str == 34)
-			quotes_type_1++;
-		else if (*str == 39)
-			quotes_type_2++;
-		str++;
-	}
-	if (quotes_type_1 % 2 == 0 && quotes_type_2 % 2 == 0)
-		return (1);
-	return (0);
-}
-
-int		quotes_validation(char **str)
-{
-	int i;
+	int		i;
+	t_env	*env_local;
 
 	i = 0;
-	while (str[i])
+	while (arguments[i])
 	{
-		if (!quotes_check(str[i]))
-			return (0);
+		if (arguments[i][0] == '$' &&
+			special_char_occurance_fork(arguments[i]) == 1)
+		{
+			if (!find_char_fork(arguments[i], '/'))
+			{
+				env_local = find_elem(&env, &arguments[i][1]);
+				if (env_local)
+				{
+					free(arguments[i]);
+					arguments[i] = ft_strdup(env_local->content);
+				}
+			}
+			else
+			{
+				special_char_help_fork(arguments, env);
+			}
+		}
 		i++;
 	}
-	return (1);
 }

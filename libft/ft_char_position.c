@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 13:59:05 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 15:13:44 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/25 13:45:53 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int		ft_char_position(char *str, char c)
 
 	i = 0;
 	while (str[i] && str[i] != c)
-			i++;
+		i++;
 	return (i);
 }

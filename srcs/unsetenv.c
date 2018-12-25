@@ -6,13 +6,13 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 11:52:16 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 16:12:49 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/25 14:10:57 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-void	delete_node(t_env **head_ref, char *name) 
+void	delete_node(t_env **head_ref, char *name)
 {
 	t_env *temp;
 	t_env *prev;
@@ -24,7 +24,7 @@ void	delete_node(t_env **head_ref, char *name)
 		free(temp->name);
 		free(temp->content);
 		free(temp);
-		return;
+		return ;
 	}
 	while (temp != NULL && ft_strcmp(temp->name, name) != 0)
 	{
@@ -32,7 +32,7 @@ void	delete_node(t_env **head_ref, char *name)
 		temp = temp->next;
 	}
 	if (temp == NULL)
-		return;
+		return ;
 	prev->next = temp->next;
 	free(temp->name);
 	free(temp->content);

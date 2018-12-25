@@ -6,13 +6,11 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:35:06 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 17:58:17 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/25 14:01:13 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-// TODO: leaks and norminette in all folders;
 
 void	execution_cycle(t_env *env, char **cmd_array)
 {
@@ -47,7 +45,7 @@ void	minishell(void)
 	char	*line;
 	char	**cmd_array;
 	t_env	*env;
-	
+
 	env = NULL;
 	cmd_array = NULL;
 	signal(SIGINT, signal_handler);
@@ -63,7 +61,7 @@ void	minishell(void)
 		if (!(get_next_line(0, &line)))
 			exit(0);
 		if ((cmd_array = cmd_array_constructor(line)))
-		execution_cycle(env, cmd_array);
+			execution_cycle(env, cmd_array);
 		(line) ? free(line) : 0;
 		(cmd_array != NULL) ? ft_clean_2d_char(cmd_array) : 0;
 		system("leaks -q minishell");

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   special_char.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/25 14:07:20 by otimofie          #+#    #+#             */
+/*   Updated: 2018/12/25 14:10:14 by otimofie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/minishell.h"
 
 int		special_char_occurance(char *str)
@@ -14,25 +26,6 @@ int		special_char_occurance(char *str)
 	return (i);
 }
 
-int		find_char_setenv(char *str, char c)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-		{
-			j = i;
-			return (j);
-		}
-		i++;
-	}
-	return (j);
-}
-
 void	woohoo_help_setenv(char **path, char *env_value, char *str, int j)
 {
 	*path = ft_strnew(ft_strlen(env_value) + 1 + ft_strlen(&str[j + 1]));
@@ -41,7 +34,7 @@ void	woohoo_help_setenv(char **path, char *env_value, char *str, int j)
 	ft_strcat(*path, &str[j + 1]);
 }
 
-char 	*woohoo_setenv(char *str, t_env **env)
+char	*woohoo_setenv(char *str, t_env **env)
 {
 	int		j;
 	char	*path;
@@ -73,8 +66,8 @@ char 	*woohoo_setenv(char *str, t_env **env)
 void	special_char_help(char **arguments, t_env *env)
 {
 	char	*slash;
-	char 	*buf;
-	char    *copy;
+	char	*buf;
+	char	*copy;
 
 	slash = NULL;
 	buf = NULL;
@@ -86,7 +79,7 @@ void	special_char_help(char **arguments, t_env *env)
 	{
 		free(arguments[2]);
 		arguments[2] = ft_strdup(slash);
-	}	
+	}
 	(copy) ? free(copy) : 0;
 	(buf) ? free(buf) : 0;
 	(slash) ? free(slash) : 0;

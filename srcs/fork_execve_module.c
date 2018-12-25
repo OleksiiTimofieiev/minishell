@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 15:34:52 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 15:43:40 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/25 13:59:49 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,19 @@ int		len_of_list(t_env *env)
 	return (i);
 }
 
-char 	**env_vars_array(t_env *env)
+char	**env_vars_array(t_env *env)
 {
 	int		i;
 	int		len;
-	char 	**result;
+	char	**result;
 
-	i= 0;
+	i = 0;
 	len = len_of_list(env);
 	result = (char **)malloc(sizeof(char *) * (len + 1));
 	while (env)
 	{
-		result[i] = ft_strnew(ft_strlen(env->name)+ 1+ ft_strlen(env->content));
+		result[i] = ft_strnew(ft_strlen(env->name) +
+			1 + ft_strlen(env->content));
 		ft_strcat(result[i], env->name);
 		ft_strcat(result[i], "=");
 		ft_strcat(result[i], env->content);
@@ -72,7 +73,7 @@ char 	**env_vars_array(t_env *env)
 		env = env->next;
 	}
 	result[i] = NULL;
-	return(result);
+	return (result);
 }
 
 void	mod_flags(char **arguments, t_env *env)
@@ -92,7 +93,7 @@ void	run_buitin_cmd(char *line, t_env *env)
 {
 	char	**arguments;
 	char	*binary;
-	char 	**env_vars;
+	char	**env_vars;
 
 	env_vars = env_vars_array(env);
 	arguments = ft_strsplit(line, 32);

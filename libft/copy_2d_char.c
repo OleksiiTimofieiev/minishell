@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 11:56:53 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/01 11:57:21 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/25 13:45:15 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	**copy_2d_char(char **src)
 {
-	int i;
-	int len;
-	char **res;
+	int		i;
+	int		len;
+	char	**res;
 
 	i = 0;
 	len = len_char_2d_array(src) + 1;

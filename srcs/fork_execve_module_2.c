@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 15:43:43 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 15:47:11 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/25 14:00:06 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*find_dir_path(char *binary_name, char **path_list)
 
 char	*find_binary_path(char *binary_name, t_env **env)
 {
-	char 	*path;
+	char	*path;
 	char	**path_list;
 	char	*full_binary;
 	char	*result;

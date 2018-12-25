@@ -6,7 +6,7 @@
 #    By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/18 11:59:13 by otimofie          #+#    #+#              #
-#    Updated: 2018/12/22 15:44:48 by otimofie         ###   ########.fr        #
+#    Updated: 2018/12/25 14:09:28 by otimofie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME		= 	minishell
 CORE		= 	main.c \
 				cd.c \
 				cd_2.c \
+				cd_3.c \
 				env.c \
 				env_infrastructure.c \
 				signal.c \
@@ -26,7 +27,9 @@ CORE		= 	main.c \
 				setenv.c \
 				unsetenv.c \
 				special_char.c \
+				special_char_2.c \
 				special_char_fork.c \
+				special_char_fork_2.c \
 				tilda_fork.c \
 				main_infrastructure.c \
 				main_infrastructure_2.c \

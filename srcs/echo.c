@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 13:40:09 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 12:50:10 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/25 13:52:22 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ void	display_global_variable(char *str, t_env *env, int index)
 {
 	while (env)
 	{
-		if (!ft_strequ(env->name, "$") && ft_strncmp(env->name, &str[index], ft_strlen(&str[index])) == 0)
+		if (!ft_strequ(env->name, "$") && ft_strncmp(env->name,
+			&str[index], ft_strlen(&str[index])) == 0)
 		{
 			ft_printf("%s", env->content);
-			break;
+			break ;
 		}
 		env = env->next;
 	}

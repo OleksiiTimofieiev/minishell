@@ -6,7 +6,7 @@
 /*   By: otimofie <otimofie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/25 15:20:20 by otimofie          #+#    #+#             */
-/*   Updated: 2018/12/22 18:03:02 by otimofie         ###   ########.fr       */
+/*   Updated: 2018/12/25 14:02:33 by otimofie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 void	not_available(char **arguments, t_env *head)
 {
-	t_env   *new;
+	t_env	*new;
 
-    new = (t_env *)malloc(sizeof(t_env));
-    new->name = strdup(arguments[1]);
-    new->content = strdup(arguments[2]);
-    new->next = NULL;
-
-    while (head->next)
-        head = head->next;
-    head->next = new;
+	new = (t_env *)malloc(sizeof(t_env));
+	new->name = strdup(arguments[1]);
+	new->content = strdup(arguments[2]);
+	new->next = NULL;
+	while (head->next)
+		head = head->next;
+	head->next = new;
 }
 
 void	env_available(char **arguments, t_env *env)
@@ -43,7 +42,8 @@ void	tilda_setenv(char **arguments)
 
 	if (arguments[2][0] == '~' && arguments[2][1] == '/')
 	{
-		result = ft_strnew(ft_strlen("/Users/otimofie") + ft_strlen(&arguments[2][1]));
+		result = ft_strnew(ft_strlen("/Users/otimofie") +
+			ft_strlen(&arguments[2][1]));
 		ft_strcat(result, "/Users/otimofie");
 		ft_strcat(result, &arguments[2][1]);
 		free(arguments[2]);
