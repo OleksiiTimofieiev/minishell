@@ -13,7 +13,6 @@
 #include "../includes/minishell.h"
 
 // TODO: leaks and norminette in all folders;
-// TODO: env -i ./minishell think about it;
 
 void	execution_cycle(t_env *env, char **cmd_array)
 {

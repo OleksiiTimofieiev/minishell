@@ -1,6 +1,5 @@
 #include "../includes/minishell.h"
 
-
 int		quotes_check(char *str)
 {
 	int	quotes_type_1;
@@ -33,5 +32,4 @@ int		quotes_validation(char **str)
 		i++;
 	}
 	return (1);
-
 }

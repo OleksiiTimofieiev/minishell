@@ -41,7 +41,6 @@ void	ft_clean(t_env **env)
 		free(path_y->content);
 }
 
-
 void    push_back(t_env **head, char *str)
 {
     t_env   *new;
@@ -89,4 +88,3 @@ void    check_special_env(t_env *env)
     if (!tests)
         setenv_minishell("setenv HOME /Users/otimofie", env);
 }
-

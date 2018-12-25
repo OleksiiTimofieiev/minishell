@@ -39,23 +39,23 @@ void	multy_replace(char **str)
 
 char	**cmd_array_constructor(char *line)
 {
-		char **cmd_array;
+	char **cmd_array;
 
-		change_to_necessary_char(line, '\t', ' ');
-		if (ft_quantity_of_chars(line, ';'))
-			cmd_array = ft_strsplit(line, ';');
-		else
-		{
-			cmd_array = (char **)malloc(sizeof(char *) * 2);
-			cmd_array[0] = ft_strdup(line);
-			cmd_array[1] = NULL;
-		}
-		if (quotes_validation(cmd_array))
-		{
-			multy_replace(cmd_array);
-			return (cmd_array);
-		}
-		ft_printf("%s%s\n%s", RED, "Not valid quotes.", RESET);
-		ft_clean_2d_char(cmd_array);
-		return (NULL);
+	change_to_necessary_char(line, '\t', ' ');
+	if (ft_quantity_of_chars(line, ';'))
+		cmd_array = ft_strsplit(line, ';');
+	else
+	{
+		cmd_array = (char **)malloc(sizeof(char *) * 2);
+		cmd_array[0] = ft_strdup(line);
+		cmd_array[1] = NULL;
+	}
+	if (quotes_validation(cmd_array))
+	{
+		multy_replace(cmd_array);
+		return (cmd_array);
+	}
+	ft_printf("%s%s\n%s", RED, "Not valid quotes.", RESET);
+	ft_clean_2d_char(cmd_array);
+	return (NULL);
 }

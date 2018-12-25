@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-void	delete_list(t_env** head_ref) 
+void  delete_list(t_env** head_ref) 
 { 
    t_env *current = *head_ref; 
    t_env *next; 
@@ -28,8 +28,7 @@ void	delete_list(t_env** head_ref)
    *head_ref = NULL; 
 } 
 
-
-void	exit_minishell(t_env **env)
+void  exit_minishell(t_env **env)
 {
 	if (env)
 		delete_list(env);

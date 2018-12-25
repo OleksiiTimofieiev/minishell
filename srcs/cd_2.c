@@ -126,11 +126,9 @@ int		one_and_too_many_argv_help(char **command_line,
 	t_env *path_x;
 	t_env *path_y;
 
-
 	path_x = find_elem(env, "PWD");
 	path_y = find_elem(env, "OLDPWD");
-
-	if (command_line[1][0] == '$') // only one dollar
+	if (command_line[1][0] == '$')
 	{
 		path_handler(command_line, pwd_old, env);
 		(command_line != NULL) ? ft_clean_2d_char(command_line) : 0;

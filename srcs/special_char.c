@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-int		special_char_occurance(char *str) // ft_char_occurence -> add to lib
+int		special_char_occurance(char *str)
 {
 	int i;
 

@@ -17,7 +17,6 @@ char	*get_cool_path(void)
 	char cool_path[1024];
 
 	ft_memset(cool_path, 0x0, sizeof(cool_path));
-	// ft_strcat(cool_path, pwd_new);
 	getcwd(cool_path, sizeof(cool_path));
 	return (ft_strdup(cool_path));
 }
