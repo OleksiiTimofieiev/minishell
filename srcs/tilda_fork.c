@@ -2,11 +2,10 @@
 
 void	tilda_fork(char **arguments)
 {
-	char *result;
-	int	i;
+	char	*result;
+	int		i;
 
 	i = 0;
-
 	while (arguments[i])
 	{
 		if (arguments[i][0] == '~' && arguments[i][1] == '/')
