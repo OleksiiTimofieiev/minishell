@@ -44,7 +44,7 @@ void				unsetenv_minishell(char *str, t_env *env);
 */
 
 void				push_back(t_env **head, char *str);
-void				init_env(t_env **env);
+void				init_env(char **envp, t_env **env);
 void				ft_clean(t_env **env);
 int					detect_del_var(char *env, char **haystack);
 short				one_and_too_many_argv(char **command_line,

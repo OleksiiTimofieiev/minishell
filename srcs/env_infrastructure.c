@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-extern	char **environ;
+// extern	char **environ;
 
 t_env	*find_elem(t_env **head, char *str)
 {
@@ -66,13 +66,13 @@ void	push_back(t_env **head, char *str)
 	ft_clean_2d_char(split);
 }
 
-void	init_env(t_env **env)
+void	init_env(char **envp, t_env **env)
 {
 	int i;
 
 	i = 0;
-	while (environ[i])
-		push_back(env, environ[i++]);
+	while (envp[i])
+		push_back(env, envp[i++]);
 }
 
 void	check_special_env(t_env *env)

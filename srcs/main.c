@@ -40,7 +40,7 @@ void	execution_cycle(t_env *env, char **cmd_array)
 	}
 }
 
-void	minishell(void)
+void	minishell(char **envp)
 {
 	char	*line;
 	char	**cmd_array;
@@ -49,7 +49,7 @@ void	minishell(void)
 	env = NULL;
 	cmd_array = NULL;
 	signal(SIGINT, signal_handler);
-	init_env(&env);
+	init_env(envp, &env);
 	if (!env)
 	{
 		ft_printf("%s%s\n%s", RED, "no env vars.", RESET);
@@ -68,8 +68,10 @@ void	minishell(void)
 	}
 }
 
-int		main(void)
+int		main(int argc, char **argv, char **envp)
 {
-	minishell();
+	(void)argc;
+	(void)argv;
+	minishell(envp);
 	return (0);
 }
